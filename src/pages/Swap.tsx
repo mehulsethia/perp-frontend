@@ -12,7 +12,6 @@ import {
   InputLeftElement,
   InputRightAddon,
   InputRightElement,
-  keyframes,
   Popover,
   PopoverAnchor,
   PopoverBody,
@@ -35,6 +34,7 @@ import {
   useTab,
   VStack,
 } from "@chakra-ui/react";
+import { keyframes } from "@emotion/react";
 import React, { useState, useEffect, useMemo, useCallback } from "react";
 import { readContracts, useAccount, useContractWrite, useFeeData, useNetwork, useWaitForTransaction } from "wagmi";
 import { readContract } from "@wagmi/core";

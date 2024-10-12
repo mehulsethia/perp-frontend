@@ -11,6 +11,7 @@ import Vote from "./pages/Vote";
 import Bridge from "./pages/Bridge";
 import Faucet from "./pages/Faucet";
 import Footer from "./components/footer";
+import Perps from "./pages/Perps";
 
 export const App = () => {
   const bg = useColorModeValue("whiteAlpha.900", "#0B0B20");
@@ -28,6 +29,7 @@ export const App = () => {
           <Route path="/bridge" element={<Bridge />} />
           <Route path="/faucet" element={<Faucet />} />
           <Route path="/trade" element={<Trade />} />
+          <Route path="/perps" element={<Perps />} />
           <Route path="/*" element={<Swap />} />
         </Routes>
         <Footer />

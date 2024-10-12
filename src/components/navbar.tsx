@@ -29,7 +29,7 @@ interface INavLink {
 const Links = [
   { label: "Swap", href: "/swap" },
   { label: "Pools", href: "/pools" },
-  { label: "Perps", href: "#" },
+  { label: "Perps", href: "/perps" },
   // { label: "Lock", href: "/lock" },
   // { label: "Vote", href: "/vote" },
   // { label: "Bridge", href: "/bridge" },
