@@ -12,6 +12,9 @@ import Bridge from "./pages/Bridge";
 import Faucet from "./pages/Faucet";
 import Footer from "./components/footer";
 import Perps from "./pages/Perps";
+import PoolsRebalance from "./pages/PoolsRebalance";
+import DepositLiquidity from "./pages/DepositLiquidity";
+import WithdrawLiquidity from "./pages/WithdrawLiquidity";
 
 export const App = () => {
   const bg = useColorModeValue("whiteAlpha.900", "#0B0B20");
@@ -23,6 +26,9 @@ export const App = () => {
         <Routes>
           <Route path="/swap" element={<Swap />} />
           <Route path="/pools" element={<Pools />} />
+          <Route path="/pools-rebalance" element={<PoolsRebalance />} />
+          <Route path="/deposit-liquidity" element={<DepositLiquidity />} />
+          <Route path="/withdraw-liquidity" element={<WithdrawLiquidity />} />
           <Route path="/pools/:token" element={<TokenDetail />} />
           <Route path="/lock" element={<Lock />} />
           <Route path="/vote" element={<Vote />} />
