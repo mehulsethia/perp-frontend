@@ -15,6 +15,7 @@ import Perps from "./pages/Perps";
 import PoolsRebalance from "./pages/PoolsRebalance";
 import DepositLiquidity from "./pages/DepositLiquidity";
 import WithdrawLiquidity from "./pages/WithdrawLiquidity";
+import PoolsDetails from "./pages/PoolsDetails";
 
 export const App = () => {
   const bg = useColorModeValue("whiteAlpha.900", "#0B0B20");
@@ -29,6 +30,7 @@ export const App = () => {
           <Route path="/pools-rebalance" element={<PoolsRebalance />} />
           <Route path="/deposit-liquidity" element={<DepositLiquidity />} />
           <Route path="/withdraw-liquidity" element={<WithdrawLiquidity />} />
+          <Route path="/pools-details" element={<PoolsDetails />} />
           <Route path="/pools/:token" element={<TokenDetail />} />
           <Route path="/lock" element={<Lock />} />
           <Route path="/vote" element={<Vote />} />

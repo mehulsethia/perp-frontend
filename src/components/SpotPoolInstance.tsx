@@ -133,7 +133,7 @@ const CustomTab = React.forwardRef<HTMLButtonElement, any>((props, ref) => {
   );
 });
 
-export default function DepositLiquidity() {
+export default function SpotPoolInstance() {
   const { address, isConnected } = useAccount();
   const { data: gasData } = useFeeData();
   const { chain } = useNetwork();
@@ -188,7 +188,7 @@ export default function DepositLiquidity() {
 
   const [isPreview, setIsPreview] = useState<boolean>(false);
   const [isPriceLoading, setIsPriceLoading] = useState<boolean>(false);
-  const [selected, setSelected] = useState("spot");
+  const [selected, setSelected] = useState("Withdraw");
 
   const handleClick = (poolType: any) => {
     setSelected(poolType);
@@ -310,7 +310,6 @@ export default function DepositLiquidity() {
     }
   };
 
-  //   try {
   //     // Join the token IDs into a comma-separated string
   //     const tokenIdsString = tokenIds.join(",");
 
@@ -418,13 +417,6 @@ export default function DepositLiquidity() {
       }
     }
   }
-
-  // useEffect(() => {
-  //   if (chainConstants) {
-  //     getUserAllowance();
-  //     getUserData();
-  //   }
-  // }, [chainConstants]);
 
   useEffect(() => {
     if (address && chain) {
@@ -668,9 +660,9 @@ export default function DepositLiquidity() {
   );
 
   const spin = keyframes`  
-      from {transform: rotate(0deg);}   
-      to {transform: rotate(360deg)} 
-    `;
+        from {transform: rotate(0deg);}   
+        to {transform: rotate(360deg)} 
+      `;
 
   const spinAnimation = `${spin} infinite 1s linear`;
 
@@ -700,305 +692,204 @@ export default function DepositLiquidity() {
   }, [chain]);
 
   return (
-    <Box
-      h={"100%"}
-      w={"100%"}
-      bgColor={bg}
-      bg={`url(${bgImg})`}
-      bgPos={"bottom"}
-      bgSize={{ base: "contain", xl: "cover" }}
-      bgRepeat={"no-repeat"}
-    >
+    <Box h={"100%"} w={"100%"}>
       <Box
-        w={{ base: "sm", md: "31.063rem", sm: "80%" }}
+        w={{ base: "md", md: "31.063rem", sm: "80%" }}
         borderWidth="0.1rem"
         borderColor={borderColor}
         borderRadius={"2rem"}
         p="1rem"
         bgColor={bg}
+        // className="bg-red-500"
         mx="auto"
         filter={shadow}
         boxShadow="xl"
         display="flex"
         flexDir={"column"}
         gap={"1.875rem"}
-        my={"4%"}
+        // my={"4%"}
       >
         <>
           <VStack>
-            {isPreview ? (
-              <HStack pl={"0.625rem"} gap={"0.625rem"} w={"100%"}>
-                <Image
-                  alt="Swap"
-                  src={ArrowBackIcon}
-                  onClick={() => setIsPreview(false)}
-                  cursor={"pointer"}
-                />
-                <Text fontSize={"1.25rem"} color={color}>
-                  Back
+            <HStack w={"100%"}>
+              <HStack  gap={"0.625rem"}>
+                {/* <Image alt="Swap" src={swapIcon} /> */}
+                <Text color={color} className="font-bold text-2xl ml-2">
+                  Spot Pool
                 </Text>
               </HStack>
-            ) : (
-              <HStack w={"100%"}>
-                <HStack px={"0.781rem"} gap={"0.625rem"}>
-                  {/* <Image alt="Swap" src={swapIcon} /> */}
-                  <Text fontSize={"1.25rem"} color={color}>
-                    Deposit USDC
-                  </Text>
-                </HStack>
-                <Spacer />
-              </HStack>
-            )}
+              <Spacer />
+            </HStack>
 
-            {isPreview ? (
-              <>
-                <Box
-                  py="1.275rem"
-                  px="3.375rem"
-                  w="100%"
-                  borderRadius="1.625rem"
-                  bg={inputBoxBg}
-                >
-                  <HStack
-                    w="100%"
-                    gap="2.5rem"
-                    justifyContent={"space-between"}
-                  >
-                    <VStack gap="1.275rem">
-                      <Text
-                        fontWeight={700}
-                        fontSize={"0.875rem"}
-                        color={color}
-                      >
-                        Deposited From
-                      </Text>
-                      <Center
-                        borderWidth={"2px"}
-                        borderColor={darkerBorderColor}
-                        bg={bg}
-                        borderStyle={"dashed"}
-                        borderRadius={"1rem"}
-                        padding="0.625rem"
-                      >
-                        <Image h="4.375rem" src={tokenFromIcon} alt="sell" />
-                      </Center>
-                      <VStack gap={"0.375rem"}>
-                        <Text fontWeight={700} color={color}>
-                          {trim(Number(quantityFrom), 5)}
-                        </Text>
-                        <Text fontWeight={700} color={color}>
-                          {tokenFrom?.toLocaleUpperCase()}
-                        </Text>
-                        <Text fontSize={"0.75rem"} color={lightColor}>
-                          ≈ $00.00
-                        </Text>
-                      </VStack>
-                    </VStack>
-                    <VStack>
-                      <Image src={Logo} alt="Logo" />
-                      <Image src={DashArrowIcon} alt="arrow" />
-                    </VStack>
-                    <VStack gap="1.275rem">
-                      <Text
-                        fontWeight={700}
-                        fontSize={"0.875rem"}
-                        color={color}
-                      >
-                        Deposited To
-                      </Text>
-                      <Center
-                        borderWidth={"2px"}
-                        borderColor={darkerBorderColor}
-                        bg={bg}
-                        borderStyle={"dashed"}
-                        borderRadius={"1rem"}
-                        padding="0.625rem"
-                      >
-                        <Image h="4.375rem" src={tokenToIcon} alt="receive" />
-                      </Center>
-                      <VStack gap={"0.375rem"}>
-                        <Text
-                          fontWeight={700}
-                          color={color}
-                          wordBreak={"break-word"}
-                        >
-                          {trim(Number(quantityTo), 5)}
-                        </Text>
-                        <Text
-                          fontWeight={700}
-                          color={color}
-                          wordBreak={"break-word"}
-                        >
-                          {tokenTo?.toLocaleUpperCase()}
-                        </Text>
-                        <Text fontSize={"0.75rem"} color={lightColor}>
-                          ≈ $00.00
-                        </Text>
-                      </VStack>
-                    </VStack>
+            <>
+              <Box className="text-gray-300 w-full">
+                <VStack px={"0.625rem"}>
+                  <HStack w={"100%"}>
+                    <Text fontSize="0.875rem" color={color}>
+                      My Deposit
+                    </Text>
+
+                    <Spacer />
+                    <Text fontSize="0.875rem" color={color}>
+                      1 1000.2 mLP-USDC = 1000$
+                    </Text>
                   </HStack>
-                </Box>
-                {/* Preview Confirmation Details */}
-              </>
-            ) : (
-              <>
-                <Box className="text-gray-300 ml-3">
-                  <Text>
-                    Once Confirmed, You will start earning rewards in USDC,
-                    Remember unstaking will take{" "}
-                    <span className="text-red-500">30 Days</span> to complete
-                  </Text>
-                </Box>
-                <div className="flex my-4 items-center justify-between space-x-1  bg-[#2F3055] p-2 rounded-xl w-full">
-                  <button
-                    onClick={() => handleClick("spot")}
-                    className={`px-10 py-2 rounded-xl w-full  transition-colors ${
-                      selected === "spot"
-                        ? "bg-[#1B1C39] text-white"
-                        : "bg-transparent text-gray-400"
-                    } hover:bg-gray-900 hover:text-white`}
-                  >
-                    Spot Pool
-                  </button>
-                  <button
-                    onClick={() => handleClick("perpetuals")}
-                    className={`px- py-2 rounded-xl w-full transition-colors ${
-                      selected === "perpetuals"
-                        ? "bg-[#1B1C39] text-white"
-                        : "bg-transparent text-gray-400"
-                    } hover:bg-gray-900 hover:text-white`}
-                  >
-                    Perpetuals Pool
-                  </button>
-                </div>
-                <VStack
-                  pos={"relative"}
+                  <HStack w={"100%"}>
+                    <Text fontSize="0.875rem" color={color}>
+                      Rewards
+                    </Text>
 
-                  borderRadius={"1.625rem"}
-                >
-                  <InputGroup
-                    borderWidth={"0.5px"}
-                    borderColor={borderColor}
-                    bg={inputBoxBg}
+                    <Spacer />
 
+                    <Box className="flex">
+                      <Text
+                        fontSize="0.875rem"
+                        fontWeight={400}
+                        borderRadius={"0.375rem"}
+                        // px={"0.375rem"}
+                        h={"1.25rem"}
+                      >
+                        9 MNTS ($9)
+                      </Text>
+                    </Box>
+                  </HStack>
 
-                    borderRadius={"1.25rem"}
-                    h={{ base: "11rem", md: "8rem" }}
-                    p={"1.25rem"}
-                  >
-                    <VStack justifyContent={"space-between"}>
-                      <HStack justifyContent={"space-between"} w={"100%"}>
-                        <TokenSelect
-                          value={tokenFrom}
-                          setValue={setNewTokenFrom}
-                          options={tokenList}
-                        />
-                        <Input
-                          type="text"
-                          pattern="^[0-9]*[.,]?[0-9]*$"
-                          fontSize={"1.875rem"}
-                          placeholder="0.00"
-                          value={quantityFrom}
-                          color={color}
-                          fontWeight={"700"}
-                          w={"50%"}
-                          border="none"
-                          _focusVisible={{ borderColor: "none" }}
-                          _disabled={{ borderColor: "none" }}
-                          _placeholder={{ color: color }}
-                          onChange={(e) =>
-                            setPositiveQuantityFrom(e.target.value)
-                          }
-                          textAlign={"right"}
-                          paddingLeft={2}
-                        />
-                      </HStack>
-                      <HStack justifyContent={"space-between"} w={"100%"}>
-                        <HStack visibility={isConnected ? "visible" : "hidden"}>
-                          <HStack gap={"0.2rem"}>
-                            <Text fontSize={"0.875rem"}>Balance:</Text>
-                            <Text fontSize={"0.875rem"} color={lightColor}>
-                              {formatValue(tokenFromBalance)}
-                            </Text>
-                            <Text color={lightColor} fontSize={"0.875rem"}>
-                              {tokenFrom?.toLocaleUpperCase()}
-                            </Text>
-                          </HStack>
-                          {isConnected && Number(tokenFromBalance) > -10 && (
-                            <Text
-                              fontSize={"0.625rem"}
-                              color={lightGreenTextColor}
-                              cursor={"pointer"}
-                              fontWeight={400}
-                              onClick={setMax}
-                              bg={greenBGColor}
-                              borderRadius={"0.375rem"}
-                              px={"0.375rem"}
-                              h="1.25rem"
-                              display={"flex"}
-                              alignItems={"center"}
-                              _hover={{ opacity: 0.9 }}
-                              className="ml-2.5 md:ml-0"
-                            >
-                              MAX
-                            </Text>
-                          )}
-                        </HStack>
+                  <div className="bg-[#0B0B20] px-2 py-2 rounded-xl w-full flex justify-between items-center">
+                    <div>APR</div>
+                    <div>5%</div>
+                  </div>
 
-                        <Box
-                          display="flex"
-                          flexDirection={{ base: "column", md: "row" }} // Column on small screens, row on medium and up
-                          alignItems="center" // Aligns items to the center
-                          justifyContent="center"
-                          gap={{ base: "4", md: "0" }} // Adds space between items
-                        >
-                          <Text
-                            fontSize="0.875rem"
-                            fontWeight={400}
-                            color="rgba(48, 224, 161, 1)"
-                            bg="rgba(0, 141, 91, 0.2)"
-                            borderRadius="0.375rem"
-                            px="0.375rem"
-                            textAlign="center" // Centers the text
-                            display="flex"
-                            alignItems="center"
-                          >
-                            0.00 ETH
-                          </Text>
-
-                          <Image
-                            src={DashArrowIcon}
-                            alt="arrow"
-                            w={10}
-                            className="px-1"
-                            display="block"
-                            transform={{
-                              base: "rotate(90deg)",
-                              md: "rotate(0deg)",
-                            }} // Rotates the arrow in vertical mode
-                          />
-
-                          <Text
-                            fontSize="0.875rem"
-                            fontWeight={400}
-                            color="rgba(48, 224, 161, 1)"
-                            bg="rgba(0, 141, 91, 0.2)"
-                            borderRadius="0.375rem"
-                            px="0.375rem"
-                            h="1.25rem"
-                            textAlign="center" // Centers the text
-                            display="flex"
-                            alignItems="center"
-                          >
-                            0.00 ETH
-                          </Text>
-                        </Box>
-                      </HStack>
-                    </VStack>
-                  </InputGroup>
+                  <div className=" py-1 w-full flex justify-between items-center rounded-xl">
+                    <div className="flex  items-center justify-between space-x-1  bg-[#2F3055] px-1 py-1 rounded-xl ">
+                      <button
+                        onClick={() => handleClick("Deposit")}
+                        className={`px-2 py-1 rounded-xl   transition-colors ${
+                          selected === "Deposit"
+                            ? "bg-[#0B0B20] text-white"
+                            : "bg-transparent text-gray-400"
+                        } hover:bg-gray-900 hover:text-white`}
+                      >
+                        Deposit
+                      </button>
+                      <button
+                        onClick={() => handleClick("Withdraw")}
+                        className={`px-2 py-1 rounded-xl  transition-colors ${
+                          selected === "Withdraw"
+                            ? "bg-[#0B0B20] text-white"
+                            : "bg-transparent text-gray-400"
+                        } hover:bg-gray-900 hover:text-white`}
+                      >
+                        Withdraw
+                      </button>
+                      <button
+                        onClick={() => handleClick("Rebalance")}
+                        className={`px-2 py-1 rounded-xl  transition-colors ${
+                          selected === "Rebalance"
+                            ? "bg-[#0B0B20] text-white"
+                            : "bg-transparent text-gray-400"
+                        } hover:bg-gray-900 hover:text-white`}
+                      >
+                        Rebalance
+                      </button>
+                    </div>
+                  </div>
                 </VStack>
-              </>
-            )}
+              </Box>
+             
+              <VStack pos={"relative"} borderRadius={"1.625rem"}>
+                <InputGroup
+                  borderWidth={"0.5px"}
+                  borderColor={borderColor}
+                  bg={inputBoxBg}
+                  borderRadius={"1.25rem"}
+                  h={{ base: "11rem", md: "8rem" }}
+                  p={"1.25rem"}
+                >
+                  <VStack justifyContent={"space-between"}>
+                    <HStack justifyContent={"space-between"} w={"100%"}>
+                      <TokenSelect
+                        value={tokenFrom}
+                        setValue={setNewTokenFrom}
+                        options={tokenList}
+                      />
+                      <Input
+                        type="text"
+                        pattern="^[0-9]*[.,]?[0-9]*$"
+                        fontSize={"1.875rem"}
+                        placeholder="0.00"
+                        value={quantityFrom}
+                        color={color}
+                        fontWeight={"700"}
+                        w={"50%"}
+                        border="none"
+                        _focusVisible={{ borderColor: "none" }}
+                        _disabled={{ borderColor: "none" }}
+                        _placeholder={{ color: color }}
+                        onChange={(e) =>
+                          setPositiveQuantityFrom(e.target.value)
+                        }
+                        textAlign={"right"}
+                        paddingLeft={2}
+                      />
+                    </HStack>
+                    <HStack justifyContent={"space-between"} w={"100%"}>
+                      <HStack visibility={isConnected ? "visible" : "hidden"}>
+                        <HStack gap={"0.2rem"}>
+                          <Text fontSize={"0.875rem"}>Balance:</Text>
+                          <Text fontSize={"0.875rem"} color={lightColor}>
+                            {formatValue(tokenFromBalance)}
+                          </Text>
+                          <Text color={lightColor} fontSize={"0.875rem"}>
+                            {tokenFrom?.toLocaleUpperCase()}
+                          </Text>
+                        </HStack>
+                        {isConnected && Number(tokenFromBalance) > -10 && (
+                          <Text
+                            fontSize={"0.625rem"}
+                            color={lightGreenTextColor}
+                            cursor={"pointer"}
+                            fontWeight={400}
+                            onClick={setMax}
+                            bg={greenBGColor}
+                            borderRadius={"0.375rem"}
+                            px={"0.375rem"}
+                            h="1.25rem"
+                            display={"flex"}
+                            alignItems={"center"}
+                            _hover={{ opacity: 0.9 }}
+                            className="ml-2.5 md:ml-0"
+                          >
+                            MAX
+                          </Text>
+                        )}
+                      </HStack>
+
+                      <Box
+                        display="flex"
+                        flexDirection={{ base: "column", md: "row" }} // Column on small screens, row on medium and up
+                        alignItems="center" // Aligns items to the center
+                        justifyContent="center"
+                        gap={{ base: "4", md: "0" }} // Adds space between items
+                      >
+
+                        <Text
+                          fontSize="0.875rem"
+                          fontWeight={400}
+                          borderRadius="0.375rem"
+                          px="0.375rem"
+                          h="1.25rem"
+                          textAlign="center" // Centers the text
+                          display="flex"
+                          alignItems="center"
+                        >
+                          ≈000$
+                        </Text>
+                      </Box>
+                    </HStack>
+                  </VStack>
+                </InputGroup>
+              </VStack>
+            </>
           </VStack>
 
           <VStack gap={"0.625rem"} px={"0.625rem"}>
