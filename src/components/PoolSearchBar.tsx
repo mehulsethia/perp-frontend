@@ -48,53 +48,63 @@ function PoolSearchBar() {
     <div>
       <div className="flex flex-col w-full max-w-7xl md:flex-row justify-between items-center py-3 gap-4 md:gap-14">
         {/* Button Group for Tabs */}
-        <HStack className="bg-[#28294B] px-2  py-1.5 rounded-md w-full md:w-auto">
+        <HStack className="bg-[#28294B] px-0.5 py-1.5 rounded-md w-full md:w-auto flex-nowrap justify-between space-x-2 overflow-x-auto">
           <Button
-            fontSize="sm"
+            fontSize={["xs", "sm"]} // Responsive font size
             color="white"
             bg={activeTab === "allPools" ? "#0B0B20" : ""}
             _hover={{ bg: "#0B0B20" }}
             borderRadius="lg"
+            whiteSpace="nowrap"
+            flexShrink={0} // Prevent shrinking
             onClick={() => handleTabClick("allPools")}
           >
             All Pools
           </Button>
           <Button
-            fontSize="sm"
+            fontSize={["xs", "sm"]}
             color="white"
             bg={activeTab === "stableCoins" ? "#0B0B20" : ""}
             _hover={{ bg: "#0B0B20" }}
             borderRadius="lg"
+            whiteSpace="nowrap"
+            flexShrink={0}
             onClick={() => handleTabClick("stableCoins")}
           >
             Stable Coins
           </Button>
           <Button
-            fontSize="sm"
+            fontSize={["xs", "sm"]}
             color="white"
             bg={activeTab === "lsts" ? "#0B0B20" : ""}
             _hover={{ bg: "#0B0B20" }}
             borderRadius="lg"
+            whiteSpace="nowrap"
+            flexShrink={0}
             onClick={() => handleTabClick("lsts")}
           >
             LSTs
           </Button>
           <Button
-            fontSize="sm"
+            fontSize={["xs", "sm"]}
             color="white"
             bg={activeTab === "lrts" ? "#0B0B20" : ""}
             _hover={{ bg: "#0B0B20" }}
             borderRadius="lg"
+            whiteSpace="nowrap"
+            flexShrink={0}
             onClick={() => handleTabClick("lrts")}
           >
             LRTs
           </Button>
           <Button
-            fontSize="sm"
+            fontSize={["xs", "sm"]}
             color="white"
             bg={activeTab === "myPools" ? "#0B0B20" : ""}
             _hover={{ bg: "#0B0B20" }}
             borderRadius="lg"
+            whiteSpace="nowrap"
+            flexShrink={0}
             onClick={() => handleTabClick("myPools")}
           >
             My Pools

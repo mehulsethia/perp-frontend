@@ -89,35 +89,51 @@ export default function TokenSelect({ options, value, setValue, minW, isDisabled
   return (
     <Menu autoSelect={false}>
       <MenuButton
-        minW={minW ? minW : undefined}
-        as={Button}
-        p={{ base: "0.325rem", sm: "0.75rem" }}
-        onClick={handleModal}
-        h={"3rem"}
-        borderWidth={"0.5px"}
-        borderRadius={10}
-        borderColor={borderColor}
-        bgColor={buttonBg}
-        _hover={{ bgColor: buttonHoverBg }}
-        _disabled={{ bg: buttonBg }}
-        isDisabled={isDisabled}
+  minW={minW ? minW : undefined}
+  as={Button}
+  p={{ base: "0.325rem", sm: "0.75rem" }}
+  onClick={handleModal}
+  h={"3rem"}
+  borderWidth={"0.5px"}
+  borderRadius={10}
+  borderColor={borderColor}
+  bgColor={buttonBg}
+  _hover={{ bgColor: buttonHoverBg }}
+  _disabled={{ bg: buttonBg }}
+  isDisabled={isDisabled}
+  maxW="100%" // To ensure the MenuButton width doesn't exceed the parent container
+>
+  <HStack w={"100%"} gap={{ base: "0.325rem", sm: "0.625rem" }}>
+    {value ? (
+      <>
+        <Image boxSize={"24px"} src={getTokenImage(value)} />
+        <Text
+          color={color}
+          fontSize={"1.25rem"}
+          whiteSpace="nowrap"       // Prevents text from wrapping to the next line
+          overflow="hidden"         // Hides overflowing content
+          textOverflow="ellipsis"   // Adds '...' when text overflows
+          maxW="80%"                // Adjusts the max width to ensure the text fits inside
+        >
+          {value.toUpperCase()}
+        </Text>
+      </>
+    ) : (
+      <Text
+        color={color}
+        fontSize={"1.25rem"}
+        whiteSpace="nowrap"
+        overflow="hidden"
+        textOverflow="ellipsis"
+        maxW="80%" // Adjust max width to ensure text fits inside
       >
-        <HStack w={"100%"} gap={{ base: "0.325rem", sm: "0.625rem" }}>
-          {value ? (
-            <>
-              <Image boxSize={"24px"} src={getTokenImage(value)} />
-              <Text color={color} fontSize={"1.25rem"}>
-                {value.toUpperCase()}
-              </Text>
-            </>
-          ) : (
-            <Text color={color} fontSize={"1.25rem"}>
-              Select Token
-            </Text>
-          )}
-          <ChevronDownIcon color={color} fontSize={"20px"} style={{ visibility: isDisabled ? "hidden" : "visible" }} />
-        </HStack>
-      </MenuButton>
+        Select Token
+      </Text>
+    )}
+    <ChevronDownIcon color={color} fontSize={"20px"} style={{ visibility: isDisabled ? "hidden" : "visible" }} />
+  </HStack>
+</MenuButton>
+
       <Modal isOpen={open} size={{ base: "sm", sm: "lg" }} onClose={handleModal}>
         <ModalOverlay />
         <ModalContent

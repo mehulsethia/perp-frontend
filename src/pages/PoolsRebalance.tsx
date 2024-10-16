@@ -1777,8 +1777,8 @@ export default function PoolsRebalance() {
                   <Text
                     fontSize="0.875rem"
                     fontWeight={400}
-                    color={"rgba(48, 224, 161, 1)"}
-                    bg={"rgba(0, 141, 91, 0.2)"}
+                    color={"#30e0a1"}
+                    bg={"#008d5b33"}
                     borderRadius={"0.375rem"}
                     px={"0.375rem"}
                     h={"1.25rem"}
