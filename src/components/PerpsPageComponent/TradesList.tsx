@@ -19,6 +19,8 @@ const TradesList = () => {
     { price: 65302, size: 0.003256, time: "11:30:30", type: "sell" },
     { price: 65302, size: 0.003256, time: "11:30:30", type: "buy" },
     { price: 65302, size: 0.003256, time: "11:30:30", type: "buy" },
+    { price: 65302, size: 0.003256, time: "11:30:30", type: "buy" },
+    { price: 65302, size: 0.003256, time: "11:30:30", type: "buy" },
   ];
 
   return (

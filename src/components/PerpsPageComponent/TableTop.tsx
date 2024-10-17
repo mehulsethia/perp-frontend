@@ -54,7 +54,7 @@ function TableTop() {
       {/* Positions Tab */}
       <button
         className={`px-4 py-2 rounded-lg ${
-          activeTab === "positions" ? "bg-gray-700" : ""
+          activeTab === "positions" ? "bg-[#1B1C39]" : ""
         }`}
         onClick={() => setActiveTab("positions")}
       >

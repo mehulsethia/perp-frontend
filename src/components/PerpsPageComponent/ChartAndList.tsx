@@ -11,7 +11,7 @@ const ChartAndList = () => {
     <>
       <div className="flex gap-2 flex-col md:flex-row ">
         {/* Graph And Table Components */}
-        <div className=" w-full max-w-5xl my-4  h-full rounded-lg space-y-4">
+        <div className=" w-full max-w-[50rem] my-4  h-full rounded-lg space-y-4">
           <div className="bg-[#1B1C39] rounded-lg p-2 ">
             <Chart />
           </div>

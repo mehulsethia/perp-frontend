@@ -5,16 +5,16 @@ import { ChevronDownIcon } from "@chakra-ui/icons";
 const Row1 = () => {
   return (
     <>
-      <div className="flex w-full flex-col md:flex-row justify-between items-center  space-y-4 md:space-y-0  rounded-lg">
+      <div className="flex w-full flex-col md:flex-row justify-between gap-4 items-center  space-y-4 md:space-y-0  rounded-lg">
         {/* Left Section */}
-        <div className="flex w-full md:w-fit justify-between items-center py-4 px-3 space-x-2 rounded-lg bg-[#1B1C39] ">
+        <div className="flex w-full md:w-fit justify-between items-center py-4 px-1 space-x-4 rounded-lg bg-[#1B1C39] ">
           {/* Logo and Pair */}
           <div className="flex  items-center space-x-2">
             <div>
               {/* Replace this with your logo */}
-              <Image src={Logo} w={12} h={10} alt="Logo" />
+              <Image src={Logo} w={10} h={8} alt="Logo" />
             </div>
-            <div className="text-white flex">
+            <div className="text-white text-sm flex">
               BTC—USD <ChevronDownIcon fontSize={"20px"} />
               <div className="text-[#30e0a1] bg-[#008d5b33]  text-sm p-0.5 rounded-lg">
                 10X
@@ -23,7 +23,7 @@ const Row1 = () => {
           </div>
 
           {/* Market */}
-          <div className=" text-sm text-gray-400  rounded-md">
+          <div className=" text-sm text-gray-400 flex justify-center items-center rounded-md">
             All Market <ChevronDownIcon />
           </div>
         </div>
@@ -31,7 +31,7 @@ const Row1 = () => {
         {/* Middle Section */}
         <div className="px-4 py-3 flex flex-col w-full md:w-fit md:flex-row space-y-4 md:space-y-0   rounded-lg bg-[#1B1C39]">
           {/* Price Section */}
-          <div className="text-white flex  flex-col mr-10">
+          <div className="text-white flex  flex-col mr-2">
             <div className="text-lg font-bold">6,654$</div>
             <div className="text-sm text-start text-gray-400 font-bold">
               6,654$
@@ -39,12 +39,12 @@ const Row1 = () => {
           </div>
 
           {/* Stats Section */}
-          <div className="grid grid-cols-2 md:grid-cols-6 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-6 ">
             {/* 24h Change */}
             <div className=" text-gray-400">
               <div className="flex items-center justify-start space-x-1">
                 <div className="w-[3px] h-3.5 bg-[#01C880] rounded-md"></div>
-                <span className="text-white text-base">24h Change</span>
+                <span className="text-white text-base whitespace-nowrap">24h Change</span>
               </div>
               <div className="text-sm text-start text-white">$2,302</div>
             </div>
@@ -52,8 +52,8 @@ const Row1 = () => {
             {/* 24h Volume */}
             <div className=" text-gray-400">
               <div className="flex items-center justify-start space-x-1">
-                <div className="w-[3px] h-3.5 bg-[#01C880] rounded-md"></div>
-                <span className="text-white text-base">24h Volume</span>
+                <div className="w-[3px] h-3.5 flex-shrink-0 bg-[#01C880] rounded-md"></div>
+                <span className="text-white text-base whitespace-nowrap">24h Volume</span>
               </div>
               <div className="text-sm text-start text-white">$2,302,564</div>
             </div>
@@ -62,7 +62,7 @@ const Row1 = () => {
             <div className=" text-gray-400">
               <div className="flex items-center justify-start space-x-1">
                 <div className="w-[3px] h-3.5 bg-[#01C880] rounded-md"></div>
-                <span className="text-white text-base">Open Interest (L)</span>
+                <span className="text-white text-base whitespace-nowrap">Open Interest (L)</span>
               </div>
               <div className="text-sm text-start text-white">$2,302,564</div>
             </div>
