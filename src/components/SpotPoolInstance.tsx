@@ -692,9 +692,9 @@ export default function SpotPoolInstance() {
   }, [chain]);
 
   return (
-    <Box h={"100%"} w={"100%"}>
+    <Box >
       <Box
-        w={{ base: "md", md: "31.063rem", sm: "80%" }}
+        w={{md: "31.063rem"}}
         borderWidth="0.1rem"
         borderColor={borderColor}
         borderRadius={"2rem"}
@@ -802,7 +802,7 @@ export default function SpotPoolInstance() {
                   borderColor={borderColor}
                   bg={inputBoxBg}
                   borderRadius={"1.25rem"}
-                  h={{ base: "11rem", md: "8rem" }}
+                  h={{ base: "8rem", md: "8rem" }}
                   p={"1.25rem"}
                 >
                   <VStack justifyContent={"space-between"}>
@@ -829,13 +829,13 @@ export default function SpotPoolInstance() {
                           setPositiveQuantityFrom(e.target.value)
                         }
                         textAlign={"right"}
-                        paddingLeft={2}
+                        paddingRight={0}
                       />
                     </HStack>
-                    <HStack justifyContent={"space-between"} w={"100%"}>
+                    <HStack justifyContent={"space-between"} w={"100%"} >
                       <HStack visibility={isConnected ? "visible" : "hidden"}>
                         <HStack gap={"0.2rem"}>
-                          <Text fontSize={"0.875rem"}>Balance:</Text>
+                          <Text fontSize={"0.875rem"} className="ml-1">Balance:</Text>
                           <Text fontSize={"0.875rem"} color={lightColor}>
                             {formatValue(tokenFromBalance)}
                           </Text>

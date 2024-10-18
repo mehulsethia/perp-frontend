@@ -64,7 +64,7 @@ export default function CustomBarChart() {
   };
 
   return (
-    <Box bg="#0B0B20" p={6} borderRadius="lg" w="100%" maxW={{base:"2xl", md:"950px"}} className="mb-10">
+    <Box bg="#0B0B20"  borderRadius="3xl" w="100%" maxW={{base:"sm", md:"950px"}} className="mb-10 p-4 md:p-6">
       {/* Display the total */}
 
       {/* Bar Chart */}

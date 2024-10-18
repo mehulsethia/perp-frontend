@@ -35,13 +35,13 @@ const PoolsStats = () => {
     <>
       <div>
         <div className=" rounded-xl  ">
-          <div className="flex p-4   ">
-            <div className="rounded-lg space-x-2  space-y-2  md:mr-4 w-full flex flex-col md:flex-row justify-between  items-center p-4 max-w-7xl bg-[#1B1C39]">
-              <div className="">
+          <div className="flex p-2   gap-2">
+            <div className="rounded-2xl  w-full flex flex-col md:flex-row justify-between  items-center bg-[#1B1C39]">
+              <div className="w-full p-3">
                 <VStack
                   borderRadius={"1rem"}
                   // p="1rem"
-                  className="px-7 py-4 mt-2 ml-2 md:ml-0"
+                  className="px-7 py-4"
                   gap="1.875rem"
                   bg={boxBg}
                   
@@ -54,7 +54,7 @@ const PoolsStats = () => {
                       borderRadius={"3px"}
                     />
                     <HStack gap="0.2rem">
-                      <Text fontSize={"0.875rem"} color={color}>
+                      <Text fontSize={"0.875rem"} color={color} className="font-bold">
                         TVL
                       </Text>
                       <Text fontSize={"0.875rem"} color={lightColor}>
@@ -62,7 +62,7 @@ const PoolsStats = () => {
                       </Text>
                     </HStack>
                   </HStack>
-                  <VStack gap="1rem">
+                  <VStack gap="1rem" className="w-full">
                     <HStack w="100%" alignItems="baseline">
                       <Text
                         fontWeight={700}
@@ -85,12 +85,12 @@ const PoolsStats = () => {
                       </Text>
                     </HStack>
                     <HStack>
-                      <Image src={CardLineIcon} alt="card-line" />
+                      <Image src={CardLineIcon} alt="card-line" className="w-full" />
                     </HStack>
                   </VStack>
                 </VStack>
               </div>
-              <div className="">
+              <div className="w-full p-3">
                 <VStack
                   borderRadius={"1rem"}
                   className="px-7 py-4"
@@ -105,7 +105,7 @@ const PoolsStats = () => {
                       borderRadius={"3px"}
                     />
                     <HStack gap="0.2rem">
-                      <Text fontSize={"0.875rem"} color={color}>
+                      <Text fontSize={"0.875rem"} color={color} className="font-bold">
                         Volume
                       </Text>
                       <Text fontSize={"0.875rem"} color={lightColor}>
@@ -113,7 +113,7 @@ const PoolsStats = () => {
                       </Text>
                     </HStack>
                   </HStack>
-                  <VStack gap="1rem">
+                  <VStack gap="1rem" className="w-full">
                     <HStack w="100%" alignItems="baseline">
                       <Text
                         fontWeight={700}
@@ -140,12 +140,12 @@ const PoolsStats = () => {
                       </Text>
                     </HStack>
                     <HStack>
-                      <Image src={CardLineIcon} alt="card-line" />
+                      <Image src={CardLineIcon} alt="card-line" className="w-full" />
                     </HStack>
                   </VStack>
                 </VStack>
               </div>
-              <div className=" ">
+              <div className="w-full p-3">
                 <VStack
                   borderRadius={"1rem"}
                   className="px-7 py-4"
@@ -160,12 +160,12 @@ const PoolsStats = () => {
                       borderRadius={"3px"}
                     />
                     <HStack gap="0.2rem">
-                      <Text fontSize={"0.875rem"} color={color}>
+                      <Text fontSize={"0.875rem"} color={color} className="font-bold">
                         My Deposits
                       </Text>
                     </HStack>
                   </HStack>
-                  <VStack gap="1rem">
+                  <VStack gap="1rem" className="w-full">
                     <HStack w="100%" alignItems="baseline">
                       <Text
                         fontWeight={700}
@@ -191,13 +191,13 @@ const PoolsStats = () => {
                         ≈0000$
                       </Text>
                     </HStack>
-                    <HStack>
+                    <HStack className="w-full">
                       <Image src={CardLineIcon} alt="card-line" />
                     </HStack>
                   </VStack>
                 </VStack>
               </div>
-              <div className=" ">
+              <div className=" w-full p-3">
                 <VStack
                   borderRadius={"1rem"}
                   className="px-7 py-4"
@@ -212,12 +212,12 @@ const PoolsStats = () => {
                       borderRadius={"3px"}
                     />
                     <HStack gap="0.2rem">
-                      <Text fontSize={"0.875rem"} color={color}>
+                      <Text fontSize={"0.875rem"} color={color} className="font-bold">
                         My Rewards
                       </Text>
                     </HStack>
                   </HStack>
-                  <VStack gap="1rem">
+                  <VStack gap="1rem" className="w-full">
                     <HStack w="100%" alignItems="baseline">
                       <Text
                         fontWeight={700}
@@ -243,7 +243,7 @@ const PoolsStats = () => {
                         ≈0$
                       </Text>
                     </HStack>
-                    <HStack>
+                    <HStack className="w-full">
                       <Image src={CardLineIcon} alt="card-line" />
                     </HStack>
                   </VStack>
@@ -251,7 +251,7 @@ const PoolsStats = () => {
               </div>
             </div>
 
-            <div className=" bg-[#1B1C39] hidden p-6 max-w-sm w-full md:flex flex-col rounded-lg space-y-4">
+            <div className=" bg-[#1B1C39] hidden p-4 space-y-3 max-w-sm w-full md:flex flex-col rounded-lg ">
               <div className="font-bold text-white ">
                 Deposit LP in Vault to earn BGT
               </div>

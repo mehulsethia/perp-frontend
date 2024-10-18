@@ -6,8 +6,11 @@ import {
   HStack,
   VStack,
   Text,
+  InputLeftElement,
+  InputGroup,
 } from "@chakra-ui/react";
 import { IoIosSearch } from "react-icons/io";
+import { Search2Icon } from "@chakra-ui/icons";
 // Define types for pool data
 interface PoolsData {
   allPools: string[];
@@ -46,17 +49,20 @@ function PoolSearchBar() {
 
   return (
     <div>
-      <div className="flex flex-col w-full max-w-7xl md:flex-row justify-between items-center py-3 gap-4 md:gap-14">
+      <div className="flex flex-col  w-full max-w-7xl md:flex-row justify-between items-center py-3 gap-4 md:gap-14">
         {/* Button Group for Tabs */}
-        <HStack className="bg-[#28294B] px-0.5 py-1.5 rounded-md w-full md:w-auto flex-nowrap justify-between space-x-2 overflow-x-auto">
+        <HStack
+          className="bg-[#28294B] px-2 py-1.5 rounded-xl w-full md:w-auto flex-wrap md:flex-nowrap justify-center space-x-1"
+          spacing={["0", "1"]} // Remove spacing on very small screens, then add it back
+        >
           <Button
-            fontSize={["xs", "sm"]} // Responsive font size
+            fontSize={["xs", "sm"]} // Smaller font size on mobile
             color="white"
             bg={activeTab === "allPools" ? "#0B0B20" : ""}
             _hover={{ bg: "#0B0B20" }}
             borderRadius="lg"
             whiteSpace="nowrap"
-            flexShrink={0} // Prevent shrinking
+            flexShrink={0}
             onClick={() => handleTabClick("allPools")}
           >
             All Pools
@@ -112,18 +118,23 @@ function PoolSearchBar() {
         </HStack>
 
         {/* Search Bar */}
-        <Input
-          placeholder="Search by name or address"
-          bg="#28294B"
-          color="white"
-          border="none"
-          py={6}
-          className="w-full md:w-auto"
-          _placeholder={{ color: "whiteAlpha.600" }}
-          _focus={{ outline: "none", boxShadow: "none" }}
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
+        <InputGroup>
+          <InputLeftElement pointerEvents="none">
+            <Search2Icon color="white" className="mt-2" />
+          </InputLeftElement>
+          <Input
+            placeholder="Search by name or address"
+            bg="#28294B"
+            color="white"
+            borderRadius={"0.8rem"}
+            py={6}
+            className="w-full md:w-auto border"
+            _placeholder={{ color: "whiteAlpha.600" }}
+            _focus={{ outline: "none", boxShadow: "none" }}
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </InputGroup>
       </div>
 
       {/* Displaying filtered content */}

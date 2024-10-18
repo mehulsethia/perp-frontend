@@ -53,7 +53,8 @@ import { getTokensList, Token } from "../constants/tokens";
 import { BigNumber } from "ethers"; // If you're using BigNumber for balance
 import axios from "axios";
 import PoolSearchBar from "../components/PoolSearchBar";
-
+import { Search2Icon } from "@chakra-ui/icons";
+import { ArrowDownUp } from 'lucide-react';
 const tokens = [
   {
     symbol: "usdc",
@@ -919,7 +920,7 @@ export default function Pools() {
               borderRadius={"3px"}
             />
             <HStack gap="0.2rem">
-              <Text fontSize={"0.875rem"} color={color}>
+              <Text fontSize={"0.875rem"} color={color} className="font-bold">
                 TVL
               </Text>
               <Text fontSize={"0.875rem"} color={lightColor}>
@@ -965,7 +966,7 @@ export default function Pools() {
               borderRadius={"3px"}
             />
             <HStack gap="0.2rem">
-              <Text fontSize={"0.875rem"} color={color}>
+              <Text fontSize={"0.875rem"} color={color} className="font-bold">
                 Volume
               </Text>
               <Text fontSize={"0.875rem"} color={lightColor}>
@@ -1011,7 +1012,7 @@ export default function Pools() {
               borderRadius={"3px"}
             />
             <HStack gap="0.2rem">
-              <Text fontSize={"0.875rem"} color={color}>
+              <Text fontSize={"0.875rem"} color={color} className="font-bold">
                 My Deposits
               </Text>
             </HStack>
@@ -1054,7 +1055,7 @@ export default function Pools() {
               borderRadius={"3px"}
             />
             <HStack gap="0.2rem">
-              <Text fontSize={"0.875rem"} color={color}>
+              <Text fontSize={"0.875rem"} color={color} className="font-bold">
                 My Rewards
               </Text>
             </HStack>
@@ -1457,3 +1458,4 @@ export default function Pools() {
   </Flex>
 </Box> */
 }
+

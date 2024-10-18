@@ -9,9 +9,10 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import CardLineIcon from "../assets/icons/Card-line.svg";
-import SpotPoolInstance from "./SpotPoolInstance";
+
 import CustomBarChart from "./CustomBarChart";
 import PerpetualPoolsInstance from "./PerpetualPoolsInstance";
+import SpotPoolInstance from "./SpotPoolInstance";
 
 const PerpetualPools = () => {
   const bg = useColorModeValue("white", "#1B1C39");
@@ -46,15 +47,18 @@ const PerpetualPools = () => {
 
   return (
     <>
-      <div className="mb-10">
-        <div className="flex flex-col md:flex-row p-4">
-          <div className=" max-w-lg w-full rounded-lg ">
+      <div className=" my-3 p-2 md:p-0">
+        <div className="flex flex-col md:space-x-3  md:flex-row ">
+          <div className="rounded-3xl ">
             <PerpetualPoolsInstance />
           </div>
-          <div className="rounded-lg  w-full flex flex-col  justify-between my-4 md:my-0 items-center  max-w-5xl bg-[#1B1C39] ">
-            <div className="pt-6 w-full px-4 flex flex-col md:flex-row justify-start my-4 md:my-0  md:justify-between md:items-center  ">
-              <div className="font-bold text-xl">$123,666,000</div>
-              <div className="flex justify-between items-center space-x-3">
+          {/* Custom Chart */}
+          <div className="rounded-3xl  border w-full  flex flex-col  justify-between my-4 md:my-0 items-center  bg-[#1B1C39] ">
+            <div className="py-6  px-9 w-full flex flex-col md:flex-row justify-between space-y-6 md:space-y-0   md:items-center  ">
+              <div className="font-extrabold text-4xl md:text-3xl ">
+                $123,666,000
+              </div>
+              <div className="flex justify-between items-center  space-x-3">
                 <div>
                   <div className=" py-1 w-full flex justify-start md:justify-between md:items-center rounded-xl">
                     <div className="flex  items-center justify-between space-x-1  bg-[#0B0B20] px-1 py-1 rounded-xl ">
@@ -63,7 +67,7 @@ const PerpetualPools = () => {
                         className={`px-2 py-1 rounded-xl   transition-colors ${
                           selected === "Volume"
                             ? "bg-[#2F3055] text-white"
-                            : "bg-transparent text-gray-400"
+                            : "bg-transparent text-white"
                         } hover:bg-gray-900 hover:text-white`}
                       >
                         Volume
@@ -73,7 +77,7 @@ const PerpetualPools = () => {
                         className={`px-2 py-1 rounded-xl  transition-colors ${
                           selected === "TVL"
                             ? "bg-[#2F3055] text-white"
-                            : "bg-transparent text-gray-400"
+                            : "bg-transparent text-white"
                         } hover:bg-gray-900 hover:text-white`}
                       >
                         TVL
@@ -83,7 +87,7 @@ const PerpetualPools = () => {
                         className={`px-2 py-1 rounded-xl  transition-colors ${
                           selected === "Fees"
                             ? "bg-[#2F3055] text-white"
-                            : "bg-transparent text-gray-400"
+                            : "bg-transparent text-white"
                         } hover:bg-gray-900 hover:text-white`}
                       >
                         Fees
@@ -104,7 +108,7 @@ const PerpetualPools = () => {
                           <select
                             value={days}
                             onChange={handleDaysChange}
-                            className="px-2 py-1 bg-[#0B0B20] text-gray-400 rounded-xl border-none cursor-pointer focus:outline-none"
+                            className="px-2 py-1 bg-[#0B0B20] text-white rounded-xl border-none cursor-pointer focus:outline-none"
                           >
                             <option value="7 Days">7 Days</option>
                             <option value="14 Days">14 Days</option>
@@ -118,7 +122,7 @@ const PerpetualPools = () => {
                 </div>
               </div>
             </div>
-            <div className="w-full max-w-sm md:max-w-5xl flex justify-center items-center">
+            <div className="w-full max-w-5xl flex justify-center items-center">
               <CustomBarChart />
             </div>
           </div>
