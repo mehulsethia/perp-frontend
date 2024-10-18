@@ -45,7 +45,7 @@ function TableTop() {
   //   );
 
   return (
-    <div className="w-full max-w-7xl p-3">
+    <div className="w-full max-w-[68rem] p-3">
   {/* Parent container with flex layout that adjusts for mobile and desktop */}
   <div className="flex flex-col md:flex-row justify-between items-center space-y-3 md:space-y-0">
     
@@ -59,7 +59,7 @@ function TableTop() {
         onClick={() => setActiveTab("positions")}
       >
         Positions
-        <span className="ml-1 bg-gray-600 rounded-full px-2">1</span>
+        <span className="ml-1 bg-[#0B0B20] py-1 rounded-full px-2">1</span>
       </button>
 
       {/* Open Orders Tab */}
@@ -70,7 +70,7 @@ function TableTop() {
         onClick={() => setActiveTab("orders")}
       >
         Open Orders
-        <span className="ml-1 bg-gray-600 rounded-full px-2">0</span>
+        <span className="ml-1 bg-[#0B0B20] rounded-full py-1 px-2">0</span>
       </button>
 
       {/* History Tab */}

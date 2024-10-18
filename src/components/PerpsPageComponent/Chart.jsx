@@ -4,7 +4,7 @@ const Chart = () => {
   return (
     <>
       
-      <div className="h-[500px] bg-transparent my-4 rounded-lg">
+      <div className="h-[500px]  w-full bg-transparent  rounded-lg">
         <TradingViewWidget
           symbol="ETHUSD"
           theme="dark"

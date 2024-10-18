@@ -11,22 +11,26 @@ const ChartAndList = () => {
     <>
       <div className="flex gap-2 flex-col md:flex-row ">
         {/* Graph And Table Components */}
-        <div className=" w-full max-w-[50rem] my-4  h-full rounded-lg space-y-4">
-          <div className="bg-[#1B1C39] rounded-lg p-2 ">
-            <Chart />
+        <div className=" w-full my-4 gap-4 h-full rounded-lg space-y-4">
+          <div className="bg-[#1B1C39] w-full grid grid-cols-1 md:grid-cols-8 gap-4 rounded-lg p-2">
+            <div className="md:col-span-6 ">
+              <Chart />
+            </div>
+            <div className="md:col-span-2">
+              <TradesList />
+            </div>
           </div>
-          <div className="bg-[#1B1C39] rounded-lg">
-            <TableTop />
-            {/* <GraphTable /> */}
-            <TradingPositionsTable />
+          <div>
+            <div className="bg-[#1B1C39] w-fit rounded-lg">
+              <TableTop />
+              <TradingPositionsTable />
+            </div>
           </div>
         </div>
+
         {/* Side Components */}
         <div className=" flex flex-col md:flex-row justify-between items-center w-full space-y-6 md:space-y-0 gap-1  my-4 rounded-lg">
-          <div className="bg-[#1B1C39] rounded-3xl  md:w-1/2 w-full h-full">
-            <TradesList />
-          </div>
-          <div className="bg-[#1B1C39] rounded-3xl  md:w-1/2 w-full h-full ">
+          <div className="bg-[#1B1C39] rounded-3xl  w-full ">
             <LongShort />
           </div>
         </div>

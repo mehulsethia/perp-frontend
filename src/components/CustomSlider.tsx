@@ -11,7 +11,7 @@ export default function CustomSlider() {
   const [sliderValue, setSliderValue] = useState(0);
 
   return (
-    <Box className="w-full max-w-md mx-auto p-1 bg-transparent rounded-lg">
+    <Box className="w-full p-2 my-2  bg-transparent rounded-lg">
       {/* Slider Marks */}
       <Box className="flex justify-between mt-1 text-gray-400 text-sm">
         <Box>0%</Box>
