@@ -55,7 +55,7 @@ const TradingPositionsTable = () => {
       color="white"
       borderRadius="2xl"
       overflow="hidden"
-      w={{ base: "calc(85vw)", md: "68rem" }} // Keeping width responsive
+      w={{ base: "calc(85vw)", md: "100%" }} // Keeping width responsive
       mx="auto" // To center the box horizontally
     >
       {/* Outer box to make the table responsive */}

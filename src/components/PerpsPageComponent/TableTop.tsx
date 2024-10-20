@@ -45,7 +45,7 @@ function TableTop() {
   //   );
 
   return (
-    <div className="w-full max-w-[68rem] p-3">
+    <div className="w-full  p-3">
   {/* Parent container with flex layout that adjusts for mobile and desktop */}
   <div className="flex flex-col md:flex-row justify-between items-center space-y-3 md:space-y-0">
     

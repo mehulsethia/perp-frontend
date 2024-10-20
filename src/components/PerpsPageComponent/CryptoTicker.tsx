@@ -14,75 +14,59 @@ const CryptoTicker = () => {
   ];
 
   return (
-    <div className=" rounded-lg grid grid-cols-1 md:grid-cols-[auto,1fr,auto] items-center text-sm gap-2">
-      <div className="flex items-center justify-between space-x-2 bg-[#1B1C39] w-full md:w-auto p-4 rounded-xl">
-        <div className="flex  md:space-x-1">
-          <div className="flex flex-shrink-0 w-16 relative">
+    <div className="rounded-lg grid grid-cols-1 md:grid-cols-[auto,1fr,auto] items-center text-sm gap-4 ">
+      {/* Market Info and Ticker */}
+      <div className="flex items-center justify-between space-x-4 bg-[#1B1C39] p-4 rounded-xl w-full md:w-auto">
+        <div className="flex items-center space-x-3">
+          <div className="relative flex-shrink-0 w-16">
             {/* Replace this with your logo */}
-            <Image
-              src={Frame76}
-              w={10}
-              h={8}
-              alt="Logo"
-              className="flex-shrink-0 left-6 absolute"
-            />
-            <Image
-              src={Frame76}
-              w={10}
-              h={8}
-              alt="Logo"
-              className="flex-shrink-0 "
-            />
+            <Image src={Frame76} alt="Logo" className="absolute w-10 h-8" />
+            <Image src={Frame76} alt="Logo" className="w-10 h-8" />
           </div>
-          <div className="text-white text-sm flex justify-center items-center">
-            BTC—USD <ChevronDownIcon fontSize={"20px"} />
-            <div className="text-[#30e0a1] bg-[#008d5b33] h-fit  text-sm px-1.5 py-1 rounded-lg">
+          <div className="text-white flex items-center space-x-2">
+            <span>BTC—USD</span>
+            <ChevronDownIcon fontSize={"20px"} className="text-gray-400" />
+            <div className="text-[#30e0a1] bg-[#008d5b33] text-sm px-2 py-1 rounded-lg">
               10X
             </div>
           </div>
         </div>
-        <div className="text-white text-sm flex justify-center items-center">
-          All Market <ChevronDownIcon fontSize={"20px"} />
+        <div className="text-white flex items-center">
+          <select className="bg-[#1B1C39] text-white text-sm rounded-lg px-3 py-2 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-[#30e0a1]">
+            <option value="all">All Market</option>
+            <option value="market1">Market 1</option>
+            <option value="market2">Market 2</option>
+          </select>
         </div>
       </div>
 
-      {/* Crypto Ticker */}
-
-      <div className="bg-[#1B1C39] py-3 px-2 rounded-xl w-full">
-        <div className="flex flex-col p-2 md:p-0 space-y-4 md:space-y-0 md:space-x-4 md:flex-row justify-between">
-          <div className="md:px-2">
-            <div className="text-lg font-bold text-white">6,654$</div>
-            <div className="text-gray-400">6,654$</div>
+      {/* Ticker and Metrics */}
+      <div className="bg-[#1B1C39] py-2 px-6 rounded-xl w-full">
+        <div className="flex flex-col space-y-4 md:space-y-0 md:flex-row md:items-center md:justify-between">
+          {/* Price Info */}
+          <div className="flex flex-col text-center md:text-left">
+            <div className="text-2xl font-bold text-white">$6,654</div>
+            <div className="text-gray-400">$6,654</div>
           </div>
 
-          <div className="grid grid-cols-2  md:grid-cols-3 lg:grid-cols-6 ">
+          {/* Metrics */}
+          <div className="grid grid-cols-2 gap-10 md:grid-cols-3 lg:grid-cols-6 mt-4 md:mt-0">
             {metrics.map((metric, index) => (
-              <div key={index} className="min-w-[140px] ">
-                <div className="flex items-center space-x-1">
+              <div key={index} className="min-w-[140px]">
+                <div className="flex items-center space-x-2">
                   <div
-                    className="w-[2px] h-3.5 mr-1 rounded-md"
+                    className="w-[3px] h-4 rounded-md"
                     style={{ backgroundColor: metric.color }}
                   />
-                  <span className="text-white  text-base font-semibold whitespace-nowrap">
+                  <span className="text-white text-base font-semibold">
                     {metric.label}
                   </span>
                 </div>
-                <div className="text-sm text-white mt-1">{metric.value}</div>
+                <div className="text-sm text-gray-300 mt-1">{metric.value}</div>
               </div>
             ))}
           </div>
         </div>
-      </div>
-
-      {/* Enable One-Click Trading */}
-
-      <div className="flex items-center justify-between w-full md:w-auto space-x-4 bg-[#1B1C39] p-4 rounded-xl">
-        <div className="px-4 py-1 rounded font-bold text-white hover:bg-gray-700 transition-colors">
-          Enable One-Click Trading
-        </div>
-        <button className="p-1.5 font-semibold rounded bg-blue-500 text-white hover:bg-blue-600 transition-colors">
-          Deposit
-        </button>
       </div>
     </div>
   );

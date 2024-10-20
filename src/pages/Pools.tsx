@@ -1264,7 +1264,8 @@ export default function Pools() {
                           color={color}
                           borderWidth={"0.5px"}
                           borderColor={borderColor}
-                          isDisabled
+                          onClick={() => navigate("/pools-details")}
+                          
                         >
                           Details
                         </Button>
