@@ -3,7 +3,8 @@ import { ArrowRight } from "lucide-react";
 import Frame76 from "../../assets/icons/Frame 76.png";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import { Image } from "@chakra-ui/react";
-const CryptoTicker = () => {
+import Dropdown from "./Dropdown";
+const   CryptoTicker = () => {
   const metrics = [
     { label: "24h Change", value: "$2,302", color: "#01C880" },
     { label: "24h Volume", value: "$2,302,564", color: "#01C880" },
@@ -23,8 +24,8 @@ const CryptoTicker = () => {
             <Image src={Frame76} alt="Logo" className="absolute w-10 h-8" />
             <Image src={Frame76} alt="Logo" className="w-10 h-8" />
           </div>
-          <div className="text-white flex items-center space-x-2">
-            <span>BTC—USD</span>
+          <div className="text-white flex font-bold items-center space-x-2">
+            <span>ETH—USD</span>
             <ChevronDownIcon fontSize={"20px"} className="text-gray-400" />
             <div className="text-[#30e0a1] bg-[#008d5b33] text-sm px-2 py-1 rounded-lg">
               10X
@@ -32,11 +33,7 @@ const CryptoTicker = () => {
           </div>
         </div>
         <div className="text-white flex items-center">
-          <select className="bg-[#1B1C39] text-white text-sm rounded-lg px-3 py-2 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-[#30e0a1]">
-            <option value="all">All Market</option>
-            <option value="market1">Market 1</option>
-            <option value="market2">Market 2</option>
-          </select>
+          <Dropdown />
         </div>
       </div>
 
@@ -62,7 +59,7 @@ const CryptoTicker = () => {
                     {metric.label}
                   </span>
                 </div>
-                <div className="text-sm text-gray-300 mt-1">{metric.value}</div>
+                <div className="text-sm font-bold text-gray-300 mt-1">{metric.value}</div>
               </div>
             ))}
           </div>

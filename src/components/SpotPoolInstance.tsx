@@ -714,7 +714,7 @@ export default function SpotPoolInstance() {
             <HStack w={"100%"}>
               <HStack  gap={"0.625rem"}>
                 {/* <Image alt="Swap" src={swapIcon} /> */}
-                <Text color={color} className="font-bold text-2xl ml-2">
+                <Text color={color} className="font-bold text-2xl ml-2 mb-4">
                   Spot Pool
                 </Text>
               </HStack>
