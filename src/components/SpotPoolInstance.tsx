@@ -97,6 +97,7 @@ import defaultBG from "../assets/images/defaultBG.svg";
 import polygonBG from "../assets/images/polygonBG.svg";
 import mBG from "../assets/images/mBG.svg";
 import beraBG from "../assets/images/beraBG.svg";
+import Dropdown from "./PerpsPageComponent/Dropdown";
 
 const chainMoonImgs: any = {
   919: mBG,
@@ -622,9 +623,12 @@ export default function SpotPoolInstance() {
     setSwapBtnDisabled(true);
   };
 
+
+  const options = ['Honey Token', 'LP Honey'];
+
+
   const swapIcon = useColorModeValue(SwapIcon, SwapIcon);
   const swapArrowIcon = useColorModeValue(ArrowSwapIcon, ArrowSwapIcon);
-
   const bg = useColorModeValue("white", "#1B1C39");
   const swapIconbg = useColorModeValue("white", "#28294B");
   const inputBoxBg = useColorModeValue("white", "#0B0B20");
@@ -807,11 +811,12 @@ export default function SpotPoolInstance() {
                 >
                   <VStack justifyContent={"space-between"}>
                     <HStack justifyContent={"space-between"} w={"100%"}>
-                      <TokenSelect
+                      {/* <TokenSelect
                         value={tokenFrom}
                         setValue={setNewTokenFrom}
                         options={tokenList}
-                      />
+                      /> */}
+                      <Dropdown options={options} defaultOption="Select Token" />
                       <Input
                         type="text"
                         pattern="^[0-9]*[.,]?[0-9]*$"

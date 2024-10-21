@@ -97,6 +97,7 @@ import defaultBG from "../assets/images/defaultBG.svg";
 import polygonBG from "../assets/images/polygonBG.svg";
 import mBG from "../assets/images/mBG.svg";
 import beraBG from "../assets/images/beraBG.svg";
+import Dropdown from "./PerpsPageComponent/Dropdown";
 
 const chainMoonImgs: any = {
   919: mBG,
@@ -691,6 +692,8 @@ export default function PerpetualPoolsInstance() {
     return chain ? chainMoonImgs?.[chain?.id] || defaultBG : defaultBG;
   }, [chain]);
 
+  const options = ['Honey Token', 'LP Honey'];
+
   return (
     <Box>
       <Box
@@ -798,11 +801,13 @@ export default function PerpetualPoolsInstance() {
                 >
                   <VStack justifyContent={"space-between"}>
                     <HStack justifyContent={"space-between"} w={"100%"}>
-                      <TokenSelect
+                      {/* <TokenSelect
                         value={tokenFrom}
                         setValue={setNewTokenFrom}
                         options={tokenList}
-                      />
+                      /> */}
+                      <Dropdown options={options} defaultOption="Select Token" />
+
                       <Input
                         type="text"
                         pattern="^[0-9]*[.,]?[0-9]*$"

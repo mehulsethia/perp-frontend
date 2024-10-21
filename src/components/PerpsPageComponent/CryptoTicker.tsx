@@ -13,6 +13,7 @@ const   CryptoTicker = () => {
     { label: "Borrow Fee (L)", value: "$2,302", color: "#01C880" },
     { label: "Borrow Fee (S)", value: "$2,302", color: "#FF5656" },
   ];
+  const options = ['Market 01', 'Market 02', 'Market 03'];
 
   return (
     <div className="rounded-lg grid grid-cols-1 md:grid-cols-[auto,1fr,auto] items-center text-sm gap-4 ">
@@ -33,7 +34,7 @@ const   CryptoTicker = () => {
           </div>
         </div>
         <div className="text-white flex items-center">
-          <Dropdown />
+          <Dropdown options={options} defaultOption="Select Market" />
         </div>
       </div>
 
