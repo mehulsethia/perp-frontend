@@ -14,6 +14,7 @@ const   CryptoTicker = () => {
     { label: "Borrow Fee (S)", value: "$2,302", color: "#FF5656" },
   ];
   const options = ['Market 01', 'Market 02', 'Market 03'];
+  const options2 = ['BTC-USDT', 'HNY-USDT', 'SOL-USDT'];
 
   return (
     <div className="rounded-lg grid grid-cols-1 md:grid-cols-[auto,1fr,auto] items-center text-sm gap-4 ">
@@ -26,7 +27,9 @@ const   CryptoTicker = () => {
             <Image src={Frame76} alt="Logo" className="w-10 h-8" />
           </div>
           <div className="text-white flex font-bold items-center space-x-2">
-            <span>ETH—USD</span>
+            <span>
+            <Dropdown options={options2} defaultOption="ETH-USDT" />
+            </span>
             <ChevronDownIcon fontSize={"20px"} className="text-gray-400" />
             <div className="text-[#30e0a1] bg-[#008d5b33] text-sm px-2 py-1 rounded-lg">
               10X

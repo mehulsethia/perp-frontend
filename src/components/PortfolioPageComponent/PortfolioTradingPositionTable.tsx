@@ -14,7 +14,7 @@ import {
   Box,
 } from "@chakra-ui/react";
 
-const TradingPositionsTable = () => {
+const PortfolioTradingPositionTable = () => {
   // Sample data
   const positions = [
     {
@@ -92,67 +92,6 @@ const TradingPositionsTable = () => {
       pnlPercent: "2%",
       borrowFee: "$0.00",
     },
-    {
-      id: 2,
-      market: "BTC-USDT",
-      type: "Long",
-      leverage: "0.5x",
-      positionSize: "2.0332",
-      sizeUsd: "$4,580",
-      entryPrice: "$2,362",
-      marketPrice: "$2,362",
-      estLiqPrice: "$2,362",
-      takeProfit: "$2,362/$2,362",
-      pnl: "-$0.04",
-      pnlPercent: "2%",
-      borrowFee: "$0.00",
-    },
-    {
-      id: 2,
-      market: "BTC-USDT",
-      type: "Long",
-      leverage: "0.5x",
-      positionSize: "2.0332",
-      sizeUsd: "$4,580",
-      entryPrice: "$2,362",
-      marketPrice: "$2,362",
-      estLiqPrice: "$2,362",
-      takeProfit: "$2,362/$2,362",
-      pnl: "-$0.04",
-      pnlPercent: "2%",
-      borrowFee: "$0.00",
-    },
-
-    {
-      id: 2,
-      market: "BTC-USDT",
-      type: "Long",
-      leverage: "0.5x",
-      positionSize: "2.0332",
-      sizeUsd: "$4,580",
-      entryPrice: "$2,362",
-      marketPrice: "$2,362",
-      estLiqPrice: "$2,362",
-      takeProfit: "$2,362/$2,362",
-      pnl: "-$0.04",
-      pnlPercent: "2%",
-      borrowFee: "$0.00",
-    },
-    {
-      id: 2,
-      market: "BTC-USDT",
-      type: "Long",
-      leverage: "0.5x",
-      positionSize: "2.0332",
-      sizeUsd: "$4,580",
-      entryPrice: "$2,362",
-      marketPrice: "$2,362",
-      estLiqPrice: "$2,362",
-      takeProfit: "$2,362/$2,362",
-      pnl: "-$0.04",
-      pnlPercent: "2%",
-      borrowFee: "$0.00",
-    },
   ];
 
   return (
@@ -163,20 +102,14 @@ const TradingPositionsTable = () => {
       overflow="hidden"
       w={{ base: "calc(85vw)", md: "100%" }} // Keeping width responsive
       mx="auto" // To center the box horizontally
-      className="overflow-auto"
     >
       {/* Outer box to make the table responsive */}
-      <Box
-        overflowX={{ base: "auto", md: "unset" }}
-        overflowY="auto" // Enable vertical scrolling
-        maxHeight="555px" // Set a max height for the table container
-        w="100%"
-      >
+      <Box overflowX={{ base: "auto", md: "unset" }} w="100%">
         {/* Restrict table to viewport width */}
-        <TableContainer>
+        <TableContainer >
           {/* Minimum width to avoid table squishing */}
-          <Table variant="simple" minW={{ base: "1000px", md: "unset" }}>
-            <Thead className="bg-[#28294B]">
+          <Table  variant="simple" minW={{ base: "1000px", md: "unset" }}>
+            <Thead className="bg-[#28294B] " >
               <Tr>
                 <Th color="white" fontWeight="normal" whiteSpace="nowrap">
                   Market/Action
@@ -272,13 +205,7 @@ const TradingPositionsTable = () => {
                     p="2"
                     color="white"
                   >
-                    <Text
-                      bg="#1B1C39"
-                      color="white"
-                      p="2"
-                      borderRadius="lg"
-                      className="font-semibold"
-                    >
+                    <Text bg="#1B1C39" color="white" p="2" borderRadius="lg" className="font-semibold">
                       Total Position Size:{" "}
                     </Text>
                     <Text
@@ -299,13 +226,7 @@ const TradingPositionsTable = () => {
                     p="2"
                     color="white"
                   >
-                    <Text
-                      bg="#1B1C39"
-                      color="white"
-                      p="2"
-                      borderRadius="lg"
-                      className="font-semibold"
-                    >
+                    <Text bg="#1B1C39" color="white" p="2" borderRadius="lg" className="font-semibold">
                       Total Position Size:{" "}
                     </Text>
                     <Text
@@ -359,4 +280,4 @@ const TradingPositionsTable = () => {
   );
 };
 
-export default TradingPositionsTable;
+export default PortfolioTradingPositionTable;

@@ -16,6 +16,7 @@ import PoolsRebalance from "./pages/PoolsRebalance";
 import DepositLiquidity from "./pages/DepositLiquidity";
 import WithdrawLiquidity from "./pages/WithdrawLiquidity";
 import PoolsDetails from "./pages/PoolsDetails";
+import Portfolio from "./pages/Portfolio";
 
 export const App = () => {
   const bg = useColorModeValue("whiteAlpha.900", "#0B0B20");
@@ -38,6 +39,7 @@ export const App = () => {
           <Route path="/faucet" element={<Faucet />} />
           <Route path="/trade" element={<Trade />} />
           <Route path="/perps" element={<Perps />} />
+          <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/*" element={<Swap />} />
         </Routes>
         <Footer />

@@ -21,7 +21,7 @@ const ChartAndList = () => {
             </div>
           </div>
           <div>
-            <div className="bg-[#1B1C39] w-full h-fit  rounded-lg">
+            <div className="bg-[#1B1C39] w-full h-fit md:h-[40rem]  rounded-lg">
               <TableTop />
               <TradingPositionsTable />
             </div>
