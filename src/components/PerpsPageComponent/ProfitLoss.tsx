@@ -1,8 +1,25 @@
 import { InfoOutlineIcon } from "@chakra-ui/icons";
 import { Tooltip } from "@chakra-ui/react";
-import React from "react";
-
+import React, { useState } from "react";
+import { InfoIcon } from 'lucide-react';
 const ProfitLoss = () => {
+
+  const [profitPercentage, setProfitPercentage] = useState(99.26);
+  const [inputValue, setInputValue] = useState("0");
+  const percentageOptions = [25, 50, 100, 300];
+  const handlePercentageClick = (percentage: number) => {
+    setProfitPercentage(percentage);
+  };
+
+
+
+  const [lossPercentage, setLossPercentage] = useState(-10);
+  const [inputlossValue, setInputLossValue] = useState('68,000');
+  const lossPercentageOptions = [-20, -30, -40, -50];
+  const handleLossPercentageClick = (losspercentage:any) => {
+    setLossPercentage(losspercentage);
+  };
+
   return (
     <>
       <div className="my-4 px-1">
@@ -11,53 +28,69 @@ const ProfitLoss = () => {
             <div className="flex justify-between items-center space-x-2">
               <div className="font-semibold">Take Profit</div>
               <div className="text-[#30E0A1] bg-[#008D5B33] text-sm p-1 rounded-lg">
-                99.26%
+                {profitPercentage}%
               </div>
             </div>
             <div>
-              <Tooltip
-                label="Execution fees premium that will be applied on limit orders. If this is too low then orders may not execute on time"
-                fontSize="sm"
-              >
-                <InfoOutlineIcon w={3} h={3} />
-              </Tooltip>
+              <InfoIcon
+                className="w-3 h-3"
+                
+              />
             </div>
           </div>
+
           <div className="flex items-center text-center gap-2 text-sm my-4">
-            <input placeholder="68,000" className="bg-[#0B0B20]    py-2 px-4 w-full rounded-xl text-white" />
-            <div className="bg-[#28294B] py-2 px-4 w-full rounded-xl text-white">25%</div>
-            <div className="bg-[#28294B] py-2 px-4 w-full rounded-xl text-white">50%</div>
-            <div className="bg-[#28294B] py-2 px-4 w-full rounded-xl text-white">100%</div>
-            <div className="bg-[#28294B] py-2 px-4 w-full rounded-xl text-white">300%</div>
+            <input
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+              className="bg-[#0B0B20] py-2 px-4 w-full rounded-xl text-white"
+            />
+
+            {percentageOptions.map((percentage) => (
+              <button
+                key={percentage}
+                onClick={() => handlePercentageClick(percentage)}
+                className="bg-[#28294B] py-2 px-4 w-full rounded-xl text-white hover:bg-[#363764] transition-colors"
+              >
+                {percentage}%
+              </button>
+            ))}
           </div>
         </div>
         <div>
-          <div>
-            <div className="flex justify-between items-center">
-              <div className="flex justify-between items-center space-x-2">
-                <div>Stop Loss</div>
-                <div className="text-[#30E0A1] bg-[#008D5B33] text-sm p-1 rounded-lg">
-                  -10%
-                </div>
-              </div>
-              <div>
-                <Tooltip
-                  label="Execution fees premium that will be applied on limit orders. If this is too low then orders may not execute on time"
-                  fontSize="sm"
-                >
-                  <InfoOutlineIcon w={3} h={3} />
-                </Tooltip>
-              </div>
-            </div>
-            <div className="flex items-center text-center gap-2 text-sm my-4">
-            <input placeholder="68,000" className="bg-[#0B0B20]    py-2 px-4 w-full rounded-xl text-white" />
-            <div className="bg-[#28294B] py-2 px-4 w-full rounded-xl text-white">-20%</div>
-            <div className="bg-[#28294B] py-2 px-4 w-full rounded-xl text-white">-30%</div>
-            <div className="bg-[#28294B] py-2 px-4 w-full rounded-xl text-white">-40%</div>
-            <div className="bg-[#28294B] py-2 px-4 w-full rounded-xl text-white">-50%</div>
-          </div>
+      <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center space-x-2">
+          <div>Stop Loss</div>
+          <div className="text-[#30E0A1] bg-[#008D5B33] text-sm p-1 rounded-lg">
+            {lossPercentage}%
           </div>
         </div>
+        <div>
+          <InfoIcon 
+            className="w-3 h-3" 
+          />
+        </div>
+      </div>
+      
+      <div className="flex items-center text-center gap-2 text-sm my-4">
+        <input 
+          value={inputlossValue}
+          onChange={(e) => setInputLossValue(e.target.value)}
+          placeholder="68,000"
+          className="bg-[#0B0B20] py-2 px-4 w-full rounded-xl text-white"
+        />
+        
+        {lossPercentageOptions.map((losspercentage) => (
+          <button
+            key={losspercentage}
+            onClick={() => handleLossPercentageClick(losspercentage)}
+            className="bg-[#28294B] py-2 px-4 w-full rounded-xl text-white hover:bg-[#363764] transition-colors"
+          >
+            {losspercentage}%
+          </button>
+        ))}
+      </div>
+    </div>
       </div>
     </>
   );
