@@ -4,6 +4,7 @@ import Frame76 from "../../assets/icons/Frame 76.png";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import { Image } from "@chakra-ui/react";
 import Dropdown from "./Dropdown";
+import CryptoDropdown from "./CryptoNavigation";
 const   CryptoTicker = () => {
   const metrics = [
     { label: "24h Change", value: "$2,302", color: "#01C880" },
@@ -14,10 +15,9 @@ const   CryptoTicker = () => {
     { label: "Borrow Fee (S)", value: "$2,302", color: "#FF5656" },
   ];
   const options = ['Market 01', 'Market 02', 'Market 03'];
-  const options2 = ['BTC-USDT', 'HNY-USDT', 'SOL-USDT'];
 
   return (
-    <div className="rounded-lg grid grid-cols-1 md:grid-cols-[auto,1fr,auto] items-center text-sm gap-4 ">
+    <div className="rounded-lg grid grid-cols-1 md:grid-cols-[auto,1fr] items-center text-sm gap-4 ">
       {/* Market Info and Ticker */}
       <div className="flex items-center justify-between space-x-4 bg-[#1B1C39] p-4 rounded-xl w-full md:w-auto">
         <div className="flex items-center space-x-3">
@@ -26,11 +26,8 @@ const   CryptoTicker = () => {
             <Image src={Frame76} alt="Logo" className="absolute w-10 h-8" />
             <Image src={Frame76} alt="Logo" className="w-10 h-8" />
           </div>
+          <CryptoDropdown />
           <div className="text-white flex font-bold items-center space-x-2">
-            <span>
-            <Dropdown options={options2} defaultOption="ETH-USDT" />
-            </span>
-            <ChevronDownIcon fontSize={"20px"} className="text-gray-400" />
             <div className="text-[#30e0a1] bg-[#008d5b33] text-sm px-2 py-1 rounded-lg">
               10X
             </div>
