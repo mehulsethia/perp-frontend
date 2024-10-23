@@ -53,7 +53,7 @@ const CryptoDropdown = () => {
 
       {/* Dropdown Content */}
       {isOpen && (
-        <div className="fixed md:top-[19.5%] top-[14.5%] left-[50%] md:left-[28%] transform -translate-x-1/2 w-full max-w-[65rem] bg-[#2F3055] rounded-3xl border shadow-lg z-50 ">
+        <div className="fixed  top-[19.5%] left-5  transform  w-full max-w-[65rem] bg-[#2F3055] rounded-3xl border shadow-lg z-50 ">
           {/* Search Bar */}
           <div className="relative p-4">
             <input
@@ -100,7 +100,7 @@ const CryptoDropdown = () => {
           </div>
 
           {/* Table Content */}
-          <div className="max-h-[25rem] overflow-y-auto">
+          <div className="max-h-[18rem] overflow-y-auto">
             {cryptoData
               .filter((item) =>
                 item.name.toLowerCase().includes(searchTerm.toLowerCase())

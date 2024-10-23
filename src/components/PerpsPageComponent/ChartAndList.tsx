@@ -9,9 +9,9 @@ import LongShort from "./LongShort";
 const ChartAndList = () => {
   return (
     <>
-      <div className="gap-2 grid md:grid-cols-9 ">
+      <div className="gap-2 grid md:grid-cols-8 ">
         {/* Graph And Table Components */}
-        <div className=" w-full  my-4 gap-4 h-full rounded-lg space-y-4 md:col-span-7">
+        <div className=" w-full  my-4 gap-4 h-full rounded-lg space-y-4 md:col-span-6">
           <div className="bg-[#1B1C39] w-full grid grid-cols-1 md:grid-cols-8 gap-4 rounded-lg p-2">
             <div className="md:col-span-6 ">
               <Chart />

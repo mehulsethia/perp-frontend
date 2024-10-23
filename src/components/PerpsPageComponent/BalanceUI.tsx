@@ -1,7 +1,9 @@
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import React from "react";
+import Dropdown from "./Dropdown";
 
 const BalanceUI = () => {
+  const options = ["Honey","LP Honey"]
   return (
     <>
       <div className="space-y-6 my-4">
@@ -19,7 +21,8 @@ const BalanceUI = () => {
             <div className="font-bold text-white">Amount</div>
           </div>
           <div className="flex justify-between items-center p-1">
-            <div className="font-bold">Select Token <ChevronDownIcon  fontSize={"20px"}  /></div>
+          <Dropdown options={options} defaultOption="Select Market" />
+
             <div className="font-bold text-white">10</div>
           </div>
         </div>
@@ -36,7 +39,7 @@ const BalanceUI = () => {
             <div className="font-bold text-white ">Quantity</div>
           </div>
           <div className="flex justify-between items-center p-1">
-            <div className="font-bold text-white">Select Token <ChevronDownIcon  fontSize={"20px"}  /></div>
+            <Dropdown options={options} defaultOption="Select Market" />
             <div className="font-bold text-white">0.003265</div>
           </div>
         </div>
