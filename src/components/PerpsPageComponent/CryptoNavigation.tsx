@@ -33,9 +33,9 @@ const CryptoDropdown = () => {
       {/* Dropdown Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-between bg-gray-800 p-3 rounded-lg text-gray-100 hover:bg-gray-700"
+        className="flex items-center justify-between  p-3 rounded-lg text-gray-100 hover:bg-[#0B0B20]"
       >
-        <span>{selectedCoin}</span>
+        <span className="font-bold">{selectedCoin}</span>
         <svg
           className={`w-5 h-5 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
           fill="none"
