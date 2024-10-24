@@ -12,7 +12,7 @@ const LongShort = () => {
 
   return (
     <>
-      <div className="h-full md:h-[38.5rem] flex flex-col ">
+      <div className="h-[calc(100vh-255px)]  flex flex-col ">
         {/* Top section with buttons */}
         <div>
           <div className="p-1 bg-[#2F3055] rounded-t-3xl">
@@ -52,7 +52,7 @@ const LongShort = () => {
         </div>
 
         {/* Amount button at the bottom */}
-        <div className="m-2 ">
+        <div className="mx-2 mt-auto">
           <AmountButton />
         </div>
       </div>

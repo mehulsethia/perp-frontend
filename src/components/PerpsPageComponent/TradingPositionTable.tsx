@@ -62,209 +62,284 @@ const TradingPositionsTable = () => {
       pnlPercent: "2%",
       borrowFee: "$0.00",
     },
+    {
+      id: 1,
+      market: "BTC-USDT",
+      type: "Long",
+      leverage: "0.5x",
+      positionSize: "2.0332",
+      sizeUsd: "$4,580",
+      entryPrice: "$2,362",
+      marketPrice: "$2,362",
+      estLiqPrice: "$2,362",
+      takeProfit: "$2,362/$2,362",
+      pnl: "-$0.04",
+      pnlPercent: "2%",
+      borrowFee: "$0.00",
+    },
+    {
+      id: 1,
+      market: "BTC-USDT",
+      type: "Long",
+      leverage: "0.5x",
+      positionSize: "2.0332",
+      sizeUsd: "$4,580",
+      entryPrice: "$2,362",
+      marketPrice: "$2,362",
+      estLiqPrice: "$2,362",
+      takeProfit: "$2,362/$2,362",
+      pnl: "-$0.04",
+      pnlPercent: "2%",
+      borrowFee: "$0.00",
+    },
+    {
+      id: 1,
+      market: "BTC-USDT",
+      type: "Long",
+      leverage: "0.5x",
+      positionSize: "2.0332",
+      sizeUsd: "$4,580",
+      entryPrice: "$2,362",
+      marketPrice: "$2,362",
+      estLiqPrice: "$2,362",
+      takeProfit: "$2,362/$2,362",
+      pnl: "-$0.04",
+      pnlPercent: "2%",
+      borrowFee: "$0.00",
+    },
+    {
+      id: 1,
+      market: "BTC-USDT",
+      type: "Long",
+      leverage: "0.5x",
+      positionSize: "2.0332",
+      sizeUsd: "$4,580",
+      entryPrice: "$2,362",
+      marketPrice: "$2,362",
+      estLiqPrice: "$2,362",
+      takeProfit: "$2,362/$2,362",
+      pnl: "-$0.04",
+      pnlPercent: "2%",
+      borrowFee: "$0.00",
+    },
+    {
+      id: 1,
+      market: "BTC-USDT",
+      type: "Long",
+      leverage: "0.5x",
+      positionSize: "2.0332",
+      sizeUsd: "$4,580",
+      entryPrice: "$2,362",
+      marketPrice: "$2,362",
+      estLiqPrice: "$2,362",
+      takeProfit: "$2,362/$2,362",
+      pnl: "-$0.04",
+      pnlPercent: "2%",
+      borrowFee: "$0.00",
+    },
+    {
+      id: 1,
+      market: "BTC-USDT",
+      type: "Long",
+      leverage: "0.5x",
+      positionSize: "2.0332",
+      sizeUsd: "$4,580",
+      entryPrice: "$2,362",
+      marketPrice: "$2,362",
+      estLiqPrice: "$2,362",
+      takeProfit: "$2,362/$2,362",
+      pnl: "-$0.04",
+      pnlPercent: "2%",
+      borrowFee: "$0.00",
+    },
     // More positions can be added here to increase data...
   ];
 
   return (
-    <Box
-      bg="#0B0B20"
-      color="white"
-      borderRadius="2xl"
-      overflow="hidden"
-      w={{ base: "calc(85vw)", md: "100%" }} // Keeping width responsive
-      mx="auto" // To center the box horizontally
-      // Keep the height constant
-      h={{ base: "full", md: "12rem" }}
-    >
-      {/* Outer box to make the table responsive */}
-      <Box
-        overflowX="auto" // Horizontal scroll if needed for smaller screens
-        overflowY="auto" // Enable vertical scrolling
-        maxHeight="12rem" // Set a fixed height for the table container
-        w="100%"
-      >
-        <TableContainer>
-          <Table variant="simple" minW="1000px">
-            <Thead className="bg-[#28294B]">
-              <Tr>
-                <Th color="white" fontWeight="normal" whiteSpace="nowrap">
-                  Market/Action
-                </Th>
-                <Th color="white" fontWeight="normal" whiteSpace="nowrap">
-                  Position Size ↑
-                </Th>
-                <Th color="white" fontWeight="normal" whiteSpace="nowrap">
-                  Entry Price ↑
-                </Th>
-                <Th color="white" fontWeight="normal" whiteSpace="nowrap">
-                  Market Price ↑
-                </Th>
-                <Th color="white" fontWeight="normal" whiteSpace="nowrap">
-                  Est. LIQ Price ↑
-                </Th>
-                <Th color="white" fontWeight="normal" whiteSpace="nowrap">
-                  TP/SL ↑
-                </Th>
-                <Th color="white" fontWeight="normal" whiteSpace="nowrap">
-                  P/L ↑
-                </Th>
-                <Th color="white" fontWeight="normal" whiteSpace="nowrap">
-                  Borrow Fee ↑
-                </Th>
-                <Th color="white" fontWeight="normal" whiteSpace="nowrap">
-                  Action
-                </Th>
-              </Tr>
-            </Thead>
-            <Tbody>
-              {positions.map((position) => (
-                <Tr
-                  key={position.id}
-                  borderBottom="1px"
-                  borderColor="#2A2B31"
-                  _hover={{ bg: "#1E1F25" }}
-                >
-                  <Td py="1">
-                    <Flex alignItems="center" gap="2">
-                      <Box w="2" h="2" borderRadius="full" bg="green.500" />
-                      <Text color="white">{position.market}</Text>
-                    </Flex>
-                    <Flex alignItems="center" gap="1" mt="1">
-                      <Text color="green.500" fontSize="xs">
-                        Long
-                      </Text>
-                      <Text color="gray.400" fontSize="xs">
-                        0.5x
-                      </Text>
-                    </Flex>
-                  </Td>
-                  <Td>
-                    <Text color="white">{position.positionSize}</Text>
-                    <Text color="gray.400" fontSize="xs">
-                      {position.sizeUsd}
-                    </Text>
-                  </Td>
-                  <Td color="white">{position.entryPrice}</Td>
-                  <Td color="white">{position.marketPrice}</Td>
-                  <Td color="white">{position.estLiqPrice}</Td>
-                  <Td color="white">{position.takeProfit}</Td>
-                  <Td>
-                    <Flex alignItems="center" gap="1">
-                      <Text color="red.500">{position.pnl}</Text>
-                      <Text color="green.500" fontSize="xs">
-                        {position.pnlPercent}
-                      </Text>
-                    </Flex>
-                  </Td>
-                  <Td color="white">{position.borrowFee}</Td>
-                  <Td>
-                    <Button
-                      variant="outline"
-                      bg="transparent"
-                      color="white"
-                      borderColor="gray.600"
-                      _hover={{ bg: "#2A2B31", color: "white" }}
-                    >
-                      Remove
-                    </Button>
-                  </Td>
-                </Tr>
-              ))}
-            </Tbody>
-            <Tfoot bg="#1B1C39">
-              <Tr borderTop="1px" borderColor="#2A2B31">
-                <Td colSpan={2}>
-                  <Flex
-                    gap="4"
-                    bg="#0B0B20"
-                    borderRadius="xl"
-                    p="1"
-                    color="white"
-                  >
-                    <Text
-                      bg="#1B1C39"
-                      color="white"
-                      p="1"
-                      borderRadius="lg"
-                      className="font-semibold"
-                    >
-                      Total Position Size:{" "}
-                    </Text>
-                    <Text
-                      display="flex"
-                      alignItems="center"
-                      justifyContent="center"
-                      className="font-semibold"
-                    >
-                      $49.75
-                    </Text>
-                  </Flex>
-                </Td>
-                <Td colSpan={2}>
-                  <Flex
-                    gap="4"
-                    bg="#0B0B20"
-                    borderRadius="xl"
-                    p="1"
-                    color="white"
-                  >
-                    <Text
-                      bg="#1B1C39"
-                      color="white"
-                      p="1"
-                      borderRadius="lg"
-                      className="font-semibold"
-                    >
-                      Total Position Size:{" "}
-                    </Text>
-                    <Text
-                      display="flex"
-                      alignItems="center"
-                      justifyContent="center"
-                      className="font-semibold"
-                    >
-                      $49.75
-                    </Text>
-                  </Flex>
-                </Td>
-                <Td colSpan={7}>
-                  <Flex
-                    justifyContent="flex-end"
-                    alignItems="center"
-                    gap="2"
-                    color="gray.400"
-                  >
-                    <Text>1 of 1</Text>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      bg="transparent"
-                      borderColor="gray.600"
-                      color="gray.400"
-                      _hover={{ bg: "#2A2B31" }}
-                      isDisabled
-                    >
-                      First
-                    </Button>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      bg="transparent"
-                      borderColor="gray.600"
-                      color="gray.400"
-                      _hover={{ bg: "#2A2B31" }}
-                      isDisabled
-                    >
-                      Last
-                    </Button>
-                  </Flex>
-                </Td>
-              </Tr>
-            </Tfoot>
-          </Table>
-        </TableContainer>
-      </Box>
-    </Box>
+<div className="h-[20vh]  overflow-y-auto">
+
+    <TableContainer >
+    <Table variant="simple" minW="1000px">
+      <Thead className="bg-[#28294B]">
+        <Tr>
+          <Th color="white" fontWeight="normal" whiteSpace="nowrap">
+            Market/Action
+          </Th>
+          <Th color="white" fontWeight="normal" whiteSpace="nowrap">
+            Position Size ↑
+          </Th>
+          <Th color="white" fontWeight="normal" whiteSpace="nowrap">
+            Entry Price ↑
+          </Th>
+          <Th color="white" fontWeight="normal" whiteSpace="nowrap">
+            Market Price ↑
+          </Th>
+          <Th color="white" fontWeight="normal" whiteSpace="nowrap">
+            Est. LIQ Price ↑
+          </Th>
+          <Th color="white" fontWeight="normal" whiteSpace="nowrap">
+            TP/SL ↑
+          </Th>
+          <Th color="white" fontWeight="normal" whiteSpace="nowrap">
+            P/L ↑
+          </Th>
+          <Th color="white" fontWeight="normal" whiteSpace="nowrap">
+            Borrow Fee ↑
+          </Th>
+          <Th color="white" fontWeight="normal" whiteSpace="nowrap">
+            Action
+          </Th>
+        </Tr>
+      </Thead>
+      <Tbody>
+        {positions.map((position) => (
+          <Tr
+            key={position.id}
+            borderBottom="1px"
+            borderColor="#2A2B31"
+            _hover={{ bg: "#1E1F25" }}
+          >
+            <Td py="1">
+              <Flex alignItems="center" gap="2">
+                <Box w="2" h="2" borderRadius="full" bg="green.500" />
+                <Text color="white">{position.market}</Text>
+              </Flex>
+              <Flex alignItems="center" gap="1" mt="1">
+                <Text color="green.500" fontSize="xs">
+                  Long
+                </Text>
+                <Text color="gray.400" fontSize="xs">
+                  0.5x
+                </Text>
+              </Flex>
+            </Td>
+            <Td>
+              <Text color="white">{position.positionSize}</Text>
+              <Text color="gray.400" fontSize="xs">
+                {position.sizeUsd}
+              </Text>
+            </Td>
+            <Td color="white">{position.entryPrice}</Td>
+            <Td color="white">{position.marketPrice}</Td>
+            <Td color="white">{position.estLiqPrice}</Td>
+            <Td color="white">{position.takeProfit}</Td>
+            <Td>
+              <Flex alignItems="center" gap="1">
+                <Text color="red.500">{position.pnl}</Text>
+                <Text color="green.500" fontSize="xs">
+                  {position.pnlPercent}
+                </Text>
+              </Flex>
+            </Td>
+            <Td color="white">{position.borrowFee}</Td>
+            <Td>
+              <Button
+                variant="outline"
+                bg="transparent"
+                color="white"
+                borderColor="gray.600"
+                _hover={{ bg: "#2A2B31", color: "white" }}
+              >
+                Remove
+              </Button>
+            </Td>
+          </Tr>
+        ))}
+      </Tbody>
+      <Tfoot bg="#1B1C39">
+        <Tr borderTop="1px" borderColor="#2A2B31">
+          <Td colSpan={2}>
+            <Flex
+              gap="4"
+              bg="#0B0B20"
+              borderRadius="xl"
+              p="1"
+              color="white"
+            >
+              <Text
+                bg="#1B1C39"
+                color="white"
+                p="1"
+                borderRadius="lg"
+                className="font-semibold"
+              >
+                Total Position Size:{" "}
+              </Text>
+              <Text
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+                className="font-semibold"
+              >
+                $49.75
+              </Text>
+            </Flex>
+          </Td>
+          <Td colSpan={2}>
+            <Flex
+              gap="4"
+              bg="#0B0B20"
+              borderRadius="xl"
+              p="1"
+              color="white"
+            >
+              <Text
+                bg="#1B1C39"
+                color="white"
+                p="1"
+                borderRadius="lg"
+                className="font-semibold"
+              >
+                Total Position Size:{" "}
+              </Text>
+              <Text
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+                className="font-semibold"
+              >
+                $49.75
+              </Text>
+            </Flex>
+          </Td>
+          <Td colSpan={7}>
+            <Flex
+              justifyContent="flex-end"
+              alignItems="center"
+              gap="2"
+              color="gray.400"
+            >
+              <Text>1 of 1</Text>
+              <Button
+                variant="outline"
+                size="sm"
+                bg="transparent"
+                borderColor="gray.600"
+                color="gray.400"
+                _hover={{ bg: "#2A2B31" }}
+                isDisabled
+              >
+                First
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                bg="transparent"
+                borderColor="gray.600"
+                color="gray.400"
+                _hover={{ bg: "#2A2B31" }}
+                isDisabled
+              >
+                Last
+              </Button>
+            </Flex>
+          </Td>
+        </Tr>
+      </Tfoot>
+    </Table>
+  </TableContainer>
+</div>
+   
   );
 };
 

@@ -14,8 +14,10 @@ export default function Footer() {
 
   return (
     <HStack as={"footer"} bgColor={bg} p={"1.25rem"}>
-      <VStack gap={"0.625rem"} w="100%">
+      <VStack gap={"0.625rem"} w="100%" className="flex">
         <HStack w="100%" justifyContent={"space-between"}>
+          <div className="flex items-center space-x-2 ">
+
           <Link to={"/"}>
             <HStack gap={"0.4rem"}>
               <Image alt="Mantis" src={Logo} w={"1.75rem"} />
@@ -24,6 +26,10 @@ export default function Footer() {
               </Text>
             </HStack>
           </Link>
+          <Text color={lightColor} fontSize={"1rem"}>
+            © 2024 Mantissa Labs — All rights reserved
+          </Text>
+          </div>
           <HStack>
             <Link to="https://x.com/MantisSwap" target="_blank">
               <Icon as={FaTwitter} fontSize={"2xl"} color={lightIconColor} _hover={{ color: color }} />
@@ -34,9 +40,7 @@ export default function Footer() {
           </HStack>
         </HStack>
         <HStack w="100%" justifyContent={"space-between"} flexWrap={"wrap"}>
-          <Text color={lightColor} fontSize={"1rem"}>
-            © 2024 Mantissa Labs — All rights reserved
-          </Text>
+       
           {/* <HStack>
             <Text color={lightColor} fontSize={"1rem"}>
               Terms of Service

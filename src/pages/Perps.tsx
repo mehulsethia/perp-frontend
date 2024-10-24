@@ -5,15 +5,14 @@ import CryptoTicker from "../components/PerpsPageComponent/CryptoTicker";
 import CryptoDropdown from "../components/PerpsPageComponent/CryptoNavigation";
 
 const Perps = () => {
-
-
   return (
     <>
       <div className="mx-4 my-2 ">
         <CryptoTicker />
         {/* <Row1 /> */}
-        <ChartAndList />
-        
+        <div>
+          <ChartAndList />
+        </div>
       </div>
     </>
   );

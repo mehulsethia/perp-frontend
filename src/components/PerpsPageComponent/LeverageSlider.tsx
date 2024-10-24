@@ -55,7 +55,7 @@ const LeverageSlider = () => {
             value={inputValue}
             onChange={handleInputChange}
             onBlur={handleInputBlur}
-            className="outline-none text-right w-12 bg-transparent"
+            className="outline-none text-center w-12 bg-transparent"
             placeholder="0"
           />
         </div>
