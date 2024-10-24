@@ -32,7 +32,7 @@ const TradesList = () => {
         </div>
       </div>
 
-      <div className="space-y-2 border overflow-auto h-[465px] bg-[#0B0B20]">
+      <div className="space-y-2 border overflow-auto h-[345px] bg-[#0B0B20]">
         {trades.map((trade, index) => (
           <div
             key={index}

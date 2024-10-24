@@ -9,7 +9,7 @@ const Perps = () => {
 
   return (
     <>
-      <div className="m-4">
+      <div className="mx-4 my-2 ">
         <CryptoTicker />
         {/* <Row1 /> */}
         <ChartAndList />

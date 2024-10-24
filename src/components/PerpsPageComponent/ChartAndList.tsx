@@ -11,7 +11,7 @@ const ChartAndList = () => {
     <>
       <div className="gap-2 grid md:grid-cols-8 ">
         {/* Graph And Table Components */}
-        <div className=" w-full  my-4 gap-4 h-full rounded-lg space-y-4 md:col-span-6">
+        <div className=" w-full  my-2 gap-4  rounded-lg space-y-4 md:space-y-1 md:col-span-6">
           <div className="bg-[#1B1C39] w-full grid grid-cols-1 md:grid-cols-8 gap-4 rounded-lg p-2">
             <div className="md:col-span-6 ">
               <Chart />
@@ -21,16 +21,15 @@ const ChartAndList = () => {
             </div>
           </div>
           <div>
-            <div className="bg-[#1B1C39] w-full h-fit md:h-[40rem]  rounded-lg">
-              <TableTop />
+            <div className=" w-full h-fit  ">
               <TradingPositionsTable />
             </div>
           </div>
         </div>
 
         {/* Side Components */}
-        <div className=" flex flex-col md:flex-row md:col-span-2 justify-between items-center w-full space-y-6 md:space-y-0 gap-1  my-4 rounded-lg">
-          <div className="bg-[#1B1C39] rounded-3xl  w-full ">
+        <div className=" flex flex-col md:flex-row md:col-span-2   w-full mt-2  rounded-lg">
+          <div className="bg-[#1B1C39] rounded-3xl h-[38.5rem] w-full ">
             <LongShort />
           </div>
         </div>

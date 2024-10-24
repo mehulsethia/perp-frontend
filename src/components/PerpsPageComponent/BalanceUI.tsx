@@ -6,7 +6,7 @@ const BalanceUI = () => {
   const options = ["Honey","LP Honey"]
   return (
     <>
-      <div className="space-y-6 my-4">
+      <div className="space-y-2 ">
         <div className="bg-[#0B0B20] p-3 rounded-2xl space-y-3">
           <div className="  flex justify-between items-center">
             <div className="p-2 bg-[#1B1C39] rounded-2xl flex justify-center items-center space-x-2">

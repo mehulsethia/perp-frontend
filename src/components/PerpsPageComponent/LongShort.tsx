@@ -12,38 +12,48 @@ const LongShort = () => {
 
   return (
     <>
-      <div className="">
-        <div className="p-1 bg-[#2F3055] rounded-t-3xl">
-          <div className=" flex justify-between rounded-t-[22px] items-center  ">
-            <button
-              className={` font-semibold rounded-tl-3xl w-1/2 p-5 ${
-                activeTab === "Short" ? "bg-[#1B1C39]" : ""
-              }`}
-              onClick={() => setActiveTab("Short")}
-            >
-              Long
-            </button>
-            <button
-              className={`font-semibold rounded-tr-3xl w-1/2 p-5 ${
-                activeTab === "Long" ? "bg-[#1B1C39]" : ""
-              }`}
-              onClick={() => setActiveTab("Long")}
-            >
-              Short
-            </button>
+      <div className="h-full md:h-[38.5rem] flex flex-col ">
+        {/* Top section with buttons */}
+        <div>
+          <div className="p-1 bg-[#2F3055] rounded-t-3xl">
+            <div className="flex justify-between rounded-t-[22px] items-center">
+              <button
+                className={`font-semibold rounded-tl-3xl w-1/2 px-5 py-3 ${
+                  activeTab === "Short" ? "bg-[#1B1C39]" : ""
+                }`}
+                onClick={() => setActiveTab("Short")}
+              >
+                Long
+              </button>
+              <button
+                className={`font-semibold rounded-tr-3xl w-1/2 px-5 py-3 ${
+                  activeTab === "Long" ? "bg-[#1B1C39]" : ""
+                }`}
+                onClick={() => setActiveTab("Long")}
+              >
+                Short
+              </button>
+            </div>
+          </div>
+
+          {/* Market Limit placed right below the tabs */}
+          <div className="mx-2 mt-2">
+            <MarketLimit />
           </div>
         </div>
-        {/* Market And Limit */}
-        <div>
-          <div className="mx-2">
-            <MarketLimit />
-            <BalanceUI />
-            <LeverageSlider />
-            <ProfitLoss />
-            <OneClickTrading />
-            <Slippage />
-            <AmountButton />
-          </div>
+
+        {/* Scrollable content section in the middle */}
+        <div className="overflow-y-auto  mx-2 pr-2 ">
+          <BalanceUI />
+          <LeverageSlider />
+          <ProfitLoss />
+          {/* <OneClickTrading /> */}
+          <Slippage />
+        </div>
+
+        {/* Amount button at the bottom */}
+        <div className="m-2 ">
+          <AmountButton />
         </div>
       </div>
     </>

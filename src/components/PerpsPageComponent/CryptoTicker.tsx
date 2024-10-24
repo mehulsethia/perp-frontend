@@ -19,7 +19,7 @@ const   CryptoTicker = () => {
   return (
     <div className="rounded-lg grid grid-cols-1 md:grid-cols-[auto,1fr] items-center text-sm gap-4 ">
       {/* Market Info and Ticker */}
-      <div className="flex items-center justify-between space-x-4 bg-[#1B1C39] p-4 rounded-xl w-full md:w-auto">
+      <div className="flex items-center justify-between space-x-4 bg-[#1B1C39] px-4 py-3 rounded-xl w-full md:w-auto">
         <div className="flex items-center space-x-3">
           <div className="relative flex-shrink-0 w-16">
             {/* Replace this with your logo */}

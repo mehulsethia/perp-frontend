@@ -45,15 +45,15 @@ function TableTop() {
   //   );
 
   return (
-    <div className="w-full  p-3">
+    <div className="w-full  px-3 py-1.5">
   {/* Parent container with flex layout that adjusts for mobile and desktop */}
   <div className="flex flex-col md:flex-row justify-between items-center space-y-3 md:space-y-0">
     
     {/* Tab buttons container */}
-    <div className="flex flex-wrap justify-center bg-[#0B0B20] px-4 py-2 rounded-lg text-white space-x-2 md:space-x-4">
+    <div className="flex flex-wrap justify-center bg-[#0B0B20] px-4 py-1.5 rounded-lg text-white space-x-2 md:space-x-4">
       {/* Positions Tab */}
       <button
-        className={`px-4 py-2 rounded-lg ${
+        className={`px-4 py-1.5 rounded-lg ${
           activeTab === "positions" ? "bg-[#1B1C39]" : ""
         }`}
         onClick={() => setActiveTab("positions")}
@@ -64,7 +64,7 @@ function TableTop() {
 
       {/* Open Orders Tab */}
       <button
-        className={`px-4 py-2 rounded-lg ${
+        className={`px-4 py-1.5 rounded-lg ${
           activeTab === "orders" ? "bg-[#1B1C39]" : ""
         }`}
         onClick={() => setActiveTab("orders")}
@@ -75,7 +75,7 @@ function TableTop() {
 
       {/* History Tab */}
       <button
-        className={`px-4 py-2 rounded-lg ${
+        className={`px-4 py-1.5 rounded-lg ${
           activeTab === "history" ? "bg-[#1B1C39]" : ""
         }`}
         onClick={() => setActiveTab("history")}
@@ -85,7 +85,7 @@ function TableTop() {
 
       {/* Realized PnL Tab */}
       <button
-        className={`px-4 py-2 rounded-lg ${
+        className={`px-4 py-1.5 rounded-lg ${
           activeTab === "realized" ? "bg-[#1B1C39]" : ""
         }`}
         onClick={() => setActiveTab("realized")}

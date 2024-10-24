@@ -22,7 +22,7 @@ const ProfitLoss = () => {
 
   return (
     <>
-      <div className="my-4 px-1">
+      <div className=" px-1">
         <div>
           <div className="flex justify-between items-center">
             <div className="flex justify-between items-center space-x-2">
@@ -50,7 +50,7 @@ const ProfitLoss = () => {
               <button
                 key={percentage}
                 onClick={() => handlePercentageClick(percentage)}
-                className="bg-[#28294B] py-2 px-4 w-full rounded-xl text-white hover:bg-[#363764] transition-colors"
+                className="bg-[#28294B] py-2 px-2 w-full rounded-xl text-white hover:bg-[#363764] transition-colors"
               >
                 {percentage}%
               </button>
@@ -84,7 +84,7 @@ const ProfitLoss = () => {
           <button
             key={losspercentage}
             onClick={() => handleLossPercentageClick(losspercentage)}
-            className="bg-[#28294B] py-2 px-4 w-full rounded-xl text-white hover:bg-[#363764] transition-colors"
+            className="bg-[#28294B] py-2 px-2 w-full rounded-xl text-white hover:bg-[#363764] transition-colors"
           >
             {losspercentage}%
           </button>

@@ -103,7 +103,7 @@ const Slippage = () => {
         </HStack>
       </VStack>
       <Divider my="0.75rem" />
-      <VStack gap={"0.625rem"} className="p-1">
+      <VStack gap={"0.625rem"} className="p-1 mb-2">
         <HStack w={"100%"}>
           <Text className="font-semibold" color={color}>
             Position Margin (modified)

@@ -8,7 +8,7 @@ const MarketLimit = () => {
     };
   return (
     <>
-      <div className="flex my-4 items-center justify-between space-x-1  bg-[#0B0B20] p-2 rounded-xl w-full">
+      <div className="flex my-2 items-center justify-between space-x-1  bg-[#0B0B20] p-2 rounded-xl w-full">
         <button
           onClick={() => handleClick("Market")}
           className={`px-10 py-2 rounded-xl w-full font-semibold transition-colors ${

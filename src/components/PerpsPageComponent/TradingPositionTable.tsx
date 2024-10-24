@@ -33,7 +33,7 @@ const TradingPositionsTable = () => {
       borrowFee: "$0.00",
     },
     {
-      id: 2,
+      id: 1,
       market: "BTC-USDT",
       type: "Long",
       leverage: "0.5x",
@@ -48,7 +48,7 @@ const TradingPositionsTable = () => {
       borrowFee: "$0.00",
     },
     {
-      id: 2,
+      id: 1,
       market: "BTC-USDT",
       type: "Long",
       leverage: "0.5x",
@@ -62,97 +62,7 @@ const TradingPositionsTable = () => {
       pnlPercent: "2%",
       borrowFee: "$0.00",
     },
-    {
-      id: 2,
-      market: "BTC-USDT",
-      type: "Long",
-      leverage: "0.5x",
-      positionSize: "2.0332",
-      sizeUsd: "$4,580",
-      entryPrice: "$2,362",
-      marketPrice: "$2,362",
-      estLiqPrice: "$2,362",
-      takeProfit: "$2,362/$2,362",
-      pnl: "-$0.04",
-      pnlPercent: "2%",
-      borrowFee: "$0.00",
-    },
-    {
-      id: 2,
-      market: "BTC-USDT",
-      type: "Long",
-      leverage: "0.5x",
-      positionSize: "2.0332",
-      sizeUsd: "$4,580",
-      entryPrice: "$2,362",
-      marketPrice: "$2,362",
-      estLiqPrice: "$2,362",
-      takeProfit: "$2,362/$2,362",
-      pnl: "-$0.04",
-      pnlPercent: "2%",
-      borrowFee: "$0.00",
-    },
-    {
-      id: 2,
-      market: "BTC-USDT",
-      type: "Long",
-      leverage: "0.5x",
-      positionSize: "2.0332",
-      sizeUsd: "$4,580",
-      entryPrice: "$2,362",
-      marketPrice: "$2,362",
-      estLiqPrice: "$2,362",
-      takeProfit: "$2,362/$2,362",
-      pnl: "-$0.04",
-      pnlPercent: "2%",
-      borrowFee: "$0.00",
-    },
-    {
-      id: 2,
-      market: "BTC-USDT",
-      type: "Long",
-      leverage: "0.5x",
-      positionSize: "2.0332",
-      sizeUsd: "$4,580",
-      entryPrice: "$2,362",
-      marketPrice: "$2,362",
-      estLiqPrice: "$2,362",
-      takeProfit: "$2,362/$2,362",
-      pnl: "-$0.04",
-      pnlPercent: "2%",
-      borrowFee: "$0.00",
-    },
-
-    {
-      id: 2,
-      market: "BTC-USDT",
-      type: "Long",
-      leverage: "0.5x",
-      positionSize: "2.0332",
-      sizeUsd: "$4,580",
-      entryPrice: "$2,362",
-      marketPrice: "$2,362",
-      estLiqPrice: "$2,362",
-      takeProfit: "$2,362/$2,362",
-      pnl: "-$0.04",
-      pnlPercent: "2%",
-      borrowFee: "$0.00",
-    },
-    {
-      id: 2,
-      market: "BTC-USDT",
-      type: "Long",
-      leverage: "0.5x",
-      positionSize: "2.0332",
-      sizeUsd: "$4,580",
-      entryPrice: "$2,362",
-      marketPrice: "$2,362",
-      estLiqPrice: "$2,362",
-      takeProfit: "$2,362/$2,362",
-      pnl: "-$0.04",
-      pnlPercent: "2%",
-      borrowFee: "$0.00",
-    },
+    // More positions can be added here to increase data...
   ];
 
   return (
@@ -163,19 +73,18 @@ const TradingPositionsTable = () => {
       overflow="hidden"
       w={{ base: "calc(85vw)", md: "100%" }} // Keeping width responsive
       mx="auto" // To center the box horizontally
-      className="overflow-auto"
+      // Keep the height constant
+      h={{ base: "full", md: "12rem" }}
     >
       {/* Outer box to make the table responsive */}
       <Box
-        overflowX={{ base: "auto", md: "unset" }}
+        overflowX="auto" // Horizontal scroll if needed for smaller screens
         overflowY="auto" // Enable vertical scrolling
-        maxHeight="555px" // Set a max height for the table container
+        maxHeight="12rem" // Set a fixed height for the table container
         w="100%"
       >
-        {/* Restrict table to viewport width */}
         <TableContainer>
-          {/* Minimum width to avoid table squishing */}
-          <Table variant="simple" minW={{ base: "1000px", md: "unset" }}>
+          <Table variant="simple" minW="1000px">
             <Thead className="bg-[#28294B]">
               <Tr>
                 <Th color="white" fontWeight="normal" whiteSpace="nowrap">
@@ -215,7 +124,7 @@ const TradingPositionsTable = () => {
                   borderColor="#2A2B31"
                   _hover={{ bg: "#1E1F25" }}
                 >
-                  <Td py="4">
+                  <Td py="1">
                     <Flex alignItems="center" gap="2">
                       <Box w="2" h="2" borderRadius="full" bg="green.500" />
                       <Text color="white">{position.market}</Text>
@@ -269,13 +178,13 @@ const TradingPositionsTable = () => {
                     gap="4"
                     bg="#0B0B20"
                     borderRadius="xl"
-                    p="2"
+                    p="1"
                     color="white"
                   >
                     <Text
                       bg="#1B1C39"
                       color="white"
-                      p="2"
+                      p="1"
                       borderRadius="lg"
                       className="font-semibold"
                     >
@@ -296,13 +205,13 @@ const TradingPositionsTable = () => {
                     gap="4"
                     bg="#0B0B20"
                     borderRadius="xl"
-                    p="2"
+                    p="1"
                     color="white"
                   >
                     <Text
                       bg="#1B1C39"
                       color="white"
-                      p="2"
+                      p="1"
                       borderRadius="lg"
                       className="font-semibold"
                     >
