@@ -39,7 +39,7 @@ const ProfitLoss = () => {
             </div>
           </div>
 
-          <div className="flex items-center text-center gap-2 text-sm my-4">
+          <div className="flex items-center text-center gap-1 text-sm my-4">
             <input
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
@@ -72,7 +72,7 @@ const ProfitLoss = () => {
         </div>
       </div>
       
-      <div className="flex items-center text-center gap-2 text-sm my-4">
+      <div className="flex items-center text-center gap-1 text-sm my-4">
         <input 
           value={inputlossValue}
           onChange={(e) => setInputLossValue(e.target.value)}

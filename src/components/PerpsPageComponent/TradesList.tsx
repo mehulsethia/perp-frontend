@@ -19,8 +19,8 @@ const TradesList = () => {
   ];
 
   return (
-    <div className="bg-[#1B1C39] rounded-2xl w-full">
-        {/* <div className="grid grid-cols-3 gap-2 p-2 bg-[#28294B] rounded-t-xl">
+    <div className="bg-[#1B1C39] rounded-2xl w-full ">
+        <div className="grid grid-cols-3 gap-1 py-2 px-1 bg-[#28294B] rounded-t-xl">
           <div className="text-white text-sm font-bold flex items-center pl-2">
             Price $ <ArrowDown className="w-4 h-4 ml-1" />
           </div>
@@ -30,25 +30,25 @@ const TradesList = () => {
           <div className="text-white text-sm font-bold flex justify-center pr-2 items-center">
             Time <ArrowDown className="w-4 h-4 ml-1" />
           </div>
-        </div> */}
+        </div>
 
-      <div className="space-y-2  bg-[#0B0B20]">
+      <div className=" bg-[#0B0B20]">
         {trades.map((trade, index) => (
           <div
             key={index}
-            className="grid grid-cols-3 gap-2 p-2 border-b border-l border-r"
+            className="grid grid-cols-3  p-2 border-t border-b border-l border-r"
           >
             <span
               className={`${
                 trade.type === "buy" ? "text-[#30E0A1]" : "text-red-500"
-              } flex items-center pl-2 font-semibold`}
+              } flex items-center text-sm pl-2 font-semibold`}
             >
               {trade.price.toLocaleString()}
             </span>
-            <span className="text-white flex items-center font-semibold pl-2">
+            <span className="text-white flex items-center text-sm font-semibold pl-2">
               {trade.size}
             </span>
-            <span className="text-white flex justify-center font-semibold items-center">
+            <span className="text-white flex justify-center text-sm font-semibold items-center">
               {trade.time}
               <ArrowUp className="w-4 h-4 ml-2 text-gray-400" />
             </span>

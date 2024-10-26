@@ -1,4 +1,6 @@
+import { Image } from "@chakra-ui/react";
 import React, { useState } from "react";
+import Frame76 from "../../assets/icons/Frame 76.png";
 
 const CryptoDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -7,23 +9,92 @@ const CryptoDropdown = () => {
 
   // Dummy data for multiple cryptocurrencies
   const cryptoData = [
-    { name: "Bitcoin", percentChange: "0.3%", price: "$580K", change24h: "30%", volume: "$580K", openInterest: "$580K" },
-    { name: "Ethereum", percentChange: "0.5%", price: "$2K", change24h: "20%", volume: "$900K", openInterest: "$1M" },
-    { name: "Cardano", percentChange: "1.2%", price: "$1.2", change24h: "10%", volume: "$400K", openInterest: "$500K" },
-    { name: "Dogecoin", percentChange: "-0.1%", price: "$0.1", change24h: "-5%", volume: "$300K", openInterest: "$400K" },
-    { name: "Solana", percentChange: "0.7%", price: "$35", change24h: "15%", volume: "$250K", openInterest: "$350K" },
-    { name: "Solana", percentChange: "0.7%", price: "$35", change24h: "15%", volume: "$250K", openInterest: "$350K" },
-    { name: "Solana", percentChange: "0.7%", price: "$35", change24h: "15%", volume: "$250K", openInterest: "$350K" },
-    { name: "Solana", percentChange: "0.7%", price: "$35", change24h: "15%", volume: "$250K", openInterest: "$350K" },
+    {
+      name: "Bitcoin",
+      percentChange: "0.3%",
+      price: "$580K",
+      change24h: "30%",
+      volume: "$580K",
+      openInterest: "$580K",
+    },
+    {
+      name: "Ethereum",
+      percentChange: "0.5%",
+      price: "$2K",
+      change24h: "20%",
+      volume: "$900K",
+      openInterest: "$1M",
+    },
+    {
+      name: "Cardano",
+      percentChange: "1.2%",
+      price: "$1.2",
+      change24h: "10%",
+      volume: "$400K",
+      openInterest: "$500K",
+    },
+    {
+      name: "Dogecoin",
+      percentChange: "-0.1%",
+      price: "$0.1",
+      change24h: "-5%",
+      volume: "$300K",
+      openInterest: "$400K",
+    },
+    {
+      name: "Solana",
+      percentChange: "0.7%",
+      price: "$35",
+      change24h: "15%",
+      volume: "$250K",
+      openInterest: "$350K",
+    },
+    {
+      name: "Solana",
+      percentChange: "0.7%",
+      price: "$35",
+      change24h: "15%",
+      volume: "$250K",
+      openInterest: "$350K",
+    },
+    {
+      name: "Solana",
+      percentChange: "0.7%",
+      price: "$35",
+      change24h: "15%",
+      volume: "$250K",
+      openInterest: "$350K",
+    },
+    {
+      name: "Solana",
+      percentChange: "0.7%",
+      price: "$35",
+      change24h: "15%",
+      volume: "$250K",
+      openInterest: "$350K",
+    },
   ];
 
   const categories = [
-    "All", "Recently Listed", "AI", "Meme", "DeFi", "RWA", "Gaming", "Layer 0", "Layer 1",
-    "Layer 2", "Layer 3", "Layer 4", "Layer 5", "Layer 6", "Layer 8"
+    "All",
+    "Recently Listed",
+    "AI",
+    "Meme",
+    "DeFi",
+    "RWA",
+    "Gaming",
+    "Layer 0",
+    "Layer 1",
+    "Layer 2",
+    "Layer 3",
+    "Layer 4",
+    "Layer 5",
+    "Layer 6",
+    "Layer 8",
   ];
 
   // Handler to set selected coin
-  const handleCoinSelect = (coinName:string) => {
+  const handleCoinSelect = (coinName: string) => {
     setSelectedCoin(coinName);
     setIsOpen(false); // Close the dropdown when a coin is selected
   };
@@ -31,13 +102,21 @@ const CryptoDropdown = () => {
   return (
     <div className="relative w-full max-w-[68rem] z-50 h-fit">
       {/* Dropdown Button */}
+      
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center justify-between  p-3 rounded-lg text-gray-100 hover:bg-[#0B0B20]"
       >
+        <div className="relative flex-shrink-0 w-16">
+        {/* Replace this with your logo */}
+        <Image src={Frame76} alt="Logo" className="absolute w-10 h-8" />
+        <Image src={Frame76} alt="Logo" className="w-10 h-8" />
+      </div>
         <span className="font-bold">{selectedCoin}</span>
         <svg
-          className={`w-5 h-5 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+          className={`w-5 h-5 transition-transform duration-200 ${
+            isOpen ? "rotate-180" : ""
+          }`}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"

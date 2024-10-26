@@ -46,61 +46,58 @@ function TableTop() {
 
   return (
     <div className="w-full  px-3 py-1.5">
-  {/* Parent container with flex layout that adjusts for mobile and desktop */}
-  <div className="flex flex-col md:flex-row justify-between items-center space-y-3 md:space-y-0">
-    
-    {/* Tab buttons container */}
-    <div className="flex flex-wrap justify-center bg-[#0B0B20] px-4 py-1.5 rounded-lg text-white space-x-2 md:space-x-4">
-      {/* Positions Tab */}
-      <button
-        className={`px-4 py-1.5 rounded-lg ${
-          activeTab === "positions" ? "bg-[#1B1C39]" : ""
-        }`}
-        onClick={() => setActiveTab("positions")}
-      >
-        Positions
-        <span className="ml-1 bg-[#0B0B20] py-1 rounded-full px-2">1</span>
-      </button>
+      <div className="flex flex-col md:flex-row justify-between items-center space-y-3 md:space-y-0">
+        {/* Tab buttons container */}
+        <div className="flex flex-wrap justify-center bg-[#0B0B20] px-4 py-1.5 rounded-lg text-white space-x-2 md:space-x-4">
+          {/* Positions Tab */}
+          <button
+            className={`px-4 py-1.5 rounded-lg ${
+              activeTab === "positions" ? "bg-[#1B1C39]" : ""
+            }`}
+            onClick={() => setActiveTab("positions")}
+          >
+            Positions
+            <span className="ml-1 bg-[#0B0B20] py-1 rounded-full px-2">1</span>
+          </button>
 
-      {/* Open Orders Tab */}
-      <button
-        className={`px-4 py-1.5 rounded-lg ${
-          activeTab === "orders" ? "bg-[#1B1C39]" : ""
-        }`}
-        onClick={() => setActiveTab("orders")}
-      >
-        Open Orders
-        <span className="ml-1 bg-[#0B0B20] rounded-full py-1 px-2">0</span>
-      </button>
+          {/* Open Orders Tab */}
+          <button
+            className={`px-4 py-1.5 rounded-lg ${
+              activeTab === "orders" ? "bg-[#1B1C39]" : ""
+            }`}
+            onClick={() => setActiveTab("orders")}
+          >
+            Open Orders
+            <span className="ml-1 bg-[#0B0B20] rounded-full py-1 px-2">0</span>
+          </button>
 
-      {/* History Tab */}
-      <button
-        className={`px-4 py-1.5 rounded-lg ${
-          activeTab === "history" ? "bg-[#1B1C39]" : ""
-        }`}
-        onClick={() => setActiveTab("history")}
-      >
-        History
-      </button>
+          {/* History Tab */}
+          <button
+            className={`px-4 py-1.5 rounded-lg ${
+              activeTab === "history" ? "bg-[#1B1C39]" : ""
+            }`}
+            onClick={() => setActiveTab("history")}
+          >
+            History
+          </button>
 
-      {/* Realized PnL Tab */}
-      <button
-        className={`px-4 py-1.5 rounded-lg ${
-          activeTab === "realized" ? "bg-[#1B1C39]" : ""
-        }`}
-        onClick={() => setActiveTab("realized")}
-      >
-        RealizedPnL
-      </button>
+          {/* Realized PnL Tab */}
+          <button
+            className={`px-4 py-1.5 rounded-lg ${
+              activeTab === "realized" ? "bg-[#1B1C39]" : ""
+            }`}
+            onClick={() => setActiveTab("realized")}
+          >
+            RealizedPnL
+          </button>
+        </div>
+
+        {/* Clear All Positions Button */}
+        <button className="bg-[#28294B] rounded-lg p-2 w-full md:w-auto">
+          Clear All Positions
+        </button>
+      </div>
     </div>
-
-    {/* Clear All Positions Button */}
-    <button className="bg-[#28294B] rounded-lg p-2 w-full md:w-auto">
-      Clear All Positions
-    </button>
-  </div>
-</div>
-
   );
 }
 

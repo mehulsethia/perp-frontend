@@ -19,13 +19,8 @@ const CryptoTicker = () => {
   return (
     <div className="rounded-lg grid grid-cols-1 md:grid-cols-[auto,1fr] items-center text-sm gap-4 my-2 mx-2">
       {/* Market Info and Ticker */}
-      <div className="flex items-center justify-between space-x-4 bg-[#1B1C39] px-4 py-3 rounded-xl w-full md:w-auto">
-        <div className="flex items-center space-x-3">
-          <div className="relative flex-shrink-0 w-16">
-            {/* Replace this with your logo */}
-            <Image src={Frame76} alt="Logo" className="absolute w-10 h-8" />
-            <Image src={Frame76} alt="Logo" className="w-10 h-8" />
-          </div>
+      <div className="flex  space-x-4 bg-[#1B1C39] px-4 py-1.5 rounded-xl w-full md:w-auto">
+        <div className="flex justify-between items-center w-full  space-x-3">
           <CryptoDropdown />
           <div className="text-white flex font-bold items-center space-x-2">
             <div className="text-[#30e0a1] bg-[#008d5b33] text-sm px-2 py-1 rounded-lg">
@@ -33,42 +28,39 @@ const CryptoTicker = () => {
             </div>
           </div>
         </div>
-        <div className="text-white flex items-center">
-          <Dropdown options={options} defaultOption="Select Market" />
-        </div>
       </div>
 
       {/* Ticker and Metrics */}
       <div className="w-full bg-[#1B1C39] py-2 px-3 rounded-lg">
-      <div className="flex flex-col lg:flex-row lg:items-center justify-between ">
-        {/* Price Section */}
-        <div className="flex flex-col mb-6 lg:mb-0">
-          <span className="text-2xl font-bold text-white">6,654$</span>
-          <span className="text-gray-400">6,654</span>
-        </div>
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between ">
+          {/* Price Section */}
+          <div className="flex flex-col mb-6 lg:mb-0">
+            <span className="text-2xl font-bold text-white">6,654$</span>
+            <span className="text-gray-400">6,654</span>
+          </div>
 
-        {/* Metrics Section */}
-        <div className="grid grid-cols-2  md:grid-cols-2 lg:flex lg:items-center lg:space-x-12 gap-6 lg:gap-0">
-          {metrics.map((metric, index) => (
-            <div key={index} className="flex items-start">
-              <div 
-                className={`w-1 h-4 mt-1 mr-2 rounded ${
-                  metric.isPositive ? 'bg-emerald-500' : 'bg-red-500'
-                }`}
-              />
-              <div className="flex flex-col">
-                <span className="text-md font-bold text-white">
-                  {metric.label}
-                </span>
-                <span className="text-sm text-gray-400 mt-0.5">
-                  {metric.value}
-                </span>
+          {/* Metrics Section */}
+          <div className="grid grid-cols-2  md:grid-cols-2 lg:flex lg:items-center lg:space-x-12 gap-6 lg:gap-0">
+            {metrics.map((metric, index) => (
+              <div key={index} className="flex items-start">
+                <div
+                  className={`w-1 h-4 mt-1 mr-2 rounded ${
+                    metric.isPositive ? "bg-emerald-500" : "bg-red-500"
+                  }`}
+                />
+                <div className="flex flex-col">
+                  <span className="text-md font-bold text-white">
+                    {metric.label}
+                  </span>
+                  <span className="text-sm text-gray-400 mt-0.5">
+                    {metric.value}
+                  </span>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
-    </div>
     </div>
   );
 };
