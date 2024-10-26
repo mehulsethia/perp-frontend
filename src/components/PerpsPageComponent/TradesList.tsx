@@ -20,19 +20,19 @@ const TradesList = () => {
 
   return (
     <div className="bg-[#1B1C39] rounded-2xl w-full">
-      <div className="grid grid-cols-3 gap-2 p-2 bg-[#28294B] rounded-t-xl">
-        <div className="text-white text-sm font-bold flex items-center pl-2">
-          Price $ <ArrowDown className="w-4 h-4 ml-1" />
-        </div>
-        <div className="text-white text-sm font-bold flex items-center ">
-          Size BTC <ArrowDown className="w-4 h-4 ml-1" />
-        </div>
-        <div className="text-white text-sm font-bold flex justify-center pr-2 items-center">
-          Time <ArrowDown className="w-4 h-4 ml-1" />
-        </div>
-      </div>
+        {/* <div className="grid grid-cols-3 gap-2 p-2 bg-[#28294B] rounded-t-xl">
+          <div className="text-white text-sm font-bold flex items-center pl-2">
+            Price $ <ArrowDown className="w-4 h-4 ml-1" />
+          </div>
+          <div className="text-white text-sm font-bold flex items-center ">
+            Size BTC <ArrowDown className="w-4 h-4 ml-1" />
+          </div>
+          <div className="text-white text-sm font-bold flex justify-center pr-2 items-center">
+            Time <ArrowDown className="w-4 h-4 ml-1" />
+          </div>
+        </div> */}
 
-      <div className="space-y-2 border overflow-y-auto h-[350px] bg-[#0B0B20]">
+      <div className="space-y-2  bg-[#0B0B20]">
         {trades.map((trade, index) => (
           <div
             key={index}
