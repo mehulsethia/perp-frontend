@@ -17,9 +17,9 @@ const CryptoTicker = () => {
   const options = ["Market 01", "Market 02", "Market 03"];
 
   return (
-    <div className="rounded-lg grid grid-cols-1 md:grid-cols-[auto,1fr] items-center text-sm gap-4 my-2 mx-2">
+    <div className="rounded-lg grid grid-cols-1 md:grid-cols-[auto,1fr] items-center text-sm gap-[15px] my-2 mx-2">
       {/* Market Info and Ticker */}
-      <div className="flex  space-x-4 bg-[#1B1C39] px-4 py-1.5 rounded-xl w-full md:w-auto">
+      <div className="flex  space-x-4 bg-[#1B1C39] px-4 py-0.5 rounded-xl w-full md:w-auto">
         <div className="flex justify-between items-center w-full  space-x-3">
           <CryptoDropdown />
           <div className="text-white flex font-bold items-center space-x-2">

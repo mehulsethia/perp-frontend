@@ -14,10 +14,10 @@ const LongShort = () => {
     <div className="h-full flex flex-col w-full md:w-auto">
       {/* Top section with buttons */}
       <div>
-        <div className="p-1 bg-[#2F3055] rounded-t-3xl">
-          <div className="flex justify-between rounded-t-[22px] items-center">
+        <div className="p-1 bg-[#2F3055] ">
+          <div className="flex justify-between  items-center">
             <button
-              className={`font-semibold rounded-tl-3xl w-1/2 px-5 py-3 ${
+              className={`font-semibold rounded-tl-[14px] w-1/2 px-5 py-3 ${
                 activeTab === "Short" ? "bg-[#1B1C39]" : ""
               }`}
               onClick={() => setActiveTab("Short")}
@@ -25,7 +25,7 @@ const LongShort = () => {
               Long
             </button>
             <button
-              className={`font-semibold rounded-tr-3xl w-1/2 px-5 py-3 ${
+              className={`font-semibold rounded-tr-[14px] w-1/2 px-5 py-3 ${
                 activeTab === "Long" ? "bg-[#1B1C39]" : ""
               }`}
               onClick={() => setActiveTab("Long")}

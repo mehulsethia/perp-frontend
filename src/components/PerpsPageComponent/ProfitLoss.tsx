@@ -44,6 +44,7 @@ const ProfitLoss = () => {
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               className="bg-[#0B0B20] py-2 px-4 w-full rounded-xl text-white"
+              placeholder="0"
             />
 
             {percentageOptions.map((percentage) => (

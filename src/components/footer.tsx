@@ -13,10 +13,10 @@ export default function Footer() {
   const lightIconColor = useColorModeValue("blackAlpha.600", "rgba(156, 163, 175, 1)");
 
   return (
-    <HStack as={"footer"} bgColor={bg} p={"1.25rem"}>
-      <VStack gap={"0.625rem"} w="100%" className="flex">
+    <HStack as={"footer"} bgColor={bg} p={"1.25rem"} >
+      <VStack  w="100%" className="flex ">
         <HStack w="100%" justifyContent={"space-between"}>
-          <div className="flex items-center space-x-2 ">
+          <div className="flex items-center space-x-2 pt-1 ">
 
           <Link to={"/"}>
             <HStack gap={"0.4rem"}>

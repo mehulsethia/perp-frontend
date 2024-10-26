@@ -109,8 +109,7 @@ const CryptoDropdown = () => {
       >
         <div className="relative flex-shrink-0 w-16">
         {/* Replace this with your logo */}
-        <Image src={Frame76} alt="Logo" className="absolute w-10 h-8" />
-        <Image src={Frame76} alt="Logo" className="w-10 h-8" />
+        <Image src={Frame76} alt="Logo"  />
       </div>
         <span className="font-bold">{selectedCoin}</span>
         <svg
