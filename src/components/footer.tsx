@@ -16,9 +16,9 @@ export default function Footer() {
     <HStack as={"footer"} bgColor={bg} p={"1.25rem"} >
       <VStack  w="100%" className="flex ">
         <HStack w="100%" justifyContent={"space-between"}>
-          <div className="flex items-center space-x-2 pt-1 ">
+          <div className="flex items-center justify-between space-x-2 mt-1 ">
 
-          <Link to={"/"}>
+          <Link to={"/"}  >
             <HStack gap={"0.4rem"}>
               <Image alt="Mantis" src={Logo} w={"1.75rem"} />
               <Text color={color} fontSize={"1rem"} fontWeight="700">

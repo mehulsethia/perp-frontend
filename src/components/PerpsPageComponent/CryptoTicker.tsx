@@ -17,9 +17,9 @@ const CryptoTicker = () => {
   const options = ["Market 01", "Market 02", "Market 03"];
 
   return (
-    <div className="rounded-lg grid grid-cols-1 md:grid-cols-[auto,1fr] items-center text-sm gap-[15px] my-2 mx-2">
+    <div className="rounded-lg grid grid-cols-1 md:grid-cols-[auto,1fr] items-center text-sm gap-4 my-2 mx-2">
       {/* Market Info and Ticker */}
-      <div className="flex  space-x-4 bg-[#1B1C39] px-4 py-0.5 rounded-xl w-full md:w-auto">
+      <div className="flex  space-x-4 bg-[#1B1C39] px-4 py-0.5 rounded-xl w-full h-full md:w-auto">
         <div className="flex justify-between items-center w-full  space-x-3">
           <CryptoDropdown />
           <div className="text-white flex font-bold items-center space-x-2">
@@ -35,12 +35,12 @@ const CryptoTicker = () => {
         <div className="flex flex-col lg:flex-row lg:items-center justify-between ">
           {/* Price Section */}
           <div className="flex flex-col mb-6 lg:mb-0">
-            <span className="text-2xl font-bold text-white">6,654$</span>
+            <span className="text-lg xl:text-2xl font-bold text-white">6,654$</span>
             <span className="text-gray-400">6,654</span>
           </div>
 
           {/* Metrics Section */}
-          <div className="grid grid-cols-2  md:grid-cols-2 lg:flex lg:items-center lg:space-x-12 gap-6 lg:gap-0">
+          <div className="grid grid-cols-2  md:grid-cols-2 lg:flex lg:items-center lg:space-x-6 xl:space-x-12 gap-6 lg:gap-0">
             {metrics.map((metric, index) => (
               <div key={index} className="flex items-start">
                 <div
@@ -49,7 +49,7 @@ const CryptoTicker = () => {
                   }`}
                 />
                 <div className="flex flex-col">
-                  <span className="text-md font-bold text-white">
+                  <span className="text-sm xl:text-base font-bold text-white">
                     {metric.label}
                   </span>
                   <span className="text-sm text-gray-400 mt-0.5">
