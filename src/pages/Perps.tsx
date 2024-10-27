@@ -24,13 +24,13 @@ const Perps = () => {
         <div className="flex-col md:flex-row flex-1 flex h-auto md:min-h-0 gap-2 mx-2">
           <div className="flex-[2] flex flex-col space-y-2 ">
             <div className="md:flex-1 h-auto md:min-h-0 md:flex   flex-col md:flex-row rounded-2xl ">
-              <div className="md:flex-1 relative   flex flex-col h-[400px] md:h-full">
-                <div className="absolute inset-0 bg-[#1B1C39] rounded-2xl  md:p-2 h-[400px] md:h-full">
+              <div className="md:flex-1 relative   flex flex-col h-[24rem] md:h-full">
+                <div className="absolute inset-0 bg-[#1B1C39] rounded-2xl  md:p-2 h-[24rem] md:h-full">
                   <Chart />
                 </div>
               </div>
-              <div className="md:w-64 md:mx-2 bg-[#1B1C39] rounded-2xl flex flex-col my-2 md:my-0  w-full">
-                <div className="px-2 py-3 font-bold text-md">Trades</div>
+              <div className="md:w-64 md:mx-1 lg:mx-2 bg-[#1B1C39] rounded-2xl flex flex-col my-1 xl:my-2 md:my-0  w-full">
+                <div className="px-3 xl:px-2 py-2 xl:py-3 font-bold lg:text-sm xl:text-base">Trades</div>
                 <div className="h-[300px] md:h-full md:min-h-0 pb-2 px-1.5 overflow-auto">
                   <div className="   ">
                     <TradesList />
@@ -45,7 +45,7 @@ const Perps = () => {
               </div>
             </div>
           </div>
-          <div className="md:w-80 flex flex-col rounded-2xl  bg-[#1B1C39] overflow-y-auto">
+          <div className=" md:w-80 lg:w-72 flex flex-col rounded-2xl  bg-[#1B1C39] overflow-y-auto">
             <LongShort />
           </div>
         </div>

@@ -18,7 +18,7 @@ const LongShort = () => {
           <div className="flex justify-between  items-center">
             <button
               className={`font-semibold rounded-tl-[14px] w-1/2 px-5 py-3 ${
-                activeTab === "Short" ? "bg-[#1B1C39]" : ""
+                activeTab === "Short" ? "bg-[#30E0A1]" : ""
               }`}
               onClick={() => setActiveTab("Short")}
             >
@@ -26,7 +26,7 @@ const LongShort = () => {
             </button>
             <button
               className={`font-semibold rounded-tr-[14px] w-1/2 px-5 py-3 ${
-                activeTab === "Long" ? "bg-[#1B1C39]" : ""
+                activeTab === "Long" ? "bg-[#F44141]" : ""
               }`}
               onClick={() => setActiveTab("Long")}
             >
