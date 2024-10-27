@@ -36,19 +36,45 @@ import {
 } from "@chakra-ui/react";
 import { keyframes } from "@emotion/react";
 import React, { useState, useEffect, useMemo, useCallback } from "react";
-import { readContracts, useAccount, useContractWrite, useFeeData, useNetwork, useWaitForTransaction } from "wagmi";
+import {
+  readContracts,
+  useAccount,
+  useContractWrite,
+  useFeeData,
+  useNetwork,
+  useWaitForTransaction,
+} from "wagmi";
 import { readContract } from "@wagmi/core";
-import { BERA_CONSTANTS, CHAIN_CONSTANTS, getBeraChainConstants, getChainConstants } from "../constants/addresses";
-import { getTokenAddress, getTokenDecimals, getTokenLpAddress } from "../helpers/token";
+import {
+  BERA_CONSTANTS,
+  CHAIN_CONSTANTS,
+  getBeraChainConstants,
+  getChainConstants,
+} from "../constants/addresses";
+import {
+  getTokenAddress,
+  getTokenDecimals,
+  getTokenLpAddress,
+} from "../helpers/token";
 import { ERC20ABI, PoolABI } from "../abi";
 import { Abi, Address, formatUnits, parseUnits } from "viem";
 import { formatValue, formatValueDigits, trim } from "../helpers/trim";
 import TokenSelect from "../components/tokenSelect";
 import { getTokensList, Token, tokens } from "../constants/tokens";
-import { InfoIcon, InfoOutlineIcon, LinkIcon, SettingsIcon, UpDownIcon } from "@chakra-ui/icons";
+import {
+  InfoIcon,
+  InfoOutlineIcon,
+  LinkIcon,
+  SettingsIcon,
+  UpDownIcon,
+} from "@chakra-ui/icons";
 import { ApproveBtn } from "../components/transactions/approveBtn";
 import { SwapBtn } from "../components/transactions/swapBtn";
-import { DEFAULT_BUFFER, DEFAULT_DEADLINE, DEFAULT_SLIPPAGE } from "../constants/settings";
+import {
+  DEFAULT_BUFFER,
+  DEFAULT_DEADLINE,
+  DEFAULT_SLIPPAGE,
+} from "../constants/settings";
 import { getSlippage } from "../helpers/utils";
 import { FaWallet } from "react-icons/fa";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
@@ -61,6 +87,7 @@ import SellIcon from "../assets/icons/sell_token.svg";
 import ReceiveIcon from "../assets/icons/receive_token.svg";
 import DashArrowIcon from "../assets/icons/dash_arrow.svg";
 import Logo from "../assets/icons/logos/logo_white.svg";
+import Header from "../assets/icons/logos/header.png";
 import Loading from "../assets/icons/Loading.png";
 import Completed from "../assets/icons/completed.svg";
 import { BigNumber } from "ethers"; // If you're using BigNumber for balance
@@ -104,22 +131,31 @@ const CustomTab = React.forwardRef<HTMLButtonElement, any>((props, ref) => {
   );
 });
 
-export default function Swap() {
+export default function PoolsRebalance() {
   const { address, isConnected } = useAccount();
   const { data: gasData } = useFeeData();
   const { chain } = useNetwork();
 
-  const { isOpen: isOpenSettings, onOpen: onOpenSettings, onClose: onCloseSettings } = useDisclosure();
+  const {
+    isOpen: isOpenSettings,
+    onOpen: onOpenSettings,
+    onClose: onCloseSettings,
+  } = useDisclosure();
 
-  const [slippage, setSlippage] = useState<string>(localStorage.getItem("mantis_perp_slippage") || DEFAULT_SLIPPAGE);
+  const [slippage, setSlippage] = useState<string>(
+    localStorage.getItem("mantis_perp_slippage") || DEFAULT_SLIPPAGE
+  );
   const [feeBuffer, setFeeBuffer] = useState<number>(
     Number(localStorage.getItem("mantis_perp_fee_buffer")) || DEFAULT_BUFFER
   );
   const [transactionDeadLine, setTransactionDeadLine] = useState<number>(
-    Number(localStorage.getItem("mantis_perp_transaction_deadline")) || DEFAULT_DEADLINE
+    Number(localStorage.getItem("mantis_perp_transaction_deadline")) ||
+      DEFAULT_DEADLINE
   );
 
-  const [chainConstants, setChainConstants] = useState<CHAIN_CONSTANTS | any>(undefined);
+  const [chainConstants, setChainConstants] = useState<CHAIN_CONSTANTS | any>(
+    undefined
+  );
 
   const [quantityFrom, setQuantityFrom] = useState<string>("");
   const [quantityTo, setQuantityTo] = useState<string>("");
@@ -181,21 +217,39 @@ export default function Swap() {
           contracts: allowanceContracts,
         });
 
-        const updatedTokenList = tokensList?.map((token: Token, index: number) => {
-          if (data[index].status === "success") {
-            const result = data[index]?.result as string | BigNumber;
-            const allowanceResult = allowanceData[index]?.result as string | number | bigint | boolean;
-            const balance = typeof result === "string" ? BigInt(result) : BigInt(result.toString());
-            const allowance = typeof result === "string" ? BigInt(allowanceResult) : BigInt(allowanceResult.toString());
+        const updatedTokenList = tokensList?.map(
+          (token: Token, index: number) => {
+            if (data[index].status === "success") {
+              const result = data[index]?.result as string | BigNumber;
+              const allowanceResult = allowanceData[index]?.result as
+                | string
+                | number
+                | bigint
+                | boolean;
+              const balance =
+                typeof result === "string"
+                  ? BigInt(result)
+                  : BigInt(result.toString());
+              const allowance =
+                typeof result === "string"
+                  ? BigInt(allowanceResult)
+                  : BigInt(allowanceResult.toString());
 
-            return {
-              ...token,
-              balance: formatUnits(balance, getTokenDecimals(token.name.toLowerCase())),
-              allowance: formatUnits(allowance, getTokenDecimals(token.name.toLowerCase())),
-            };
+              return {
+                ...token,
+                balance: formatUnits(
+                  balance,
+                  getTokenDecimals(token.name.toLowerCase())
+                ),
+                allowance: formatUnits(
+                  allowance,
+                  getTokenDecimals(token.name.toLowerCase())
+                ),
+              };
+            }
+            return token;
           }
-          return token;
-        });
+        );
         setTokenList(updatedTokenList);
       };
       getContracts();
@@ -206,8 +260,11 @@ export default function Swap() {
   const gasPrice = useMemo(() => {
     let gasInGwei = Number(gasData?.formatted?.gasPrice);
     const executionFee = 500;
-    const premiumMultiplier = 1 + Number(localStorage.getItem("mantis_perp_fee_buffer") || 20) / 100;
-    return ((executionFee * gasInGwei * premiumMultiplier) / 1000000).toFixed(4);
+    const premiumMultiplier =
+      1 + Number(localStorage.getItem("mantis_perp_fee_buffer") || 20) / 100;
+    return ((executionFee * gasInGwei * premiumMultiplier) / 1000000).toFixed(
+      4
+    );
   }, [gasData?.formatted?.gasPrice]);
 
   const setPositiveSlippage = (value: string) => {
@@ -233,10 +290,16 @@ export default function Swap() {
   const setPositiveTransactionDeadLine = (value: number) => {
     if (value >= 0) {
       setTransactionDeadLine(value);
-      localStorage.setItem("mantis_perp_transaction_deadline", value.toString());
+      localStorage.setItem(
+        "mantis_perp_transaction_deadline",
+        value.toString()
+      );
     } else {
       setTransactionDeadLine(DEFAULT_DEADLINE);
-      localStorage.setItem("mantis_perp_transaction_deadline", DEFAULT_DEADLINE.toString());
+      localStorage.setItem(
+        "mantis_perp_transaction_deadline",
+        DEFAULT_DEADLINE.toString()
+      );
     }
   };
 
@@ -296,13 +359,19 @@ export default function Swap() {
       });
 
       if (data[0].status == "success") {
-        setUsdcAllowance(Number(formatUnits(data[0].result, getTokenDecimals("usdc"))));
+        setUsdcAllowance(
+          Number(formatUnits(data[0].result, getTokenDecimals("usdc")))
+        );
       }
       if (data[1].status == "success") {
-        setUsdtAllowance(Number(formatUnits(data[1].result, getTokenDecimals("usdt"))));
+        setUsdtAllowance(
+          Number(formatUnits(data[1].result, getTokenDecimals("usdt")))
+        );
       }
       if (data[2].status == "success") {
-        setDaiAllowance(Number(formatUnits(data[2].result, getTokenDecimals("dai"))));
+        setDaiAllowance(
+          Number(formatUnits(data[2].result, getTokenDecimals("dai")))
+        );
       }
     }
   }
@@ -377,7 +446,8 @@ export default function Swap() {
   // }, [swapCompleted]);
 
   const getAllowance = (tokenName: string): number => {
-    return tokenList?.find((token: Token) => token?.name === tokenName)?.allowance;
+    return tokenList?.find((token: Token) => token?.name === tokenName)
+      ?.allowance;
   };
 
   const getTokenBalance = useCallback(
@@ -391,18 +461,26 @@ export default function Swap() {
   );
 
   const getMinimumReceived = () => {
-    return formatValueDigits((Number(quantityTo) * (1 - getSlippage() / 100)).toString(), 4);
+    return formatValueDigits(
+      (Number(quantityTo) * (1 - getSlippage() / 100)).toString(),
+      4
+    );
   };
 
   const hasAllowance = () => {
     return getAllowance(tokenFrom) >= Number(quantityFrom);
   };
   const tokenFromBalance = useMemo((): string => {
-    return tokenList?.find((token: Token) => token?.name === tokenFrom)?.balance || "0";
+    return (
+      tokenList?.find((token: Token) => token?.name === tokenFrom)?.balance ||
+      "0"
+    );
   }, [tokenFrom, tokenList]);
 
   const tokenToBalance = useMemo((): string => {
-    return tokenList?.find((token: Token) => token?.name === tokenTo)?.balance || "0";
+    return (
+      tokenList?.find((token: Token) => token?.name === tokenTo)?.balance || "0"
+    );
   }, [tokenTo, tokenList]);
 
   const switchToken = () => {
@@ -411,7 +489,7 @@ export default function Swap() {
     setTokenTo(oldTokenFrom);
     const tokenBalance = Number(tokenToBalance);
 
-    if (Number(quantityFrom) === 0) {
+    if (Number(quantityFrom) === -10) {
       setSwapBtnDisabled(true);
       setSwapText("Confirm Swap");
       setPreviewText("Preview");
@@ -448,7 +526,7 @@ export default function Swap() {
         tokenBalance = Number(tokenFromBalance);
       }
 
-      if (Number(value) === 0) {
+      if (Number(value) === -10) {
         setSwapBtnDisabled(true);
         setSwapText("Confirm Swap");
         setPreviewText("Preview");
@@ -481,7 +559,8 @@ export default function Swap() {
   };
 
   const tokenFromLPAddress = useMemo(
-    () => tokenList?.find((token: Token) => token.name === tokenFrom)?.lpAddress,
+    () =>
+      tokenList?.find((token: Token) => token.name === tokenFrom)?.lpAddress,
     [tokenList, tokenFrom]
   );
   const tokenToLPAddress = useMemo(
@@ -495,13 +574,23 @@ export default function Swap() {
       if (Number(value) > 0 && chainConstants && tokenFrom && tokenTo) {
         try {
           setIsPriceLoading(true);
-          const contractValue = parseUnits(value, getTokenDecimals(tokenFrom.toLowerCase()));
+          const contractValue = parseUnits(
+            value,
+            getTokenDecimals(tokenFrom.toLowerCase())
+          );
           const tokenToDecimals = getTokenDecimals(tokenTo.toLowerCase());
           const quoteData = await readContract({
             address: chainConstants.POOL_ADDRESS,
             abi: PoolABI,
             functionName: "getSwapAmount",
-            args: [tokenFromLPAddress, tokenToLPAddress, contractValue, false, BigInt(0), BigInt(0)],
+            args: [
+              tokenFromLPAddress,
+              tokenToLPAddress,
+              contractValue,
+              false,
+              BigInt(0),
+              BigInt(0),
+            ],
           });
           toAmount = Number(formatUnits(quoteData[0], tokenToDecimals));
           const feeAmount = Number(formatUnits(quoteData[1], tokenToDecimals));
@@ -511,7 +600,12 @@ export default function Swap() {
           setRate(formatValueDigits(Number(toAmount) / Number(value), 4));
           setPriceImpact(
             formatValueDigits(
-              ((Number(toAmount) + Number(feeAmount) + Number(lpAmount) - Number(value)) * -100) / Number(value),
+              ((Number(toAmount) +
+                Number(feeAmount) +
+                Number(lpAmount) -
+                Number(value)) *
+                -100) /
+                Number(value),
               4
             )
           );
@@ -554,12 +648,24 @@ export default function Swap() {
   const slippageBoxBg = useColorModeValue("white", "#2F3055");
   const lightBg = useColorModeValue("blackAlpha.100", "whiteAlpha.100");
   const hoverBg = useColorModeValue("blackAlpha.300", "whiteAlpha.300");
-  const borderColor = useColorModeValue("blackAlpha.300", "rgba(255, 255, 255, 0.07)");
-  const darkBorderColor = useColorModeValue("blackAlpha.300", "rgba(255, 255, 255, 0.14)");
-  const darkerBorderColor = useColorModeValue("blackAlpha.300", "rgba(255, 255, 255, 0.3)");
+  const borderColor = useColorModeValue(
+    "blackAlpha.300",
+    "rgba(255, 255, 255, 0.07)"
+  );
+  const darkBorderColor = useColorModeValue(
+    "blackAlpha.300",
+    "rgba(255, 255, 255, 0.14)"
+  );
+  const darkerBorderColor = useColorModeValue(
+    "blackAlpha.300",
+    "rgba(255, 255, 255, 0.3)"
+  );
   const color = useColorModeValue("blackAlpha.900", "white");
   const hoverColor = useColorModeValue("black", "white");
-  const lightColor = useColorModeValue("blackAlpha.600", "rgba(255, 255, 255, 0.6)");
+  const lightColor = useColorModeValue(
+    "blackAlpha.600",
+    "rgba(255, 255, 255, 0.6)"
+  );
   const buttonColor = useColorModeValue("whiteAlpha.900", "white");
   const greenBGColor = useColorModeValue("whiteAlpha.900", "#008D5B33");
   const lightGreenTextColor = useColorModeValue("whiteAlpha.900", "#30E0A1");
@@ -571,14 +677,16 @@ export default function Swap() {
   );
 
   const spin = keyframes`  
-  from {transform: rotate(0deg);}   
-  to {transform: rotate(360deg)} 
-`;
+    from {transform: rotate(0deg);}   
+    to {transform: rotate(360deg)} 
+  `;
 
   const spinAnimation = `${spin} infinite 1s linear`;
 
   const tokenFromIcon = useMemo(
-    () => tokenList?.find((token: Token) => token.name === tokenFrom)?.img || SellIcon,
+    () =>
+      tokenList?.find((token: Token) => token.name === tokenFrom)?.img ||
+      SellIcon,
     [tokenList, tokenFrom]
   );
   const tokenFromAddress = useMemo(
@@ -586,7 +694,9 @@ export default function Swap() {
     [tokenList, tokenFrom]
   );
   const tokenToIcon = useMemo(
-    () => tokenList?.find((token: Token) => token.name === tokenTo)?.img || ReceiveIcon,
+    () =>
+      tokenList?.find((token: Token) => token.name === tokenTo)?.img ||
+      ReceiveIcon,
     [tokenList, tokenTo]
   );
   const tokenToAddress = useMemo(
@@ -627,7 +737,12 @@ export default function Swap() {
           <VStack gap="1.875rem" pb="1rem">
             <Image src={Loading} alt="loading" animation={spinAnimation} />
             <VStack gap="0.625rem">
-              <Text bg={greenBGColor} fontWeight={400} borderRadius={"0.625rem"} px="0.875rem">
+              <Text
+                bg={greenBGColor}
+                fontWeight={400}
+                borderRadius={"0.625rem"}
+                px="0.875rem"
+              >
                 You are almost done!
               </Text>
               <Text fontSize={"1.25rem"} color={color}>
@@ -637,7 +752,14 @@ export default function Swap() {
           </VStack>
         ) : swapCompleted ? (
           <VStack gap="2.813rem" pb="1rem">
-            <VStack w="100%" py="2.5rem" px="6.438rem" borderRadius="1.25rem" gap={"0.625rem"} bg={inputBoxBg}>
+            <VStack
+              w="100%"
+              py="2.5rem"
+              px="6.438rem"
+              borderRadius="1.25rem"
+              gap={"0.625rem"}
+              bg={inputBoxBg}
+            >
               <Image src={Completed} alt="completed" />
               <Text color={color} fontSize={"1.25rem"}>
                 Transaction Successful
@@ -675,35 +797,40 @@ export default function Swap() {
             <VStack>
               {isPreview ? (
                 <HStack pl={"0.625rem"} gap={"0.625rem"} w={"100%"}>
-                  <Image alt="Swap" src={ArrowBackIcon} onClick={() => setIsPreview(false)} cursor={"pointer"} />
+                  <Image
+                    alt="Swap"
+                    src={ArrowBackIcon}
+                    onClick={() => setIsPreview(false)}
+                    cursor={"pointer"}
+                  />
                   <Text fontSize={"1.25rem"} color={color}>
-                    Swap
+                    Back
                   </Text>
                 </HStack>
               ) : (
                 <HStack w={"100%"}>
                   <HStack px={"0.781rem"} gap={"0.625rem"}>
-                    <Image alt="Swap" src={swapIcon} />
+                    {/* <Image alt="Swap" src={swapIcon} /> */}
                     <Text fontSize={"1.25rem"} color={color}>
-                      Swap
+                      Rebalance
                     </Text>
                   </HStack>
                   <Spacer />
-                  <HStack w="6.188rem" h="2rem" bg={slippageBoxBg} p="0.25rem" gap="0.625rem" borderRadius={"0.625rem"}>
-                    <Text
-                      fontSize={"0.625rem"}
-                      px="0.625rem"
-                      py="0.313rem"
-                      bg={bg}
-                      color={color}
-                      borderRadius={"0.375rem"}
-                    >
-                      Slippage
-                    </Text>
-                    <Text fontSize={"0.625rem"} color={color}>
-                      {slippage}%
-                    </Text>
-                  </HStack>
+                  {/* <HStack w="6.188rem" h="2rem" bg={slippageBoxBg} p="0.25rem" gap="0.625rem" borderRadius={"0.625rem"}>
+                      <Text
+                        fontSize={"0.625rem"}
+                        px="0.625rem"
+                        py="0.313rem"
+                        bg={bg}
+                        color={color}
+                        borderRadius={"0.375rem"}
+                      >
+                        Slippage
+                      </Text>
+                      <Text fontSize={"0.625rem"} color={color}>
+                        {slippage}%
+                      </Text>
+                    </HStack> */}
                   <Popover
                     isOpen={isOpenSettings}
                     onClose={onCloseSettings}
@@ -740,22 +867,45 @@ export default function Swap() {
                             <HStack w={"100%"}>
                               <Tabs
                                 w={"100%"}
-                                defaultIndex={localStorage.getItem("IS_SLIPPAGE_AUTO") === "false" ? 1 : 0}
+                                defaultIndex={
+                                  localStorage.getItem("IS_SLIPPAGE_AUTO") ===
+                                  "false"
+                                    ? 1
+                                    : 0
+                                }
                               >
-                                <HStack w={"100%"} justifyContent={"space-between"}>
-                                  <TabList bg={bg} borderRadius={"0.625rem"} px="0.25rem" py="0.25rem" border={"none"}>
+                                <HStack
+                                  w={"100%"}
+                                  justifyContent={"space-between"}
+                                >
+                                  <TabList
+                                    bg={bg}
+                                    borderRadius={"0.625rem"}
+                                    px="0.25rem"
+                                    py="0.25rem"
+                                    border={"none"}
+                                  >
                                     <CustomTab
                                       onClick={() => {
                                         setSlippage(DEFAULT_SLIPPAGE);
-                                        localStorage.setItem("IS_SLIPPAGE_AUTO", "true");
-                                        localStorage.setItem("mantis_perp_slippage", DEFAULT_SLIPPAGE.toString());
+                                        localStorage.setItem(
+                                          "IS_SLIPPAGE_AUTO",
+                                          "true"
+                                        );
+                                        localStorage.setItem(
+                                          "mantis_perp_slippage",
+                                          DEFAULT_SLIPPAGE.toString()
+                                        );
                                       }}
                                     >
                                       Auto
                                     </CustomTab>
                                     <CustomTab
                                       onClick={() => {
-                                        localStorage.setItem("IS_SLIPPAGE_AUTO", "false");
+                                        localStorage.setItem(
+                                          "IS_SLIPPAGE_AUTO",
+                                          "false"
+                                        );
                                       }}
                                     >
                                       Custom
@@ -768,7 +918,9 @@ export default function Swap() {
                                         value={slippage}
                                         type="text"
                                         pattern="^[0-9]*[.,]?[0-9]*$"
-                                        onChange={(e) => setPositiveSlippage(DEFAULT_SLIPPAGE)}
+                                        onChange={(e) =>
+                                          setPositiveSlippage(DEFAULT_SLIPPAGE)
+                                        }
                                         h="2rem"
                                         w="3.813rem"
                                         bg={bg}
@@ -794,7 +946,9 @@ export default function Swap() {
                                         borderWidth={"0.5px"}
                                         float={"right"}
                                         fontSize={"0.625rem"}
-                                        onChange={(e) => setPositiveSlippage(e.target.value)}
+                                        onChange={(e) =>
+                                          setPositiveSlippage(e.target.value)
+                                        }
                                       />
                                     </TabPanel>
                                   </TabPanels>
@@ -817,22 +971,45 @@ export default function Swap() {
                             <HStack w={"100%"}>
                               <Tabs
                                 w={"100%"}
-                                defaultIndex={localStorage.getItem("IS_BUFFER_AUTO") === "false" ? 1 : 0}
+                                defaultIndex={
+                                  localStorage.getItem("IS_BUFFER_AUTO") ===
+                                  "false"
+                                    ? 1
+                                    : 0
+                                }
                               >
-                                <HStack w={"100%"} justifyContent={"space-between"}>
-                                  <TabList bg={bg} borderRadius={"0.625rem"} px="0.25rem" py="0.25rem" border={"none"}>
+                                <HStack
+                                  w={"100%"}
+                                  justifyContent={"space-between"}
+                                >
+                                  <TabList
+                                    bg={bg}
+                                    borderRadius={"0.625rem"}
+                                    px="0.25rem"
+                                    py="0.25rem"
+                                    border={"none"}
+                                  >
                                     <CustomTab
                                       onClick={() => {
                                         setFeeBuffer(DEFAULT_BUFFER);
-                                        localStorage.setItem("IS_BUFFER_AUTO", "true");
-                                        localStorage.setItem("mantis_perp_fee_buffer", DEFAULT_BUFFER.toString());
+                                        localStorage.setItem(
+                                          "IS_BUFFER_AUTO",
+                                          "true"
+                                        );
+                                        localStorage.setItem(
+                                          "mantis_perp_fee_buffer",
+                                          DEFAULT_BUFFER.toString()
+                                        );
                                       }}
                                     >
                                       Auto
                                     </CustomTab>
                                     <CustomTab
                                       onClick={() => {
-                                        localStorage.setItem("IS_BUFFER_AUTO", "false");
+                                        localStorage.setItem(
+                                          "IS_BUFFER_AUTO",
+                                          "false"
+                                        );
                                       }}
                                     >
                                       Custom
@@ -845,7 +1022,9 @@ export default function Swap() {
                                         value={feeBuffer}
                                         type="text"
                                         pattern="^[0-9]*[.,]?[0-9]*$"
-                                        onChange={(e) => setPositiveFeeBuffer(DEFAULT_BUFFER)}
+                                        onChange={(e) =>
+                                          setPositiveFeeBuffer(DEFAULT_BUFFER)
+                                        }
                                         h="2rem"
                                         w="3.813rem"
                                         bg={bg}
@@ -863,7 +1042,11 @@ export default function Swap() {
                                         value={feeBuffer}
                                         type="text"
                                         pattern="^[0-9]*[.,]?[0-9]*$"
-                                        onChange={(e) => setPositiveFeeBuffer(Number(e.target.value))}
+                                        onChange={(e) =>
+                                          setPositiveFeeBuffer(
+                                            Number(e.target.value)
+                                          )
+                                        }
                                         h="2rem"
                                         w="3.813rem"
                                         bg={bg}
@@ -889,14 +1072,33 @@ export default function Swap() {
                             <HStack w={"100%"}>
                               <Tabs
                                 w={"100%"}
-                                defaultIndex={localStorage.getItem("IS_DEADLINE_AUTO") === "false" ? 1 : 0}
+                                defaultIndex={
+                                  localStorage.getItem("IS_DEADLINE_AUTO") ===
+                                  "false"
+                                    ? 1
+                                    : 0
+                                }
                               >
-                                <HStack w={"100%"} justifyContent={"space-between"}>
-                                  <TabList bg={bg} borderRadius={"0.625rem"} px="0.25rem" py="0.25rem" border={"none"}>
+                                <HStack
+                                  w={"100%"}
+                                  justifyContent={"space-between"}
+                                >
+                                  <TabList
+                                    bg={bg}
+                                    borderRadius={"0.625rem"}
+                                    px="0.25rem"
+                                    py="0.25rem"
+                                    border={"none"}
+                                  >
                                     <CustomTab
                                       onClick={() => {
-                                        setTransactionDeadLine(DEFAULT_DEADLINE);
-                                        localStorage.setItem("IS_DEADLINE_AUTO", "true");
+                                        setTransactionDeadLine(
+                                          DEFAULT_DEADLINE
+                                        );
+                                        localStorage.setItem(
+                                          "IS_DEADLINE_AUTO",
+                                          "true"
+                                        );
                                         localStorage.setItem(
                                           "mantis_perp_transaction_deadline",
                                           DEFAULT_DEADLINE.toString()
@@ -907,13 +1109,19 @@ export default function Swap() {
                                     </CustomTab>
                                     <CustomTab
                                       onClick={() => {
-                                        localStorage.setItem("IS_DEADLINE_AUTO", "false");
+                                        localStorage.setItem(
+                                          "IS_DEADLINE_AUTO",
+                                          "false"
+                                        );
                                       }}
                                     >
                                       Custom
                                     </CustomTab>
                                   </TabList>
-                                  <TabPanels display={"flex"} justifyContent={"flex-end"}>
+                                  <TabPanels
+                                    display={"flex"}
+                                    justifyContent={"flex-end"}
+                                  >
                                     <TabPanel w="3.813rem" p="0">
                                       <InputGroup w="3.813rem" h="2rem">
                                         <Input
@@ -924,7 +1132,11 @@ export default function Swap() {
                                           h="2rem"
                                           w="3.813rem"
                                           bg={bg}
-                                          onChange={(e) => setPositiveTransactionDeadLine(DEFAULT_DEADLINE)}
+                                          onChange={(e) =>
+                                            setPositiveTransactionDeadLine(
+                                              DEFAULT_DEADLINE
+                                            )
+                                          }
                                           borderColor={darkBorderColor}
                                           borderRadius={"0.625rem"}
                                           borderWidth={"0.5px"}
@@ -935,8 +1147,15 @@ export default function Swap() {
                                           pr="1.5rem"
                                           disabled
                                         />
-                                        <InputRightElement h="2.1rem" pr="1rem" w="1rem">
-                                          <Text fontSize={"0.625rem"} color={"whiteAlpha.500"}>
+                                        <InputRightElement
+                                          h="2.1rem"
+                                          pr="1rem"
+                                          w="1rem"
+                                        >
+                                          <Text
+                                            fontSize={"0.625rem"}
+                                            color={"whiteAlpha.500"}
+                                          >
                                             min
                                           </Text>
                                         </InputRightElement>
@@ -949,7 +1168,11 @@ export default function Swap() {
                                           value={transactionDeadLine}
                                           type="text"
                                           pattern="^[0-9]*[.,]?[0-9]*$"
-                                          onChange={(e) => setPositiveTransactionDeadLine(Number(e.target.value))}
+                                          onChange={(e) =>
+                                            setPositiveTransactionDeadLine(
+                                              Number(e.target.value)
+                                            )
+                                          }
                                           h="2rem"
                                           w="3.813rem"
                                           bg={bg}
@@ -962,7 +1185,11 @@ export default function Swap() {
                                           pr="1.5rem"
                                           fontSize={"0.625rem"}
                                         />
-                                        <InputRightElement h="2.1rem" pr="1rem" w="1rem">
+                                        <InputRightElement
+                                          h="2.1rem"
+                                          pr="1rem"
+                                          w="1rem"
+                                        >
                                           <Text fontSize={"0.625rem"}>min</Text>
                                         </InputRightElement>
                                       </InputGroup>
@@ -973,232 +1200,532 @@ export default function Swap() {
                             </HStack>
                           </VStack>
                         </VStack>
+
                         {/* <InputGroup size="sm">
-                    <Input
-                      placeholder={DEFAULT_SLIPPAGE}
-                      value={slippage}
-                      onChange={(e) => setPositiveSlippage(e.target.value)}
-                      rounded={"24"}
-                    />
-                    <InputRightAddon children="%" />
-                  </InputGroup>
-                 
-                  <InputGroup size="sm">
-                    <Input
-                      placeholder="20"
-                      value={feeBuffer}
-                      rounded={"24"}
-                      onChange={(e) => setPositiveFeeBuffer(e.target.value)}
-                    />
-                    <InputRightAddon children="%" />
-                  </InputGroup> */}
+                      <Input
+                        placeholder={DEFAULT_SLIPPAGE}
+                        value={slippage}
+                        onChange={(e) => setPositiveSlippage(e.target.value)}
+                        rounded={"24"}
+                      />
+                      <InputRightAddon children="%" />
+                    </InputGroup>
+                   
+                    <InputGroup size="sm">
+                      <Input
+                        placeholder="20"
+                        value={feeBuffer}
+                        rounded={"24"}
+                        onChange={(e) => setPositiveFeeBuffer(e.target.value)}
+                      />
+                      <InputRightAddon children="%" />
+                    </InputGroup> */}
                       </PopoverBody>
                       {/* <PopoverFooter>
-                <Button float="right" bg={buttonBgColor} color={buttonColor} onClick={saveSettings}>
-                  Save
-                </Button>
-              </PopoverFooter> */}
+                  <Button float="right" bg={buttonBgColor} color={buttonColor} onClick={saveSettings}>
+                    Save
+                  </Button>
+                </PopoverFooter> */}
                     </PopoverContent>
                   </Popover>
                 </HStack>
               )}
 
               {isPreview ? (
-                <Box py="1.275rem" px="3.375rem" w="100%" borderRadius="1.625rem" bg={inputBoxBg}>
-                  <HStack w="100%" gap="2.5rem" justifyContent={"space-between"}>
-                    <VStack gap="1.275rem">
-                      <Text fontWeight={700} fontSize={"0.875rem"} color={color}>
-                        Sell Amount
-                      </Text>
-                      <Center
-                        borderWidth={"2px"}
-                        borderColor={darkerBorderColor}
-                        bg={bg}
-                        borderStyle={"dashed"}
-                        borderRadius={"1rem"}
-                        padding="0.625rem"
-                      >
-                        <Image h="4.375rem" src={tokenFromIcon} alt="sell" />
-                      </Center>
-                      <VStack gap={"0.375rem"}>
-                        <Text fontWeight={700} color={color}>
-                          {trim(Number(quantityFrom), 5)}
-                        </Text>
-                        <Text fontWeight={700} color={color}>
-                          {tokenFrom?.toLocaleUpperCase()}
-                        </Text>
-                        {/* <Text fontSize={"0.75rem"} color={lightColor}>
-                        ≈ $1318.98
-                      </Text> */}
-                      </VStack>
-                    </VStack>
-                    <VStack>
-                      <Image src={Logo} alt="Logo" />
-                      <Image src={DashArrowIcon} alt="arrow" />
-                    </VStack>
-                    <VStack gap="1.275rem">
-                      <Text fontWeight={700} fontSize={"0.875rem"} color={color}>
-                        Receive
-                      </Text>
-                      <Center
-                        borderWidth={"2px"}
-                        borderColor={darkerBorderColor}
-                        bg={bg}
-                        borderStyle={"dashed"}
-                        borderRadius={"1rem"}
-                        padding="0.625rem"
-                      >
-                        <Image h="4.375rem" src={tokenToIcon} alt="receive" />
-                      </Center>
-                      <VStack gap={"0.375rem"}>
-                        <Text fontWeight={700} color={color} wordBreak={"break-word"}>
-                          {trim(Number(quantityTo), 5)}
-                        </Text>
-                        <Text fontWeight={700} color={color} wordBreak={"break-word"}>
-                          {tokenTo?.toLocaleUpperCase()}
-                        </Text>
-                        {/* <Text fontSize={"0.75rem"} color={lightColor}>
-                        ≈ $1318.98
-                      </Text> */}
-                      </VStack>
-                    </VStack>
-                  </HStack>
-                </Box>
-              ) : (
-                <VStack pos={"relative"} bg={inputBoxBg} p={"0.625rem"} borderRadius={"1.625rem"}>
-                  <InputGroup
-                    borderWidth={"0.5px"}
-                    borderColor={borderColor}
-                    bg={bg}
-                    borderRadius={"1.25rem"}
-                    h={"7.313rem"}
-                    p={"1.25rem"}
+                <>
+                  <Box
+                    py="1.275rem"
+                    px="3.375rem"
+                    w="100%"
+                    borderRadius="1.625rem"
+                    bg={inputBoxBg}
                   >
-                    <VStack justifyContent={"space-between"}>
-                      <HStack justifyContent={"space-between"} w={"100%"}>
-                        <TokenSelect value={tokenFrom} setValue={setNewTokenFrom} options={tokenList} />
-                        <Input
-                          type="text"
-                          pattern="^[0-9]*[.,]?[0-9]*$"
-                          fontSize={"1.875rem"}
-                          placeholder="0.00"
-                          value={quantityFrom}
+                    <HStack
+                      w="100%"
+                      gap="2.5rem"
+                      justifyContent={"space-between"}
+                    >
+                      <VStack gap="1.275rem">
+                        <Text
+                          fontWeight={700}
+                          fontSize={"0.875rem"}
                           color={color}
-                          fontWeight={"700"}
-                          w={"50%"}
-                          border="none"
-                          borderRadius={"1.25rem"}
-                          _focusVisible={{ borderColor: "none" }}
-                          _disabled={{ borderColor: "none" }}
-                          _placeholder={{ color: color }}
-                          onChange={(e) => setPositiveQuantityFrom(e.target.value)}
-                          textAlign={"right"}
-                        />
+                        >
+                          Deposited From
+                        </Text>
+                        <Center
+                          borderWidth={"2px"}
+                          borderColor={darkerBorderColor}
+                          bg={bg}
+                          borderStyle={"dashed"}
+                          borderRadius={"1rem"}
+                          padding="0.625rem"
+                        >
+                          <Image h="4.375rem" src={tokenFromIcon} alt="sell" />
+                        </Center>
+                        <VStack gap={"0.375rem"}>
+                          <Text fontWeight={700} color={color}>
+                            {trim(Number(quantityFrom), 5)}
+                          </Text>
+                          <Text fontWeight={700} color={color}>
+                            {tokenFrom?.toLocaleUpperCase()}
+                          </Text>
+                          <Text fontSize={"0.75rem"} color={lightColor}>
+                            ≈ $00.00
+                          </Text>
+                        </VStack>
+                      </VStack>
+                      <VStack>
+                        <Image src={Logo} alt="Logo" />
+                        <Image src={DashArrowIcon} alt="arrow" />
+                      </VStack>
+                      <VStack gap="1.275rem">
+                        <Text
+                          fontWeight={700}
+                          fontSize={"0.875rem"}
+                          color={color}
+                        >
+                          Deposited To
+                        </Text>
+                        <Center
+                          borderWidth={"2px"}
+                          borderColor={darkerBorderColor}
+                          bg={bg}
+                          borderStyle={"dashed"}
+                          borderRadius={"1rem"}
+                          padding="0.625rem"
+                        >
+                          <Image h="4.375rem" src={tokenToIcon} alt="receive" />
+                        </Center>
+                        <VStack gap={"0.375rem"}>
+                          <Text
+                            fontWeight={700}
+                            color={color}
+                            wordBreak={"break-word"}
+                          >
+                            {trim(Number(quantityTo), 5)}
+                          </Text>
+                          <Text
+                            fontWeight={700}
+                            color={color}
+                            wordBreak={"break-word"}
+                          >
+                            {tokenTo?.toLocaleUpperCase()}
+                          </Text>
+                          <Text fontSize={"0.75rem"} color={lightColor}>
+                            ≈ $00.00
+                          </Text>
+                        </VStack>
+                      </VStack>
+                    </HStack>
+                  </Box>
+                  {/* Preview Confirmation Details */}
+                  <Box w={"100%"} className="p-2">
+                    <VStack className="w-full">
+                      <HStack w={"100%"}>
+                        <Text fontSize="0.875rem" color={color}>
+                          Liquidity Ratio
+                        </Text>
+                        <Tooltip
+                          label="Exchange rate at which you will receive tokens (incl. fees)"
+                          fontSize="xs"
+                        >
+                          {/* <InfoOutlineIcon w={3} h={3} color={lightColor} /> */}
+                          <InfoIcon w={3} h={3} color={color} />
+                        </Tooltip>
+                        <Spacer />
+                        <Box className="flex">
+                          <Text
+                            fontSize="0.875rem"
+                            fontWeight={400}
+                            color={"rgba(48, 224, 161, 1)"}
+                            bg={"rgba(0, 141, 91, 0.2)"}
+                            borderRadius={"0.375rem"}
+                            px={"0.375rem"}
+                            h={"1.25rem"}
+                          >
+                            70%
+                          </Text>
+                          <Image
+                            src={DashArrowIcon}
+                            alt="arrow"
+                            w={10}
+                            className="px-1"
+                          />
+                          <Text
+                            fontSize="0.875rem"
+                            fontWeight={400}
+                            color={"rgba(48, 224, 161, 1)"}
+                            bg={"rgba(0, 141, 91, 0.2)"}
+                            borderRadius={"0.375rem"}
+                            px={"0.375rem"}
+                            h={"1.25rem"}
+                          >
+                            90%
+                          </Text>
+                        </Box>
                       </HStack>
-                      <HStack justifyContent={"space-between"} w={"100%"}>
-                        <HStack visibility={isConnected ? "visible" : "hidden"}>
-                          <HStack gap={"0.2rem"}>
-                            <Text fontSize={"0.875rem"}>Balance:</Text>
-                            <Text fontSize={"0.875rem"} color={lightColor}>
-                              {formatValue(tokenFromBalance)}
+                      <HStack w={"100%"} display={{ base: "none", md: "flex" }}>
+                        <Text fontSize="0.875rem" color={color}>
+                          Your Token 1 Deposit:
+                        </Text>
+
+                        <Spacer />
+
+                        <Box className="flex">
+                          <Text
+                            fontSize="0.875rem"
+                            fontWeight={400}
+                            className="bg-blue-900 text-blue-500"
+                            borderRadius={"0.375rem"}
+                            px={"0.375rem"}
+                            h={"1.25rem"}
+                          >
+                            100
+                          </Text>
+                          <Image
+                            src={DashArrowIcon}
+                            alt="arrow"
+                            w={10}
+                            className="px-1"
+                          />
+                          <Text
+                            fontSize="0.875rem"
+                            fontWeight={400}
+                            className="bg-blue-900 text-blue-500"
+                            borderRadius={"0.375rem"}
+                            px={"0.375rem"}
+                            h={"1.25rem"}
+                          >
+                            150
+                          </Text>
+                          <Text
+                            fontSize="0.875rem"
+                            px={"0.375rem"}
+                            fontWeight={400}
+                          >
+                            LP-USDC
+                          </Text>
+                        </Box>
+                        {/* {haircut} {tokenTo.toUpperCase()} */}
+                      </HStack>
+
+                      {isPreview && (
+                        <>
+                          <Divider my="0.75rem" />
+                          <HStack w={"100%"} display={{ base: "none", md: "flex" }}>
+                            <Text fontSize="0.875rem" color={color}>
+                              Liquidity Ratio
                             </Text>
-                            <Text color={lightColor} fontSize={"0.875rem"}>
-                              {tokenFrom?.toLocaleUpperCase()}
-                            </Text>
-                          </HStack>
-                          {isConnected && Number(tokenFromBalance) > 0 && (
-                            <Text
-                              fontSize={"0.625rem"}
-                              color={lightGreenTextColor}
-                              cursor={"pointer"}
-                              fontWeight={400}
-                              onClick={setMax}
-                              bg={greenBGColor}
-                              borderRadius={"0.375rem"}
-                              px={"0.375rem"}
-                              h="1.25rem"
-                              display={"flex"}
-                              alignItems={"center"}
-                              _hover={{ opacity: 0.9 }}
+                            <Tooltip
+                              label="Exchange rate at which you will receive tokens (incl. fees)"
+                              fontSize="xs"
                             >
-                              MAX
-                            </Text>
-                          )}
-                        </HStack>
-                        {/* <Text color={lightColor} fontSize={"0.875rem"}>
-                        ≈0.00$
-                      </Text> */}
-                      </HStack>
-                    </VStack>
-                  </InputGroup>
-                  <Button
-                    pos={"absolute"}
-                    top="50%"
-                    left="50%"
-                    transform="translate(-50%, -50%)"
-                    zIndex={1}
-                    onClick={switchToken}
-                    borderRadius={"0.625rem"}
-                    borderWidth={2}
-                    borderColor={borderColor}
-                    _hover={{ opacity: 0.9 }}
-                    p={0}
-                    bg={swapIconbg}
-                  >
-                    <Image alt="swap" src={swapArrowIcon} />
-                  </Button>
-                  <InputGroup
-                    borderWidth={"0.5px"}
-                    borderColor={borderColor}
-                    bg={bg}
-                    borderRadius={"1.25rem"}
-                    h={"7.313rem"}
-                    p={"1.25rem"}
-                  >
-                    <VStack justifyContent={"space-between"}>
-                      <HStack justifyContent={"space-between"} w={"100%"}>
-                        <TokenSelect
-                          value={tokenTo}
-                          setValue={setTokenTo}
-                          options={tokenList?.filter((token: Token) => token.name != tokenFrom)}
-                        />
-                        <Input
-                          fontSize={"1.875rem"}
-                          placeholder="0.00"
-                          value={formatValueDigits(quantityTo, 6)}
-                          type="text"
-                          pattern="^[0-9]*[.,]?[0-9]*$"
-                          color={lightColor}
-                          fontWeight={"700"}
-                          border="none"
-                          borderRadius={"1.25rem"}
-                          _focusVisible={{ borderColor: "none" }}
-                          _disabled={{ borderColor: "none" }}
-                          onChange={(e) => setPositiveQuantityFrom(e.target.value)}
-                          textAlign={"right"}
-                          w={"50%"}
-                          disabled
-                        />
-                      </HStack>
-                      <HStack justifyContent={"space-between"} w={"100%"}>
-                        <HStack visibility={isConnected ? "visible" : "hidden"}>
-                          <HStack gap={"0.2rem"}>
-                            <Text fontSize={"0.875rem"}>Balance:</Text>
-                            <Text color={lightColor} fontSize={"0.875rem"}>
-                              {formatValue(tokenToBalance)}
-                            </Text>
-                            <Text color={lightColor} fontSize={"0.875rem"}>
-                              {tokenTo?.toLocaleUpperCase()}
-                            </Text>
+                              {/* <InfoOutlineIcon w={3} h={3} color={lightColor} /> */}
+                              <InfoIcon w={3} h={3} color={color} />
+                            </Tooltip>
+                            <Spacer />
+                            <Box className="flex">
+                              <Text
+                                fontSize="0.875rem"
+                                fontWeight={400}
+                                color={"rgba(48, 224, 161, 1)"}
+                                bg={"rgba(0, 141, 91, 0.2)"}
+                                borderRadius={"0.375rem"}
+                                px={"0.375rem"}
+                                h={"1.25rem"}
+                              >
+                                70%
+                              </Text>
+                              <Image
+                                src={DashArrowIcon}
+                                alt="arrow"
+                                w={10}
+                                className="px-1"
+                              />
+                              <Text
+                                fontSize="0.875rem"
+                                fontWeight={400}
+                                color={"rgba(48, 224, 161, 1)"}
+                                bg={"rgba(0, 141, 91, 0.2)"}
+                                borderRadius={"0.375rem"}
+                                px={"0.375rem"}
+                                h={"1.25rem"}
+                              >
+                                90%
+                              </Text>
+                            </Box>
                           </HStack>
-                        </HStack>
-                        {/* <Text color={lightColor} fontSize={"0.875rem"}>
-                        ≈0.00$
-                      </Text> */}
-                      </HStack>
+                          <HStack w={"100%"} display={{ base: "flex", md: "none" }}>
+                            <Text fontSize="0.875rem" color={color}>
+                              Your Token 1 Deposit:
+                            </Text>
+
+                            <Spacer />
+
+                            <Box className="flex">
+                              <Text
+                                fontSize="0.875rem"
+                                fontWeight={400}
+                                className="bg-blue-900 text-blue-500"
+                                borderRadius={"0.375rem"}
+                                px={"0.375rem"}
+                                h={"1.25rem"}
+                              >
+                                100
+                              </Text>
+                              <Image
+                                src={DashArrowIcon}
+                                alt="arrow"
+                                w={10}
+                                className="px-1"
+                              />
+                              <Text
+                                fontSize="0.875rem"
+                                fontWeight={400}
+                                className="bg-blue-900 text-blue-500"
+                                borderRadius={"0.375rem"}
+                                px={"0.375rem"}
+                                h={"1.25rem"}
+                              >
+                                150
+                              </Text>
+                              <Text
+                                fontSize="0.875rem"
+                                px={"0.375rem"}
+                                fontWeight={400}
+                              >
+                                LP-USDC
+                              </Text>
+                            </Box>
+                            {/* {haircut} {tokenTo.toUpperCase()} */}
+                          </HStack>
+                          <HStack w={"100%"}>
+                            <Text fontSize="0.875rem" color={color}>
+                              Your Token 2 Deposit:
+                            </Text>
+
+                            <Spacer />
+
+                            <Box className="flex">
+                              <Text
+                                fontSize="0.875rem"
+                                fontWeight={400}
+                                className="bg-blue-900 text-blue-500"
+                                borderRadius={"0.375rem"}
+                                px={"0.375rem"}
+                                h={"1.25rem"}
+                              >
+                                100
+                              </Text>
+                              <Image
+                                src={DashArrowIcon}
+                                alt="arrow"
+                                w={10}
+                                className="px-1"
+                              />
+                              <Text
+                                fontSize="0.875rem"
+                                fontWeight={400}
+                                className="bg-blue-900 text-blue-500"
+                                borderRadius={"0.375rem"}
+                                px={"0.375rem"}
+                                h={"1.25rem"}
+                              >
+                                50
+                              </Text>
+                              <Text
+                                fontSize="0.875rem"
+                                px={"0.375rem"}
+                                fontWeight={400}
+                              >
+                                LP-USDC
+                              </Text>
+                            </Box>
+                            {/* {haircut} {tokenTo.toUpperCase()} */}
+                          </HStack>
+                        </>
+                      )}
                     </VStack>
-                  </InputGroup>
-                </VStack>
+                  </Box>
+                </>
+              ) : (
+                <>
+                  <Box className="text-gray-300 ml-3">
+                    <Text>
+                      In rebalancing you move your deposited liquidity in other
+                      pools to a pool with lower liquidty ration to converage it
+                      towards <span className="text-[#30E0A1]">100%</span>
+                    </Text>
+                  </Box>
+                  <VStack
+                    pos={"relative"}
+                    bg={inputBoxBg}
+                    p={"0.625rem"}
+                    borderRadius={"1.625rem"}
+                  >
+                    <InputGroup
+                      borderWidth={"0.5px"}
+                      borderColor={borderColor}
+                      bg={bg}
+                      // className="bg-red-500"
+
+                      borderRadius={"1.25rem"}
+                      h={"8rem"}
+                      p={"1.25rem"}
+                    >
+                      <VStack justifyContent={"space-between"}>
+                        <HStack justifyContent={"space-between"} w={"100%"}>
+                          <TokenSelect
+                            value={tokenFrom}
+                            setValue={setNewTokenFrom}
+                            options={tokenList}
+                          />
+                          <Input
+                            type="text"
+                            pattern="^[0-9]*[.,]?[0-9]*$"
+                            fontSize={"1.875rem"}
+                            placeholder="0.00"
+                            value={quantityFrom}
+                            color={color}
+                            fontWeight={"700"}
+                            w={"50%"}
+                            border="none"
+                            // borderRadius={"1.25rem"}
+                            _focusVisible={{ borderColor: "none" }}
+                            _disabled={{ borderColor: "none" }}
+                            _placeholder={{ color: color }}
+                            onChange={(e) =>
+                              setPositiveQuantityFrom(e.target.value)
+                            }
+                            textAlign={"right"}
+                            paddingLeft={2}
+                          />
+                        </HStack>
+                        <HStack justifyContent={"space-between"} w={"100%"}>
+                          <HStack
+                            visibility={isConnected ? "visible" : "hidden"}
+                          >
+                            <HStack gap={"0.2rem"}>
+                              <Text fontSize={"0.875rem"}>Balance:</Text>
+                              <Text fontSize={"0.875rem"} color={lightColor}>
+                                {formatValue(tokenFromBalance)}
+                              </Text>
+                              <Text color={lightColor} fontSize={"0.875rem"}>
+                                {tokenFrom?.toLocaleUpperCase()}
+                              </Text>
+                            </HStack>
+                            {isConnected && Number(tokenFromBalance) > -10 && (
+                              <Text
+                                fontSize={"0.625rem"}
+                                color={lightGreenTextColor}
+                                cursor={"pointer"}
+                                fontWeight={400}
+                                onClick={setMax}
+                                bg={greenBGColor}
+                                borderRadius={"0.375rem"}
+                                px={"0.375rem"}
+                                h="1.25rem"
+                                display={"flex"}
+                                alignItems={"center"}
+                                _hover={{ opacity: 0.9 }}
+                                className="ml-2.5 md:ml-0"
+                              >
+                                MAX
+                              </Text>
+                            )}
+                          </HStack>
+                          <Text
+                            color={lightColor}
+                            fontSize={"0.875rem"}
+                            className="mr-4"
+                          >
+                            ≈0.00$
+                          </Text>
+                        </HStack>
+                      </VStack>
+                    </InputGroup>
+                    <Button
+                      pos={"absolute"}
+                      top="50%"
+                      left="50%"
+                      transform="translate(-50%, -50%)"
+                      zIndex={1}
+                      // onClick={switchToken}
+                      borderRadius={"0.625rem"}
+                      borderWidth={2}
+                      borderColor={borderColor}
+                      _hover={{ opacity: 0.9 }}
+                      p={0}
+                      bg={swapIconbg}
+                      m={1}
+                    >
+                      <Image alt="header_logo" src={Header} w={6} h={6} />
+                    </Button>
+                    <InputGroup
+                      borderWidth={"0.5px"}
+                      borderColor={borderColor}
+                      bg={bg}
+                      // className="bg-red-500"
+                      borderRadius={"1.25rem"}
+                      h={"7.313rem"}
+                      p={"1.25rem"}
+                    >
+                      <VStack justifyContent={"space-between"}>
+                        <HStack justifyContent={"space-between"} w={"100%"}>
+                          <TokenSelect
+                            value={tokenTo}
+                            setValue={setTokenTo}
+                            options={tokenList?.filter(
+                              (token: Token) => token.name != tokenFrom
+                            )}
+                          />
+                          <Input
+                            fontSize={"1.875rem"}
+                            placeholder="0.00"
+                            value={formatValueDigits(quantityTo, 4)}
+                            type="text"
+                            pattern="^[0-9]*[.,]?[0-9]*$"
+                            color={color}
+                            fontWeight={"700"}
+                            border="none"
+                            borderRadius={"1.25rem"}
+                            _focusVisible={{ borderColor: "none" }}
+                            _disabled={{ borderColor: "none" }}
+                            onChange={(e) =>
+                              setPositiveQuantityFrom(e.target.value)
+                            }
+                            textAlign={"right"}
+                            w={"50%"}
+                            disabled
+                          />
+                        </HStack>
+                        <HStack justifyContent={"space-between"} w={"100%"}>
+                          <HStack
+                            visibility={isConnected ? "visible" : "hidden"}
+                          >
+                            <HStack gap={"0.2rem"}>
+                              <Text fontSize={"0.875rem"}>Balance:</Text>
+                              <Text color={lightColor} fontSize={"0.875rem"}>
+                                {formatValue(tokenToBalance)}
+                              </Text>
+                              <Text color={lightColor} fontSize={"0.875rem"}>
+                                {tokenTo?.toLocaleUpperCase()}
+                              </Text>
+                            </HStack>
+                          </HStack>
+                          <Text
+                            color={lightColor}
+                            fontSize={"0.875rem"}
+                            className="mr-4"
+                          >
+                            ≈0.00$
+                          </Text>
+                        </HStack>
+                      </VStack>
+                    </InputGroup>
+                  </VStack>
+                </>
               )}
             </VStack>
             {quantityTo ? (
@@ -1207,7 +1734,10 @@ export default function Swap() {
                   <Text fontSize="0.875rem" color={color}>
                     Price
                   </Text>
-                  <Tooltip label="Exchange rate at which you will receive tokens (incl. fees)" fontSize="xs">
+                  <Tooltip
+                    label="Exchange rate at which you will receive tokens (incl. fees)"
+                    fontSize="xs"
+                  >
                     {/* <InfoOutlineIcon w={3} h={3} color={lightColor} /> */}
                     <Image alt="swap" w={3} h={3} src={swapArrowIcon} />
                   </Tooltip>
@@ -1220,66 +1750,72 @@ export default function Swap() {
                   <Text fontSize="0.875rem" color={color}>
                     Fees:
                   </Text>
-                  <Tooltip label="Amount that will be paid as fees" fontSize="xs">
+                  <Tooltip
+                    label="Amount that will be paid as fees"
+                    fontSize="xs"
+                  >
                     <InfoIcon w={3} h={3} color={color} />
                   </Tooltip>
                   <Spacer />
-                  <Text fontSize="0.875rem" color={color}>
-                    0.01%
-                  </Text>
                   {/* <Text
-                  fontSize="0.875rem"
-                  fontWeight={400}
-                  color={"rgba(48, 224, 161, 1)"}
-                  bg={"rgba(0, 141, 91, 0.2)"}
-                  borderRadius={"0.375rem"}
-                  px={"0.375rem"}
-                  h={"1.25rem"}
-                >
-                  Free
-                </Text> */}
+                    fontSize={"1rem"}
+                    color={lightGreenTextColor}
+                    cursor={"pointer"}
+                    fontWeight={400}
+                    onClick={setMax}
+                    bg={greenBGColor}
+                    borderRadius={"0.375rem"}
+                    px={"0.375rem"}
+                    h="1.75rem"
+                    display={"flex"}
+                    alignItems={"center"}
+                    _hover={{ opacity: 0.9 }}
+                    className="ml-2.5 md:ml-0"
+                  >
+                    Free
+                  </Text> */}
+                  <Text
+                    fontSize="0.875rem"
+                    fontWeight={400}
+                    color={"#30e0a1"}
+                    bg={"#008d5b33"}
+                    borderRadius={"0.375rem"}
+                    px={"0.375rem"}
+                    h={"1.25rem"}
+                  >
+                    Free
+                  </Text>
                   {/* {haircut} {tokenTo.toUpperCase()} */}
                 </HStack>
+
                 <HStack w={"100%"}>
-                  <Text fontSize="0.875rem" color={color}>
-                    Price Impact:
-                  </Text>
-                  <Tooltip label="The impact your trade has on price of this pool" fontSize="xs">
-                    <InfoIcon w={3} h={3} color={color} />
-                  </Tooltip>
+                  <HStack gap={"0.1rem"}>
+                    <Text fontSize="0.875rem" color={color}>
+                      Network costs
+                    </Text>
+                    <Text fontSize="0.875rem" color={lightColor}>
+                      (est.):
+                    </Text>
+                  </HStack>
+                  <InfoIcon w={3} h={3} color={color} />
                   <Spacer />
                   <Text fontSize="0.875rem" color={color}>
-                    {priceImpact} %
-                  </Text>
-                </HStack>
-                {/* <HStack w={"100%"}>
-                <HStack gap={"0.1rem"}>
-                  <Text fontSize="0.875rem" color={color}>
-                    Network costs
+                    0.555719 USDC
                   </Text>
                   <Text fontSize="0.875rem" color={lightColor}>
-                    (est.):
+                    + (≈ ${gasPrice})
                   </Text>
                 </HStack>
-                <InfoIcon w={3} h={3} color={color} />
-                <Spacer />
-                <Text fontSize="0.875rem" color={color}>
-                  0.555719 USDC
-                </Text>
-                <Text fontSize="0.875rem" color={lightColor}>
-                  + (≈ ${gasPrice})
-                </Text>
-              </HStack> */}
                 <HStack w={"100%"}>
                   <Text fontSize="0.875rem" color={color}>
                     Expected to receive
                   </Text>
                   {/* <Tooltip
-                label="Minimum Amount you will receive. If amount falls below this, the transaction will instead revert"
-                fontSize="xs"
-              >
-                <InfoOutlineIcon w={3} h={3} color={color} />
-              </Tooltip> */}
+                  label="Minimum Amount you will receive. If amount falls below this, the transaction will instead revert"
+                  fontSize="xs"
+                >
+                  <InfoOutlineIcon w={3} h={3} color={color} />
+                </Tooltip> */}
                   <Spacer />
                   <Text fontSize="0.875rem" color={color}>
                     {getMinimumReceived()} {tokenTo.toUpperCase()}
@@ -1382,8 +1918,14 @@ export default function Swap() {
                   tokenFrom={tokenFromAddress}
                   tokenTo={tokenToAddress}
                   recipient={address}
-                  amount={parseUnits(quantityFrom, getTokenDecimals(tokenFrom.toLowerCase())).toString()}
-                  minAmount={parseUnits(getMinimumReceived(), getTokenDecimals(tokenTo.toLowerCase())).toString()}
+                  amount={parseUnits(
+                    quantityFrom,
+                    getTokenDecimals(tokenFrom.toLowerCase())
+                  ).toString()}
+                  minAmount={parseUnits(
+                    getMinimumReceived(),
+                    getTokenDecimals(tokenTo.toLowerCase())
+                  ).toString()}
                   swapBtnDisabled={swapBtnDisabled}
                   swapText={swapText}
                   setSwapCompleted={setSwapCompleted}
@@ -1395,7 +1937,10 @@ export default function Swap() {
                 <ApproveBtn
                   contract={tokenFromAddress}
                   spender={chainConstants.POOL_ADDRESS}
-                  amount={parseUnits(quantityFrom, getTokenDecimals(tokenFrom.toLowerCase()))}
+                  amount={parseUnits(
+                    quantityFrom,
+                    getTokenDecimals(tokenFrom.toLowerCase())
+                  )}
                   setApproved={setApproved}
                 />
               )

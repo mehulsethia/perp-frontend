@@ -11,6 +11,12 @@ import Vote from "./pages/Vote";
 import Bridge from "./pages/Bridge";
 import Faucet from "./pages/Faucet";
 import Footer from "./components/footer";
+import Perps from "./pages/Perps";
+import PoolsRebalance from "./pages/PoolsRebalance";
+import DepositLiquidity from "./pages/DepositLiquidity";
+import WithdrawLiquidity from "./pages/WithdrawLiquidity";
+import PoolsDetails from "./pages/PoolsDetails";
+import Portfolio from "./pages/Portfolio";
 
 export const App = () => {
   const bg = useColorModeValue("whiteAlpha.900", "#0B0B20");
@@ -22,12 +28,18 @@ export const App = () => {
         <Routes>
           <Route path="/swap" element={<Swap />} />
           <Route path="/pools" element={<Pools />} />
+          <Route path="/pools-rebalance" element={<PoolsRebalance />} />
+          <Route path="/deposit-liquidity" element={<DepositLiquidity />} />
+          <Route path="/withdraw-liquidity" element={<WithdrawLiquidity />} />
+          <Route path="/pools-details" element={<PoolsDetails />} />
           <Route path="/pools/:token" element={<TokenDetail />} />
           <Route path="/lock" element={<Lock />} />
           <Route path="/vote" element={<Vote />} />
           <Route path="/bridge" element={<Bridge />} />
           <Route path="/faucet" element={<Faucet />} />
           <Route path="/trade" element={<Trade />} />
+          <Route path="/perps" element={<Perps />} />
+          <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/*" element={<Swap />} />
         </Routes>
         <Footer />

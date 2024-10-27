@@ -19,8 +19,8 @@ import {
   useColorModeValue,
   VStack,
   InputGroup,
-  keyframes,
 } from "@chakra-ui/react";
+import { keyframes } from "@emotion/react";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { readContracts, useAccount, useNetwork } from "wagmi";
