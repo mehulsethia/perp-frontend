@@ -26,7 +26,7 @@ const TradesList = () => {
           </div>
         </div>
 
-      <div className=" bg-[#0B0B20] rounded-[10px] ">
+      <div className=" bg-[#0B0B20] rounded-b-[10px] ">
         {trades.map((trade, index) => (
           <div
             key={index}
