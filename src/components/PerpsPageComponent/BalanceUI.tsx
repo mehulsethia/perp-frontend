@@ -9,7 +9,7 @@ const BalanceUI = () => {
       <div className="space-y-2 ">
         <div className="bg-[#0B0B20] p-2 lg:p-3 rounded-2xl space-y-3">
           <div className=" flex justify-between items-center">
-            <div className="p-2 bg-[#1B1C39] rounded-2xl flex justify-center items-center space-x-2">
+            <div className="p-2 bg-[#1B1C39] rounded-2xl flex justify-center items-center space-x-1">
               <div className="bg-[#0B0B20]  font-bold text-white px-2 lg:px-3 py-1 lg:py-2 rounded-xl text-sm">
                 Balance
               </div>
@@ -30,8 +30,8 @@ const BalanceUI = () => {
         <div className="">
         <div className="bg-[#0B0B20] p-3 rounded-xl space-y-3">
           <div className="  flex justify-between items-center">
-            <div className="py-1.5 px-1 bg-[#1B1C39] rounded-xl flex justify-center items-center space-x-2">
-              <div className="bg-[#0B0B20] font-bold text-white py-2 px-3   rounded-xl text-sm">
+            <div className="py-1.5 px-1.5 bg-[#1B1C39] rounded-2xl flex justify-center items-center space-x-2">
+              <div className="bg-[#0B0B20] font-bold text-white py-2 px-2   rounded-xl text-sm">
                 Leverage
               </div>
               <div className="text-sm font-bold p-1">5x</div>

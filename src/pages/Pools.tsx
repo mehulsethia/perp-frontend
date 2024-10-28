@@ -900,7 +900,7 @@ export default function Pools() {
         borderColor={borderColor}
         borderRadius={"1.5rem"}
         bgColor={bg}
-        className="py-4 justify-around"
+        className=" p-2.5 justify-between"
         // gap={"1rem"}
         flexWrap={"wrap"}
         
@@ -908,9 +908,10 @@ export default function Pools() {
         <VStack
           borderRadius={"1rem"}
           // p="1rem"
-          className="px-7 py-4"
+          className="px-7 py-4 "
           gap="1.875rem"
           bg={boxBg}
+          w="19rem"
         >
           <HStack w="100%" gap="0.375rem">
             <Box
@@ -957,6 +958,7 @@ export default function Pools() {
           className="px-7 py-4"
           gap="1.875rem"
           bg={boxBg}
+          w="19rem"
         >
           <HStack w="100%" gap="0.375rem">
             <Box
@@ -1003,6 +1005,7 @@ export default function Pools() {
           className="px-7 py-4"
           gap="1.875rem"
           bg={boxBg}
+          w="19rem"
         >
           <HStack w="100%" gap="0.375rem">
             <Box
@@ -1046,6 +1049,7 @@ export default function Pools() {
           className="px-7 py-4"
           gap="1.875rem"
           bg={boxBg}
+          w="19rem"
         >
           <HStack w="100%" gap="0.375rem">
             <Box

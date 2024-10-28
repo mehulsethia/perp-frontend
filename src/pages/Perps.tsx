@@ -29,7 +29,7 @@ const Perps = () => {
                   <Chart />
                 </div>
               </div>
-              <div className="md:w-64 md:mx-1 lg:mx-2 bg-[#1B1C39] rounded-2xl flex flex-col my-1 xl:my-2 md:my-0  w-full">
+              <div className="md:w-64 md:mx-1 lg:mx-2 bg-[#1B1C39] rounded-2xl flex flex-col   md:my-0  w-full">
                 <div className="px-3 xl:px-2 py-2 xl:py-3 font-bold lg:text-sm xl:text-base">Trades</div>
                 <div className="h-[300px] md:h-full md:min-h-0 pb-2 px-1.5 overflow-auto">
                   <div className="   ">

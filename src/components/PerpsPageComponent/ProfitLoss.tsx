@@ -14,7 +14,7 @@ const ProfitLoss = () => {
 
 
   const [lossPercentage, setLossPercentage] = useState(-10);
-  const [inputlossValue, setInputLossValue] = useState('68,000');
+  const [inputlossValue, setInputLossValue] = useState('0');
   const lossPercentageOptions = [-20, -30, -40, -50];
   const handleLossPercentageClick = (losspercentage:any) => {
     setLossPercentage(losspercentage);
@@ -51,7 +51,7 @@ const ProfitLoss = () => {
               <button
                 key={percentage}
                 onClick={() => handlePercentageClick(percentage)}
-                className="bg-[#28294B] py-2 px-2 w-full rounded-xl text-white hover:bg-[#363764] transition-colors"
+                className="bg-[#28294B] py-2 px-2 text-xs w-full rounded-xl text-white hover:bg-[#363764] transition-colors"
               >
                 {percentage}%
               </button>
@@ -74,18 +74,18 @@ const ProfitLoss = () => {
       </div>
       
       <div className="flex items-center text-center gap-1 text-sm my-4">
-        <input 
-          value={inputlossValue}
-          onChange={(e) => setInputLossValue(e.target.value)}
-          placeholder="68,000"
-          className="bg-[#0B0B20] py-2 px-4 w-full rounded-xl text-white"
-        />
+      <input
+              value={inputlossValue}
+              onChange={(e) => setInputLossValue(e.target.value)}
+              className="bg-[#0B0B20] py-2 px-4 w-full rounded-xl text-white"
+              placeholder="0"
+            />
         
         {lossPercentageOptions.map((losspercentage) => (
           <button
             key={losspercentage}
             onClick={() => handleLossPercentageClick(losspercentage)}
-            className="bg-[#28294B] py-2 px-2 w-full rounded-xl text-white hover:bg-[#363764] transition-colors"
+            className="bg-[#28294B] text-xs py-2 px-[7px] w-full rounded-xl text-white hover:bg-[#363764] transition-colors"
           >
             {losspercentage}%
           </button>

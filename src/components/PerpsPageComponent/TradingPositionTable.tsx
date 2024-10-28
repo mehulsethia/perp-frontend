@@ -1,7 +1,7 @@
 import { ArrowLeftIcon, ArrowLeftSquare, ArrowRightIcon } from "lucide-react";
 import React, { useState } from "react";
 
-const TradingPositionsTable = () => {
+const   TradingPositionsTable = () => {
   const [activeTab, setActiveTab] = useState("position");
   // Sample data
   const positions = [
@@ -146,9 +146,9 @@ const TradingPositionsTable = () => {
   return (
     <div className="w-full bg-[#1B1C39] rounded-2xl text-left text-sm text-white  h-full flex flex-col">
       {/* Top section remains the same */}
-      <div className="w-full px-1 2xl:px-3 py-0.5 2xl:py-1.5 my-1 2xl:my-3">
+      <div className="w-full  2xl:px-3 py-0.5 2xl:py-1.5 px-4 my-1 2xl:my-3">
         <div className="flex flex-col md:flex-row justify-between items-center space-y-2 xl:space-y-3 md:space-y-0">
-          <div className="flex flex-wrap justify-center bg-[#0B0B20] px-1 py-0.5 xl:px-2 xl:py-1.5 rounded-[10px] text-white space-x-2 xl:space-x-4">
+          <div className="flex flex-wrap justify-center bg-[#0B0B20] px-1 py-0.5 xl:px-2 xl:py-1.5 rounded-[14px] text-white space-x-2 xl:space-x-4">
             <button
               onClick={() => setActiveTab("positions")}
               className={`px-4 py-1.5 xl:text-sm 2xl:text-base lg:text-xs rounded-lg ${
@@ -309,7 +309,7 @@ const TradingPositionsTable = () => {
           </div>
         </div>
         <div className="flex justify-between md:col-span-5 items-center gap-2 text-white mt-2 md:mt-0">
-          <span className="text-xs xl:text-sm 2xl:text-base" >  1 of 1</span>
+          <span className="text-xs text-[#28294B] xl:text-sm 2xl:text-base" >  1 of 1</span>
           <div className="flex items-center gap-2 px-3 py-2 bg-[#1B1C39] rounded-[10px]">
             <div>
               <button className="bg-[#28294B] py-1 px-2 rounded-[6px] text-xs xl:text-sm 2xl:text-base">
