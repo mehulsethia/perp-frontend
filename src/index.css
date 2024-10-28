@@ -12,6 +12,11 @@
     U+2026, U+2AF6, U+1F44B; }
 
 
+
+.font-sfPro {
+  font-family: "SF PRO";
+}
+
 html {
   font-size: 16px;
 }

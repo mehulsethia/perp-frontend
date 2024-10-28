@@ -17,7 +17,7 @@ const CryptoTicker = () => {
   const options = ["Market 01", "Market 02", "Market 03"];
 
   return (
-    <div className="rounded-lg grid grid-cols-1 md:grid-cols-[auto,1fr] items-center text-sm gap-4 my-4 mx-2">
+    <div className=" grid rounded-xl grid-cols-1 md:grid-cols-[auto,1fr] items-center text-sm gap-2 my-4 mx-2">
       {/* Market Info and Ticker */}
       <div className="flex  space-x-4 bg-[#1B1C39] px-4 py-0.5 rounded-xl w-full h-full md:w-auto">
         <div className="flex justify-between items-center w-full  space-x-3">
@@ -35,10 +35,10 @@ const CryptoTicker = () => {
         <div className="flex flex-col lg:flex-row lg:items-center justify-between ">
           {/* Price Section */}
           <div className="flex flex-col mb-6 lg:mb-0">
-            <span className="text-lg xl:text-2xl font-bold text-white">
+            <span className="text-base xl:text-lg font-bold text-white font-sfPro">
               6,654$
             </span>
-            <span className="text-gray-400">6,654</span>
+            <span className="text-gray-400 text-sm">6,654</span>
           </div>
 
           {/* Metrics Section */}
@@ -51,10 +51,10 @@ const CryptoTicker = () => {
                   }`}
                 />
                 <div className="flex flex-col">
-                  <span className="text-sm xl:text-base font-bold text-white">
+                  <span className="text-sm font-bold text-white">
                     {metric.label}
                   </span>
-                  <span className="text-sm text-gray-400 mt-0.5">
+                  <span className="text-sm text-gray-400 mt-0.5 -ml-3">
                     {metric.value}
                   </span>
                 </div>
