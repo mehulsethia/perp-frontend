@@ -26,7 +26,7 @@ const Dropdown: React.FC<DropdownProps> = ({ options, defaultOption = 'All Marke
       <button
         id="dropdownDefaultButton"
         onClick={toggleDropdown}
-        className="text-white   font-bold focus:outline-none rounded-lg text-sm px-2 py-2.5 text-center inline-flex items-center"
+        className="text-white   font-bold focus:outline-none rounded-lg text-sm px-1 py-2.5 text-center inline-flex items-center"
         type="button"
         aria-haspopup="true"
         aria-expanded={isOpen}

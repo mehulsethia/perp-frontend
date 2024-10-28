@@ -44,8 +44,8 @@ const LeverageSlider = () => {
 
   return (
     <>
-      <div className="p-1 w-full flex justify-between my-10 items-center rounded-xl">
-        <div className="text-md font-bold">Leverage Slider</div>
+      <div className="py-1 px-0.5 w-full flex justify-between mt-1 items-center rounded-xl">
+        <div className="text-md font-bold">Leverage <br /> Slider</div>
 
         <div className="flex items-center justify-between space-x-1 bg-[#0B0B20] px-1.5 py-1.5 rounded-[10px]">
           <button className="px-2.5 py-2 rounded-[6px] bg-[#1B1C39] hover:bg-gray-900 hover:text-white font-bold">
@@ -63,7 +63,7 @@ const LeverageSlider = () => {
       
       <div className="m-1 md:m-0">
         <Box className="w-full p-2 my-2 bg-transparent rounded-lg">
-          <Box className="flex justify-between mt-1 text-gray-400 text-sm">
+          <Box className="flex justify-between mt-1 text-gray-400  text-sm">
             {[0, 20, 40, 60, 80, 100].map((mark) => (
               <Box key={mark}>{mark}%</Box>
             ))}

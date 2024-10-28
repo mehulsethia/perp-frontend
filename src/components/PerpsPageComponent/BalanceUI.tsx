@@ -21,7 +21,7 @@ const BalanceUI = () => {
             <div className="font-bold text-white text-sm xl:text-base">Amount</div>
           </div>
           <div className="flex justify-between items-center p-1">
-          <Dropdown options={options} defaultOption="Select Market" />
+          <Dropdown options={options} defaultOption="Select Token" />
 
             <div className="font-bold text-white">10</div>
           </div>
@@ -39,7 +39,7 @@ const BalanceUI = () => {
             <div className="font-bold text-white ">Quantity</div>
           </div>
           <div className="flex justify-between items-center p-1">
-            <Dropdown options={options} defaultOption="Select Market" />
+            <Dropdown options={options} defaultOption="Select Token" />
             <div className="font-bold text-white">0.003265</div>
           </div>
         </div>

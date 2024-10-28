@@ -1,5 +1,7 @@
+import { Checkbox, CheckboxIcon } from "@chakra-ui/react";
 import { ArrowLeftIcon, ArrowLeftSquare, ArrowRightIcon } from "lucide-react";
 import React, { useState } from "react";
+import { IoMdCheckmark } from "react-icons/io";
 
 const   TradingPositionsTable = () => {
   const [activeTab, setActiveTab] = useState("position");
@@ -195,20 +197,23 @@ const   TradingPositionsTable = () => {
       </div>
 
       {/* Table Header - Hidden on mobile, shown on larger screens */}
-      <div className="hidden md:grid xl:text-sm 2xl:text-base lg:text-xs grid-cols-9 gap-4 px-2 py-3 font-semibold bg-[#28294B] rounded-t-xl text-gray-300">
-        <span>Market/Action</span>
-        <span>Position Size ↑</span>
-        <span>Entry Price ↑</span>
-        <span>Market Price ↑</span>
-        <span>Est. LIQ Price ↑</span>
-        <span>TP/SL ↑</span>
-        <span>P/L ↑</span>
-        <span>Borrow Fee ↑</span>
-        <span>Action</span>
+      <div className="hidden md:grid xl:text-sm 2xl:text-base lg:text-xs grid-cols-10 px-4 py-3 font-semibold bg-[#28294B] rounded-t-xl text-gray-300">
+        <div className="col-span-1 flex items-center">
+          <Checkbox />
+        </div>
+        <div className="col-span-1">Market/Action</div>
+        <div className="col-span-1">Position Size ↑</div>
+        <div className="col-span-1">Entry Price ↑</div>
+        <div className="col-span-1">Market Price ↑</div>
+        <div className="col-span-1">Est. LIQ Price ↑</div>
+        <div className="col-span-1">TP/SL ↑</div>
+        <div className="col-span-1">P/L ↑</div>
+        <div className="col-span-1">Borrow Fee ↑</div>
+        <div className="col-span-1">Action</div>
       </div>
 
       {/* Mobile-optimized Table Body */}
-      <div className="h-full overflow-y-auto">
+      <div className="h-full overflow-y-auto border-l border-r">
         {positions.map((position, index) => (
           <div
             key={index}
@@ -264,7 +269,9 @@ const   TradingPositionsTable = () => {
             </div>
 
             {/* Desktop Layout */}
-            <div className="hidden md:grid grid-cols-9 gap-4">
+            <div className="hidden md:grid grid-cols-10 gap-4">
+            <div><Checkbox className="w-10" /></div>
+
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-green-500"></div>
                 <span className="xl:text-sm 2xl:text-base lg:text-xs" >{position.market}</span>
@@ -297,7 +304,7 @@ const   TradingPositionsTable = () => {
       </div>
 
       {/* Footer */}
-      <div className="flex flex-col md:grid md:grid-cols-9 gap-4 p-1 xl:p-2 font-semibold bg-[#28294B]  rounded-lg text-gray-300 mt-auto">
+      <div className="flex flex-col md:grid md:grid-cols-9 gap-4 p-1 xl:p-2 font-semibold bg-[#28294B]  rounded-b-lg text-gray-300 mt-auto">
         <div className="flex flex-col space-y-1 xl:space-y-2 md:space-y-0 md:flex-row md:col-span-4">
           <div className="flex gap-4 w-full md:w-fit bg-[#0B0B20] rounded-xl justify-center items-center p-1 xl:p-2 text-white">
             <span className="bg-[#1B1C39] rounded-lg px-2 py-1 text-xs xl:text-sm 2xl:text-base font-semibold whitespace-nowrap">
@@ -329,7 +336,7 @@ const   TradingPositionsTable = () => {
           </div>
         </div>
       </div>
-    </div>
+      </div>
   );
 };
 
