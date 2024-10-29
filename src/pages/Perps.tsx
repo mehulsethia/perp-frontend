@@ -29,20 +29,28 @@ const Perps = () => {
                   <Chart />
                 </div>
               </div>
-              <div className="md:w-64 md:mx-1 lg:mx-2 bg-[#1B1C39] rounded-2xl flex flex-col   md:my-0  w-full">
-                <div className="px-3 xl:px-2 py-2 xl:py-3 font-bold lg:text-sm xl:text-base">Trades</div>
-                <div className="h-[300px] md:h-full md:min-h-0 pb-2 px-1.5 overflow-auto">
+              <div className="md:w-64 md:mx-1 lg:mx-2 bg-[#1B1C39] relative rounded-2xl flex flex-col   md:my-0  w-full">
+                <div className="px-3 py-2 xl:py-3 font-bold lg:text-sm xl:text-base">Trades</div>
+                <div className="h-[300px] md:h-full md:min-h-0 pb-2  overflow-auto">
                   <div className="   ">
                     <TradesList />
                   </div>
                 </div>
+                <div className="w-full rounded-b-xl p-4 bg-[#28294B] absolute bottom-0 flex items-center justify-center">
+                  <img src="/assets/icons/down.svg" alt="" className="w-2" />
+                </div>
               </div>
+             
             </div>
 
             <div className="h-[500px] md:h-auto md:flex-1 md:flex  w-full relative">
               <div className="absolute inset-0  ">
                 <TradingPositionsTable />
+             
+
               </div>
+             
+             
             </div>
           </div>
           <div className=" md:w-80 lg:w-72 flex flex-col rounded-2xl  bg-[#1B1C39] overflow-y-auto">

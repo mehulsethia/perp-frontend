@@ -5,7 +5,7 @@ import Frame76 from "../../assets/icons/Frame 76.png";
 const CryptoDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCoin, setSelectedCoin] = useState("Select Market");
+  const [selectedCoin, setSelectedCoin] = useState("BTC-USD");
 
   // Dummy data for multiple cryptocurrencies
   const cryptoData = [

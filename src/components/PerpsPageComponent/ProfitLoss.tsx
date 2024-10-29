@@ -27,7 +27,7 @@ const ProfitLoss = () => {
           <div className="flex justify-between items-center">
             <div className="flex justify-between items-center space-x-2">
               <div className="font-semibold">Take Profit</div>
-              <div className="text-[#30E0A1] bg-[#008D5B33] text-sm p-1 rounded-lg">
+              <div className="text-[#30E0A1] bg-[#008D5B33]  p-1 rounded-md  text-sm">
                 {profitPercentage}%
               </div>
             </div>
