@@ -19,7 +19,6 @@ const LongShort = () => {
 
   const options = ["Honey", "LP Honey"];
 
-
   const PriceSection = () => (
     <div className="bg-[#0B0B20] py-2 px-2 rounded-2xl my-2">
       <div className="flex justify-between items-center p-1">
